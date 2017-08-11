@@ -310,6 +310,8 @@
 
 - repo: luochen1990/rainbow
   if: empty($VIM_MINIMAL)
+
+
 # ==========================================
 # Completion
 # ----------
