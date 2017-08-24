@@ -340,4 +340,10 @@ if dein#tap('vim-textobj-function')
 	xmap <silent> if <Plug>(textobj-function-i)
 endif
 
+if dein#tap('vim-livedown')
+	let g:livedown_autorun = 1
+	let g:livedown_open = 1
+	let g:livedown_port = 1337
+endif
+
 " vim: set ts=2 sw=2 tw=80 noet :
