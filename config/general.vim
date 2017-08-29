@@ -124,6 +124,7 @@ set cpoptions-=m    " showmatch will wait 0.5s or until a char is typed
 " }}}
 " Behavior {{{
 " --------
+set scrolloff=999               " Cursor stays veritically centered on scroll
 set nowrap                      " No wrap by default
 set linebreak                   " Break long lines at 'breakat'
 set breakat=\ \	;:,!?           " Long lines break chars
