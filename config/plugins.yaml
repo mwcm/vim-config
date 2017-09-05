@@ -19,6 +19,7 @@
     autocmd MyAutoCmd InsertEnter * let b:cursorword=0
     autocmd MyAutoCmd InsertLeave * let b:cursorword=1
 
+
 # Lazy Loading
 # ==========================================
 
@@ -200,6 +201,12 @@
 - { repo: t9md/vim-quickhl, on_map: { nv: <Plug> }}
 - { repo: rafi/vim-sidemenu, on_map: { nv: <Plug> }}
 
+- repo: whatyouhide/vim-gotham
+  if: empty($VIM_MINIMAL)
+
+- repo: itchyny/lightline.vim
+  if: empty($VIM_MINIMAL)
+
 - repo: airblade/vim-gitgutter
   on_path: .*
   hook_source: |
@@ -296,7 +303,6 @@
 
 - repo: luochen1990/rainbow
   if: empty($VIM_MINIMAL)
-
 # ==========================================
 # Completion
 # ----------

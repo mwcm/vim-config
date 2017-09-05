@@ -346,4 +346,7 @@ if dein#tap('vim-livedown')
 	let g:livedown_port = 1337
 endif
 
+if dein#tap('lightline.vim')
+	let g:lightline = { 'colorscheme': 'gotham' }
+endif
 " vim: set ts=2 sw=2 tw=80 noet :
