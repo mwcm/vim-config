@@ -247,7 +247,6 @@
 
 - repo: benekastah/neomake
   if: has('nvim') && empty($VIM_MINIMAL)
-  on_cmd: Neomake
   hook_source: source $VIMPATH/config/plugins/neomake.vim
   hook_add: |
     let g:lint_filetypes = [
@@ -261,6 +260,10 @@
       \| elseif &filetype =~ 'html'
       \|   Neomake tidy
       \| endif
+
+- repo: dojoteef/neomake-autolint
+  if: executable('npm') && empty($VIM_MINIMAL)
+  hook_source: source $VIMPATH/config/plugins/neomake.vim
 
 - repo: junegunn/goyo.vim
   if: empty($VIM_MINIMAL)
@@ -429,6 +432,7 @@
     let g:tern_show_signature_in_pum = 0
   hook_post_source: |
     autocmd MyAutoCmd FileType javascript setlocal omnifunc=tern#Complete
+
 
 # ==========================================
 # Denite
