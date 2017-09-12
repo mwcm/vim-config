@@ -349,4 +349,8 @@ endif
 if dein#tap('lightline.vim')
 	let g:lightline = { 'colorscheme': 'gotham' }
 endif
+
+if dein#tap('rainbow')
+	let g:rainbow_active = 1
+endif
 " vim: set ts=2 sw=2 tw=80 noet :
