@@ -2,6 +2,10 @@
 # PLUGINS
 # ==========================================
 
+# CAREFUL COMMENTING THINGS OUT
+# ALL #'s MUST be at leftmost position
+# otherwise will break things (mostly tab completion)
+
 # Startup
 # -------
 - repo: Shougo/dein.vim
@@ -262,8 +266,8 @@
       \| endif
 
 #- repo: dojoteef/neomake-autolint
-  #if: executable('npm') && empty($VIM_MINIMAL)
-  #hook_source: source $VIMPATH/config/plugins/neomake.vim
+#  if: executable('npm') && empty($VIM_MINIMAL)
+#  hook_source: source $VIMPATH/config/plugins/neomake.vim
 
 - repo: junegunn/goyo.vim
   if: empty($VIM_MINIMAL)
