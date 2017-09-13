@@ -250,9 +250,9 @@
       \|   Neomake tidy
       \| endif
 
-- repo: dojoteef/neomake-autolint
-  if: executable('npm') && empty($VIM_MINIMAL)
-  hook_source: source $VIMPATH/config/plugins/neomake.vim
+#- repo: dojoteef/neomake-autolint
+  #if: executable('npm') && empty($VIM_MINIMAL)
+  #hook_source: source $VIMPATH/config/plugins/neomake.vim
 
 - repo: junegunn/goyo.vim
   if: empty($VIM_MINIMAL)
