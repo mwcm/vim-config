@@ -381,6 +381,12 @@
     let g:jedi#quickfix_window_height = 10
     let g:jedi#use_splits_not_buffers = 'right'
 
+
+- { repo: vim-scripts/dbext.vim, if: empty($VIM_MINIMAL) }
+
+
+
+
 # Only NeoVim ------------------------------
 - repo: zchee/deoplete-go
   if: has('nvim') && empty($VIM_MINIMAL)
