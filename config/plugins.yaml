@@ -1,4 +1,3 @@
----
 # PLUGINS
 # ==========================================
 
@@ -406,7 +405,7 @@
 
 
 - { repo: vim-scripts/dbext.vim, if: empty($VIM_MINIMAL) }
-
+- { repo: honza/vim-snippets,    if: empty($VIM_MINIMAL) }
 
 
 
