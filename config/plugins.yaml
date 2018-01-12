@@ -81,6 +81,7 @@
 - { repo: heavenshell/vim-jsdoc, on_ft: [ javascript, jsx, javascript.jsx ] }
 - { repo: moll/vim-node, on_ft: [ javascript, jsx, javascript.jsx ] }
 - { repo: elzr/vim-json, on_ft: json }
+- { repo: jparise/vim-graphql, on_ft: [javascript, jsx, javascript.jsx ] }
 
 # pangloss/javascript vs. othree/yajs
 #- { repo: othree/yajs.vim, on_ft: [ javascript, jsx, javascript.jsx ]}
@@ -252,6 +253,7 @@
       \| elseif &filetype =~ 'html'
       \|   Neomake tidy
       \| endif
+    call neomake#configure#automake('rw', 1000)
 
 #- repo: dojoteef/neomake-autolint
 #  if: executable('npm') && empty($VIM_MINIMAL)
