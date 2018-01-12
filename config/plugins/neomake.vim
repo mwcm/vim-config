@@ -2,7 +2,7 @@
 " Neomake
 " ---------
 let g:neomake_open_list = 0
-let g:neomake_verbose = 1
+let g:neomake_verbose = 3
 let g:airline#extensions#neomake#enabled = 0
 let g:neomake_python_pylint_exe = g:python3_host_prog
 
@@ -30,5 +30,8 @@ let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint'
 let g:neomake_yaml_enabled_makers = ['yamllint']
 let g:neomake_ansible_enabled_makers = ['yamllint']
 let g:neomake_ansible_yamllint_maker = neomake#makers#ft#yaml#yamllint()
+
+" When reading a buffer (after 1s), and when writing.
+call neomake#configure#automake('rw', 1000)
 
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
