@@ -253,7 +253,6 @@
       \| elseif &filetype =~ 'html'
       \|   Neomake tidy
       \| endif
-    call neomake#configure#automake('rw', 1000)
 
 #- repo: dojoteef/neomake-autolint
 #  if: executable('npm') && empty($VIM_MINIMAL)
