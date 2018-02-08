@@ -7,6 +7,9 @@
 
 " General settings " {{{
 " ---
+
+highlight Pmenu ctermbg=8 guibg=#0A0F14
+"
 " let g:deoplete#auto_complete_delay = 50  " Default is 50
 " let g:deoplete#auto_refresh_delay = 500  " Default is 500
 let g:deoplete#enable_refresh_always = 0
