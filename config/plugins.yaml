@@ -101,7 +101,7 @@
     let g:go_highlight_extra_types = 1
     let g:go_highlight_operators = 1
 
-- { repo: vim-scripts/restore_view.vim }
+#- { repo: vim-scripts/restore_view.vim }
 - { repo: vim-python/python-syntax, on_ft: python }
 - { repo: Vimjas/vim-python-pep8-indent, on_ft: python }
 - { repo: vim-scripts/python_match.vim, on_ft: python }
