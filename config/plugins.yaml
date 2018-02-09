@@ -282,6 +282,10 @@
   on_cmd: Goyo
   hook_source: source $VIMPATH/config/plugins/goyo.vim
 
+- repo: amix/vim-zenroom2
+  if: empty($VIM_MINIMAL)
+  on_cmd: Goyo
+
 - repo: junegunn/limelight.vim
   if: empty($VIM_MINIMAL)
   on_cmd: Limelight
