@@ -29,8 +29,8 @@ we'll also symlink it for Vim:
 
 ```sh
 mkdir ~/.config
-git clone git://github.com/rafi/vim-config.git ~/.config/nvim
-ln -s ~/.config/nvim ~/.vim
+git clone git://github.com/mwcm/vim-config.git ~/.config/nvim
+ln -s ~/.vim ~/.config/nvim
 ```
 
 - _Note:_ If your system sets `$XDG_CONFIG_HOME`,
