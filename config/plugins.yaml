@@ -212,12 +212,6 @@
 - repo: itchyny/lightline.vim
   if: empty($VIM_MINIMAL)
 
-- repo: whatyouhide/vim-gotham
-  if: empty($VIM_MINIMAL)
-
-- repo: itchyny/lightline.vim
-  if: empty($VIM_MINIMAL)
-
 - repo: airblade/vim-gitgutter
   on_path: .*
   hook_source: |
@@ -321,7 +315,10 @@
 
 - repo: luochen1990/rainbow
   if: empty($VIM_MINIMAL)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 121d904d30c688ffab1d813253d4626e1f764a32
 # ==========================================
 # Completion
 # ----------
