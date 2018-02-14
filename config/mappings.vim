@@ -269,19 +269,12 @@ noremap  mj :m+<CR>
 nmap <silent> <Leader>se :<C-u>execute 'SessionSave' fnamemodify(resolve(getcwd()), ':p:gs?/?_?')<CR>
 nmap <silent> <Leader>os :<C-u>execute 'source '.g:session_directory.'/'.fnamemodify(resolve(getcwd()), ':p:gs?/?_?').'.vim'<CR>
 
-" search word under cursor
-" search related docsets
-nnoremap <silent> <S-k> :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
-
 " search ALL the docsets
-nnoremap <silent> <Leader><S-k> :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
+nnoremap <silent> <Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
 
 " search selected text
 " search related docsets
-vnoremap <silent> <Leader>k y:<C-U>call Dasht(getreg(0))<Return>
-
-" search ALL the docsets
-vnoremap <silent> <Leader><Leader>k y:<C-U>call Dasht(getreg(0), '!')<Return>
+vnoremap <silent> <Leader><S-k> y:<C-U>call Dasht(getreg(0))<Return>
 
 
 " }}}

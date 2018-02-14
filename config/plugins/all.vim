@@ -183,19 +183,18 @@ if dein#tap('vim-choosewin')
 	nmap <Leader>- :<C-u>ChooseWinSwapStay<CR>
 endif
 
-"if dein#tap('jedi-vim')
-	"let g:jedi#completions_command = ''
-	""let g:jedi#documentation_command = 'K'
-	"let g:jedi#goto_command = '<C-]>'
-	"let g:jedi#goto_assignments_command = '<leader>g'
-	"let g:jedi#rename_command = '<Leader>r'
-	"let g:jedi#usages_command = '<Leader>n'
-"endif
+if dein#tap('jedi-vim')
+	let g:jedi#completions_command = ''
+	let g:jedi#documentation_command = 'K'
+	let g:jedi#goto_command = '<C-]>'
+	let g:jedi#goto_assignments_command = '<leader>g'
+	let g:jedi#rename_command = '<Leader>r'
+	let g:jedi#usages_command = '<Leader>n'
+endif
 
-" TODO: fix if messing with dasht
 if dein#tap('tern_for_vim')
 	autocmd MyAutoCmd FileType javascript,jsx,javascript.jsx
-		\| nnoremap <silent><buffer> <S-U> :<C-u>TernDoc<CR>
+		\| nnoremap <silent><buffer> K :<C-u>TernDoc<CR>
 		\| nnoremap <silent><buffer> <C-]>      :<C-u>TernDef<CR>
 		\| nnoremap <silent><buffer> <leader>g  :<C-u>TernType<CR>
 		\| nnoremap <silent><buffer> <leader>n  :<C-u>TernRefs<CR>
@@ -233,10 +232,8 @@ endif
 
 if dein#tap('vimagit')
 	nnoremap <silent> mg :Magit<CR>
-
-	" TODO: fix if messing with dasht
-	" autocmd MyAutoCmd FileType magit
-	" 	\ nnoremap <silent><buffer> <CR> za
+	 autocmd MyAutoCmd FileType magit
+		 \ nnoremap <silent><buffer> <CR> za
 endif
 
 if dein#tap('vim-easygit')
