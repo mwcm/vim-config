@@ -1,5 +1,6 @@
 
 " General Settings
+" 
 "---------------------------------------------------------
 " General {{{
 set mouse=nv                 " Disable mouse in command-line mode

@@ -184,6 +184,9 @@ nmap <silent> \\ :execute 'tabn '.g:lasttab<CR>
 " Totally Custom {{{
 " --------------
 
+" remap thesaurus
+nnoremap <Leader>T :OnlineThesaurusCurrentWord<CR>
+
 " Remove spaces at the end of lines
 nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
@@ -266,31 +269,20 @@ noremap  mj :m+<CR>
 nmap <silent> <Leader>se :<C-u>execute 'SessionSave' fnamemodify(resolve(getcwd()), ':p:gs?/?_?')<CR>
 nmap <silent> <Leader>os :<C-u>execute 'source '.g:session_directory.'/'.fnamemodify(resolve(getcwd()), ':p:gs?/?_?').'.vim'<CR>
 
-if has('mac')
-	" Open the macOS dictionary on current word
-	nmap <Leader>? :!open dict://<cword><CR><CR>
+" search word under cursor
+" search related docsets
+nnoremap <silent> <S-k> :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
 
-	" Use Marked for real-time Markdown preview
-	if executable('/Applications/Marked 2.app/Contents/MacOS/Marked 2')
-		autocmd MyAutoCmd FileType markdown
-			\ nmap <buffer><Leader>P :silent !open -a Marked\ 2.app '%:p'<CR>
-	endif
+" search ALL the docsets
+nnoremap <silent> <Leader><S-k> :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
 
-	" Use Dash on Mac, for context help
-	if executable('/Applications/Dash.app/Contents/MacOS/Dash')
-		autocmd MyAutoCmd FileType ansible,go,php,css,less,html,markdown
-			\ nmap <silent><buffer> K :!open -g dash://"<C-R>=split(&ft, '\.')[0]<CR>:<cword>"&<CR><CR>
-		autocmd MyAutoCmd FileType javascript,javascript.jsx,sql,ruby,conf,sh
-			\ nmap <silent><buffer> K :!open -g dash://"<cword>"&<CR><CR>
-	endif
+" search selected text
+" search related docsets
+vnoremap <silent> <Leader>k y:<C-U>call Dasht(getreg(0))<Return>
 
-" Use Zeal on Linux for context help
-elseif executable('zeal')
-	autocmd MyAutoCmd FileType ansible,go,php,css,less,html,markdown
-		\ nmap <silent><buffer> K :!zeal --query "<C-R>=split(&ft, '\.')[0]<CR>:<cword>"&<CR><CR>
-	autocmd MyAutoCmd FileType javascript,javascript.jsx,sql,ruby,conf,sh
-		\ nmap <silent><buffer> K :!zeal --query "<cword>"&<CR><CR>
-endif
+" search ALL the docsets
+vnoremap <silent> <Leader><Leader>k y:<C-U>call Dasht(getreg(0), '!')<Return>
+
 
 " }}}
 
