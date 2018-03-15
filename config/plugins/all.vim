@@ -310,6 +310,10 @@ if dein#tap('vim-commentary')
 	nmap gcu <Plug>Commentary<Plug>Commentary
 endif
 
+if dein#tap('vim-sessions')
+	let g:sessions_project_path = "$HOME/projects"
+endif
+
 if dein#tap('vim-easymotion')
 	nmap ss <Plug>(easymotion-s2)
 	nmap sd <Plug>(easymotion-s)

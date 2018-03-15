@@ -1,3 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/Users/mwcmitchell/Projects/Slice.Pladmin/reports/accounting/sales_cancellations'
+let g:netrw_dirhist_2='/Users/mwcmitchell/.datapipeline'
+let g:netrw_dirhist_3='/Users/mwcmitchell/.kafka'
+let g:netrw_dirhist_4='/Users/mwcmitchell/Projects/Slice.Webhooks/.git'
+let g:netrw_dirhist_5='/private/etc/paths.d'
+let g:netrw_dirhist_6='/private/var/log/cups'
+let g:netrw_dirhist_7='/private/var/log'
+let g:netrw_dirhist_8='/private/var'
+let g:netrw_dirhist_9='/private/var/log/cups'

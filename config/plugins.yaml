@@ -1,4 +1,3 @@
-# PLUGINS
 # ==========================================
 
 # CAREFUL COMMENTING THINGS OUT
@@ -16,6 +15,7 @@
 - repo: tpope/vim-sleuth
 - repo: itchyny/vim-gitbranch
 - repo: itchyny/vim-parenmatch
+- repo: edsono/vim-sessions
 - repo: itchyny/vim-cursorword
   hook_add: |
     autocmd MyAutoCmd FileType denite,qf let b:cursorword=0
@@ -510,3 +510,4 @@
   hook_add: let g:textobj_function_no_default_key_mappings = 1
 
 #  vim: set ts=2 sw=2 tw=80 et :
+
