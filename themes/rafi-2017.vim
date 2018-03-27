@@ -195,6 +195,7 @@ augroup nerdtree-highlights
 	autocmd FileType nerdtree call s:NERDTreeHighlight()
 augroup END
 "}}}
+"
 
 " Plugin: Tagbar icons {{{
 " ---------------------------------------------------------
