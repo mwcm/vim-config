@@ -1,9 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/mwcmitchell/Projects/lastfm_viewer/src/components'
-let g:netrw_dirhist_2='/Users/mwcmitchell/12-10-2017'
-let g:netrw_dirhist_3='/Users/mwcmitchell/Projects/Slice.Pladmin/reports/sql_scripts'
-let g:netrw_dirhist_4='/Users/mwcmitchell/.dotfiles'
-let g:netrw_dirhist_5='/Users/mwcmitchell/.dotfiles/.config'
-let g:netrw_dirhist_6='/Users/mwcmitchell/.dotfiles/.config/NuGet'
-let g:netrw_dirhist_7='/Users/mwcmitchell/Projects/Slice.Datapipeline/dynamodbstreams/models'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/mwcmitchell/Projects/Slice.Pladmin/reports/glise_reports/claims'
+let g:netrw_dirhist_2='/Users/mwcmitchell/Projects/Slice.Pladmin/reports/glise_reports/claims/excel_files'
+let g:netrw_dirhist_3='/Users/mwcmitchell/Projects/Slice.Pladmin/reports/glise_reports/claims'
+let g:netrw_dirhist_4='/Users/mwcmitchell/Projects/Slice.Pladmin/reports/glise_reports'
+let g:netrw_dirhist_5='/Users/mwcmitchell/Projects/Slice.Pladmin/reports'
+let g:netrw_dirhist_6='/Users/mwcmitchell/.config/nvim/themes'

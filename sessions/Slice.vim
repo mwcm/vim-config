@@ -2,26 +2,26 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Projects/Slice.Datapipeline/dynamodbstreams
+cd ~/Projects/Slice.Pladmin/reports/glise_reports/claims
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 ~/.tmux.conf
+badd +0 claims.yaml
 argglobal
 silent! argdel *
-$argadd ~/.tmux.conf
-edit ~/.tmux.conf
+$argadd claims.yaml
+edit claims.yaml
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
-let s:l = 29 - ((28 * winheight(0) + 33) / 67)
+let s:l = 69 - ((11 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-29
-normal! 023|
+69
+normal! 040|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
