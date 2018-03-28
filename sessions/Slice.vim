@@ -2,25 +2,25 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Projects/Slice.Pladmin/reports/glise_reports/claims
+cd ~/Projects/Slice.Datapipeline/dynamodbstreams
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 claims.py
+badd +0 models/claims_claim_tasks.py
 argglobal
 silent! argdel *
-$argadd claims.py
-edit claims.py
+$argadd models/claims_claim_tasks.py
+edit models/claims_claim_tasks.py
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
-let s:l = 399 - ((40 * winheight(0) + 33) / 67)
+let s:l = 51 - ((20 * winheight(0) + 33) / 67)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-399
+51
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
