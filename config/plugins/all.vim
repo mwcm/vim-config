@@ -348,9 +348,15 @@ if dein#tap('vim-livedown')
 	let g:livedown_port = 1337
 endif
 
-if dein#tap('lightline.vim')
-	let g:lightline = { 'colorscheme': 'gotham' }
+if dein#tap('Colorizer')
+	let g:colorizer_auto_filetype='css,html'
 endif
+
+
+" going back to rafi's statusline
+"if dein#tap('lightline.vim')
+	"let g:lightline = { 'colorscheme': 'gotham' }
+"endif
 
 if dein#tap('rainbow')
 	let g:rainbow_active = 1

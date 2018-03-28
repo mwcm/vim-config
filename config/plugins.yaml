@@ -29,7 +29,6 @@
 # Languages
 # ---------
 - { repo: hail2u/vim-css3-syntax, on_ft: css }
-- { repo: ap/vim-css-color, on_ft: [ css, scss, sass ] }
 - { repo: cakebaker/scss-syntax.vim, on_ft: [ scss, sass ]}
 - { repo: groenewege/vim-less, on_ft: less }
 - { repo: othree/csscomplete.vim, on_ft: css }
@@ -208,11 +207,14 @@
 - { repo: t9md/vim-quickhl, on_map: { nv: <Plug> }}
 - { repo: rafi/vim-sidemenu, on_map: { nv: <Plug> }}
 
+- repo: chrisbra/Colorizer
+  if: empty($VIM_MINIMAL)
+
 - repo: whatyouhide/vim-gotham
   if: empty($VIM_MINIMAL)
 
-- repo: itchyny/lightline.vim
-  if: empty($VIM_MINIMAL)
+#- repo: itchyny/lightline.vim
+  #if: empty($VIM_MINIMAL)
 
 - repo: airblade/vim-gitgutter
   on_path: .*

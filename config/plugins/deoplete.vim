@@ -10,6 +10,7 @@
 highlight Pmenu ctermbg=4 guibg=#0A0F14
 highlight PmenuSel ctermbg=1 guifg=#dddd00 guibg=#0A0F14
 highlight PmenuSbar ctermbg=0 guibg=#d6d6d6
+
 "
 " let g:deoplete#auto_complete_delay = 50  " Default is 50
 " let g:deoplete#auto_refresh_delay = 500  " Default is 500
