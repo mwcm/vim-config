@@ -265,11 +265,11 @@ call s:Col('TablineFill', 'base4', 'base3')
 call s:Col('Tabline', 'base5', 'base3')
 
 " TabLineSel: Active tab page label
-call s:Col('TablineSel', 'base6', 'base4')
+call s:Col('TablineSel', 'base7', 'base4')
 
 " Custom
-call s:Col('TablineSelShade', 'base3', 'base4')
-call s:Col('TabLineAlt',      'base6', 'cyan')
+call s:Col('TablineSelShade', 'base6', 'base4')
+call s:Col('TabLineAlt',      'base7', 'base4')
 call s:Col('TablineAltShade', 'cyan', 'base3')
 
 
@@ -334,23 +334,23 @@ let s:stl_nc .= '%{&ft} '                      " File type
 " Highlights: Statusline {{{
 "highlight StatusLine   ctermfg=4 ctermbg=248 guifg=#30302c guibg=#a8a897
 "highlight StatusLineNC ctermfg=236 ctermbg=242 guifg=#30302c guibg=#666656
-call s:Col('StatusLine', 'base6', 'base3')
-call s:Col('StatusLineNC', 'base5', 'base2')
+call s:Col('StatusLine', 'base7', 'base3')
+call s:Col('StatusLineNC', 'base5', 'base3')
 
 " Filepath color
-call s:Col('User1', 'base6', 'base4')
+call s:Col('User1', 'base7', 'base3')
 " Line and column information
-call s:Col('User2', 'base6', 'base4')
+call s:Col('User2', 'base7', 'base4')
 " Line and column corner arrow
-call s:Col('User3', 'base6', 'base3')
+call s:Col('User3', 'base7', 'base3')
 " Buffer # symbol and whitespace or syntax errors
-call s:Col('User4', 'base6', 'base3')
+call s:Col('User4', 'base7', 'base3')
 " Write symbol
-call s:Col('User6', 'base6', 'base3')
+call s:Col('User6', 'base7', 'base3')
 " Paste symbol
-call s:Col('User7', 'base6', 'base3')
+call s:Col('User7', 'base7', 'base3')
 " Syntax and whitespace
-call s:Col('User8', 'base6', 'base3')
+call s:Col('User8', 'base7', 'base3')
 " }}}
 
 let s:disable_statusline =
