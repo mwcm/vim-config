@@ -1,10 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/Users/mwcmitchell/Projects/Slice.Pladmin/reports/glise_reports/claims'
-let g:netrw_dirhist_2='/Users/mwcmitchell/Projects/Slice.Pladmin/reports/glise_reports/claims/excel_files'
-let g:netrw_dirhist_3='/Users/mwcmitchell/Projects/Slice.Pladmin/reports/glise_reports/claims'
-let g:netrw_dirhist_4='/Users/mwcmitchell/Projects/Slice.Pladmin/reports/glise_reports'
-let g:netrw_dirhist_5='/Users/mwcmitchell/Projects/Slice.Pladmin/reports'
-let g:netrw_dirhist_6='/Users/mwcmitchell/.config/nvim/themes'
-let g:netrw_dirhist_7='/Users/mwcmitchell/.config/nvim/config'
-let g:netrw_dirhist_8='/Users/mwcmitchell/Projects/Slice.Datapipeline/dynamodbstreams'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/mwcmitchell/Projects/Slice.Datapipeline/.git'
+let g:netrw_dirhist_2='/Users/mwcmitchell/Projects/auth-idm/scripts/conversion/identity-user-scraper'
+let g:netrw_dirhist_3='/Users/mwcmitchell/.reporter'
+let g:netrw_dirhist_4='/Users/mwcmitchell/Projects/reporting-services/src/reports/glise/conduct/excel_files'
+let g:netrw_dirhist_5='/Users/mwcmitchell/Projects/reporting-services/.git'
+let g:netrw_dirhist_6='/Users/mwcmitchell/Projects/billiondollars/.git'

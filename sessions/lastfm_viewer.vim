@@ -7,21 +7,21 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 yarn-error.log
+badd +0 ~/Projects/Slice.Pladmin/reports/sql_scripts/create_tables.sql
 argglobal
 silent! argdel *
-$argadd yarn-error.log
-edit yarn-error.log
+$argadd ~/Projects/Slice.Pladmin/reports/sql_scripts/create_tables.sql
+edit ~/Projects/Slice.Pladmin/reports/sql_scripts/create_tables.sql
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
-let s:l = 1 - ((0 * winheight(0) + 37) / 74)
+let s:l = 1396 - ((46 * winheight(0) + 36) / 73)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+1396
+normal! 013|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
