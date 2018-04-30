@@ -170,8 +170,6 @@
   on_cmd: [Gcd, Glcd, Gcommit, Gblame, Gstatus, Gdiff, Gbrowse, Gstatus, Gpush]
   hook_source: let g:easygit_enable_command = 1
 
-- repo: tpope/vim-dadbod
-
 - repo: vim-scripts/LargeFile
 
 - repo: majutsushi/tagbar
