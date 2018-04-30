@@ -2,26 +2,26 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Projects/Slice.Pladmin/reports/PAN1/activity_summary
+cd ~/Projects/Slice.Pladmin/reports/accounting/year_end_summary
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +155 activity_summary.py
+badd +0 ~/.tmux.conf
 argglobal
 silent! argdel *
-$argadd activity_summary.py
-edit activity_summary.py
+$argadd ~/.tmux.conf
+edit ~/.tmux.conf
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
-let s:l = 170 - ((52 * winheight(0) + 33) / 67)
+let s:l = 10 - ((8 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-170
-normal! 022|
+10
+normal! 018|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

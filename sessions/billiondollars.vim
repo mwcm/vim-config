@@ -7,21 +7,21 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 src/components/Row.js
+badd +0 src/components/Table.js
 argglobal
 silent! argdel *
-$argadd src/components/Row.js
-edit src/components/Row.js
+$argadd src/components/Table.js
+edit src/components/Table.js
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
-let s:l = 16 - ((13 * winheight(0) + 13) / 26)
+let s:l = 64 - ((26 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-16
-normal! 09|
+64
+normal! 05|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -36,5 +36,3 @@ let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
-m :
-

@@ -2,26 +2,26 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Projects/reporting-services/src
+cd ~/Projects/reporting-services
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 reports/state/create.py
+badd +0 src/reports/glise/premiums/premiums_report.py
 argglobal
 silent! argdel *
-$argadd reports/state/create.py
-edit reports/state/create.py
+$argadd src/reports/glise/premiums/premiums_report.py
+edit src/reports/glise/premiums/premiums_report.py
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
-let s:l = 4 - ((3 * winheight(0) + 28) / 57)
+let s:l = 417 - ((27 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
-normal! 0
+417
+normal! 026|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

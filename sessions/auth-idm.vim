@@ -2,26 +2,26 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Projects/auth-idm/scripts/conversion/user_cred_splitter
+cd ~/Projects/auth-idm/scripts/conversion/identity-user-scraper
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 splitter.py
+badd +0 .env
 argglobal
 silent! argdel *
-$argadd splitter.py
-edit splitter.py
+$argadd .env
+edit .env
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
-let s:l = 62 - ((27 * winheight(0) + 17) / 35)
+let s:l = 1 - ((0 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-62
-normal! 010|
+1
+normal! 024|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
