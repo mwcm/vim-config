@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/Users/mwcmitchell/Projects/Slice.Datapipeline/.git'
 let g:netrw_dirhist_2='/Users/mwcmitchell/Projects/auth-idm/scripts/conversion/identity-user-scraper'
 let g:netrw_dirhist_3='/Users/mwcmitchell/.reporter'
@@ -7,3 +7,5 @@ let g:netrw_dirhist_4='/Users/mwcmitchell/Projects/reporting-services/src/report
 let g:netrw_dirhist_5='/Users/mwcmitchell/Projects/reporting-services/.git'
 let g:netrw_dirhist_6='/Users/mwcmitchell/Projects/billiondollars/.git'
 let g:netrw_dirhist_7='/Users/mwcmitchell/Projects/reporting-services/src/reports/glise/premiums'
+let g:netrw_dirhist_8='/Users/mwcmitchell/Projects/Slice.Pladmin/reports/PAN1/activity_summary/.venv'
+let g:netrw_dirhist_9='/Users/mwcmitchell/.backoffice'

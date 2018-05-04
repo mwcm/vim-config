@@ -170,8 +170,6 @@
   on_cmd: [Gcd, Glcd, Gcommit, Gblame, Gstatus, Gdiff, Gbrowse, Gstatus, Gpush]
   hook_source: let g:easygit_enable_command = 1
 
-- repo: vim-scripts/LargeFile
-
 - repo: majutsushi/tagbar
   on_cmd: TagbarToggle
   hook_source: |
@@ -190,6 +188,8 @@
 
 - repo: ctrlpvim/ctrlp.vim
   if: empty($VIM_MINIMAL)
+
+- repo: vim-scripts/LargeFile
 
 - repo: shime/vim-livedown
   if: empty($VIM_MINIMAL)
@@ -393,6 +393,8 @@
 - { repo: Shougo/neco-vim, on_ft: vim, if: empty($VIM_MINIMAL) }
 - { repo: Shougo/neco-syntax, on_source: [ neocomplete.vim, deoplete.nvim ]}
 
+- repo: numirias/semshi
+
 - repo: davidhalter/jedi-vim
   if: empty($VIM_MINIMAL)
   on_ft: python
@@ -410,7 +412,6 @@
     let g:jedi#use_splits_not_buffers = 'right'
 
 
-- { repo: vim-scripts/dbext.vim, if: empty($VIM_MINIMAL) }
 - { repo: honza/vim-snippets,    if: empty($VIM_MINIMAL) }
 
 
@@ -472,6 +473,7 @@
   if: executable('mpc') && empty($VIM_MINIMAL)
   on_source: denite.nvim
   hook_source: call denite#custom#var('mpc', 'default_view', 'date')
+
 
 # ==========================================
 # Operators
