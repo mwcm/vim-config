@@ -1,10 +1,11 @@
 
 " Neomake
 " ---------
-let g:neomake_open_list = 0
+let g:neomake_open_list = 2
 let g:neomake_verbose = 3
-let g:airline#extensions#neomake#enabled = 0
+let g:airline#extensions#neomake#enabled = 1
 let g:neomake_python_pylint_exe = g:python3_host_prog
+let g:neomake_logfile = '/tmp/neomake.log'
 
 if ! empty(g:python3_host_prog)
 	let g:neomake_python_python_exe = g:python3_host_prog

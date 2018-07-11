@@ -7,37 +7,38 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 DriveButton.js
+badd +147 DriveButton.js
 badd +0 a
 argglobal
 silent! argdel *
 $argadd DriveButton.js
-edit DriveButton.js
+edit a
 set splitbelow splitright
 wincmd _ | wincmd |
-split
-1wincmd k
+vsplit
+1wincmd h
 wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 wincmd =
 argglobal
-let s:l = 157 - ((16 * winheight(0) + 14) / 29)
+let s:l = 38 - ((36 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-157
-normal! 098|
+38
+normal! 021|
 wincmd w
 argglobal
-if bufexists('a') | buffer a | else | edit a | endif
-let s:l = 36 - ((22 * winheight(0) + 14) / 28)
+if bufexists('DriveButton.js') | buffer DriveButton.js | else | edit DriveButton.js | endif
+let s:l = 18 - ((17 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-36
-normal! 02|
+18
+normal! 038|
 wincmd w
+2wincmd w
 wincmd =
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
