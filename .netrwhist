@@ -1,11 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/mwcmitchell/Projects/Slice.Datapipeline/.git'
-let g:netrw_dirhist_2='/Users/mwcmitchell/Projects/auth-idm/scripts/conversion/identity-user-scraper'
-let g:netrw_dirhist_3='/Users/mwcmitchell/.reporter'
-let g:netrw_dirhist_4='/Users/mwcmitchell/Projects/reporting-services/src/reports/glise/conduct/excel_files'
-let g:netrw_dirhist_5='/Users/mwcmitchell/Projects/reporting-services/.git'
-let g:netrw_dirhist_6='/Users/mwcmitchell/Projects/billiondollars/.git'
-let g:netrw_dirhist_7='/Users/mwcmitchell/Projects/reporting-services/src/reports/glise/premiums'
-let g:netrw_dirhist_8='/Users/mwcmitchell/Projects/Slice.Pladmin/reports/PAN1/activity_summary/.venv'
-let g:netrw_dirhist_9='/Users/mwcmitchell/.backoffice'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/mwcmitchell/Projects/reporter/services/src/reports'
+let g:netrw_dirhist_2='/Users/mwcmitchell/Projects/reporter/.git'
+let g:netrw_dirhist_3='/Users/mwcmitchell/Projects/test-app/android/gradle/wrapper'
+let g:netrw_dirhist_4='/Users/mwcmitchell/Projects/app-mobile/src/components/FloatingActionButton'
+let g:netrw_dirhist_5='/Users/mwcmitchell/Projects/app-mobile2/src/components/FloatingActionButton'

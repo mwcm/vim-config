@@ -290,11 +290,14 @@ elseif executable('zeal')
 endif
 
 " search ALL the docsets
-nnoremap <silent> <Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
+"nnoremap <silent> <Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
 
 " search selected text
+" search ALL the docsets
+nnoremap <silent> <Leader><S-k>k :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
+
 " search related docsets
-vnoremap <silent> <Leader><S-k> y:<C-U>call Dasht(getreg(0))<Return>
+"vnoremap <silent> <Leader><S-k> y:<C-U>call Dasht(getreg(0))<Return>
 
 
 " }}}

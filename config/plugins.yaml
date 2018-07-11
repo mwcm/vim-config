@@ -393,8 +393,6 @@
 - { repo: Shougo/neco-vim, on_ft: vim, if: empty($VIM_MINIMAL) }
 - { repo: Shougo/neco-syntax, on_source: [ neocomplete.vim, deoplete.nvim ]}
 
-- repo: numirias/semshi
-
 - repo: davidhalter/jedi-vim
   if: empty($VIM_MINIMAL)
   on_ft: python

@@ -7,21 +7,21 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 .env
+badd +0 ~/docs/wiki/ICS-Reporting.md
 argglobal
 silent! argdel *
-$argadd .env
-edit .env
+$argadd a
+edit ~/docs/wiki/ICS-Reporting.md
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
-let s:l = 1 - ((0 * winheight(0) + 24) / 49)
+let s:l = 76 - ((59 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 024|
+76
+normal! 081|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

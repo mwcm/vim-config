@@ -7,21 +7,21 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 README.md
+badd +0 src/components/forms/BulkForm.js
 argglobal
 silent! argdel *
-$argadd README.md
-edit README.md
+$argadd src/components/forms/BulkForm.js
+edit src/components/forms/BulkForm.js
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
-let s:l = 15 - ((14 * winheight(0) + 26) / 53)
+let s:l = 3 - ((2 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-15
-normal! 047|
+3
+normal! 034|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

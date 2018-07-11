@@ -2,32 +2,32 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Projects/billiondollars
+cd ~/Projects/ics_reports
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 ~/.zshrc
+badd +1 ~/.skhdrc
 argglobal
 silent! argdel *
-$argadd ~/.zshrc
-edit ~/.zshrc
+$argadd ~/.skhdrc
+edit ~/.skhdrc
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
-let s:l = 181 - ((35 * winheight(0) + 32) / 65)
+let s:l = 20 - ((19 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-181
-normal! 031|
+20
+normal! 052|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=30 winminheight=1 winminwidth=1 shortmess=aoOTIcF
+set winheight=1 winwidth=30 winminheight=1 winminwidth=1 shortmess=aoO
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)

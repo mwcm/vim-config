@@ -2,26 +2,26 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Projects/billiondollars
+cd ~/Projects/reporting_data/table_builders/glise_solvency_table_builder
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 ~/.zshrc
+badd +0 glise_solvency_table_builder.py
 argglobal
 silent! argdel *
-$argadd ~/.zshrc
-edit ~/.zshrc
+$argadd glise_solvency_table_builder.py
+edit glise_solvency_table_builder.py
 set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
-let s:l = 181 - ((35 * winheight(0) + 32) / 65)
+let s:l = 12 - ((11 * winheight(0) + 43) / 87)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-181
-normal! 031|
+12
+normal! 017|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
