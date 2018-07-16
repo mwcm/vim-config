@@ -346,14 +346,14 @@
   hook_add: let g:deoplete#enable_at_startup = 1
   hook_source: source $VIMPATH/config/plugins/deoplete.vim
 
-- repo: Shougo/neocomplete
-  depends: context_filetype.vim
-  if: ! has('nvim') && has('lua') && empty($VIM_MINIMAL)
-  on_event: InsertEnter
-  hook_add: |
-    let g:neocomplete#data_directory = $VARPATH.'/complete'
-    let g:neocomplete#enable_at_startup = 1
-  hook_source: source $VIMPATH/config/plugins/neocomplete.vim
+#- repo: Shougo/neocomplete
+  #depends: context_filetype.vim
+  #if: ! has('nvim') && has('lua') && empty($VIM_MINIMAL)
+  #on_event: InsertEnter
+  #hook_add: |
+    #let g:neocomplete#data_directory = $VARPATH.'/complete'
+    #let g:neocomplete#enable_at_startup = 1
+  #hook_source: source $VIMPATH/config/plugins/neocomplete.vim
 
 - repo: Shougo/neosnippet.vim
   depends: [ neosnippet-snippets, context_filetype.vim ]
