@@ -74,6 +74,13 @@ if dein#tap('nerdtree')
 	nnoremap <silent> <LocalLeader>a :<C-u>NERDTreeFind<CR>
 endif
 
+if dein#tap('ale')
+let g:ale_open_list = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_list_window_size = 5
+endif
+
 if dein#tap('neosnippet.vim')
 	imap <expr><C-o> neosnippet#expandable_or_jumpable()
 		\ ? "\<Plug>(neosnippet_expand_or_jump)" : "\<ESC>o"

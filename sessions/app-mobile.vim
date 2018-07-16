@@ -8,43 +8,26 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +0 DriveButton.js
-badd +0 DriveMain.js
 argglobal
 silent! argdel *
 $argadd DriveButton.js
 edit DriveButton.js
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
-wincmd =
 argglobal
-let s:l = 158 - ((59 * winheight(0) + 31) / 63)
+let s:l = 222 - ((19 * winheight(0) + 18) / 37)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-158
-normal! 030|
-wincmd w
-argglobal
-if bufexists('DriveMain.js') | buffer DriveMain.js | else | edit DriveMain.js | endif
-let s:l = 43 - ((42 * winheight(0) + 31) / 63)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-43
-normal! 018|
-wincmd w
-wincmd =
+222
+normal! 034|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=30 winminheight=1 winminwidth=1 shortmess=aoOTIcF
+set winheight=3 winwidth=30 winminheight=1 winminwidth=1 shortmess=aoOTIcF
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
