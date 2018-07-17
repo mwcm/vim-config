@@ -190,6 +190,11 @@ if dein#tap('vim-choosewin')
 	nmap <Leader>- :<C-u>ChooseWinSwapStay<CR>
 endif
 
+if dein#tap('vim-jsx-pretty')
+	let g:vim_jsx_pretty_enable_jsx_highlight = 1
+	let g:vim_jsx_pretty_colorful_config = 1
+endif
+
 if dein#tap('jedi-vim')
 	let g:jedi#completions_command = ''
 	let g:jedi#documentation_command = 'K'

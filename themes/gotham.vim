@@ -219,9 +219,9 @@ call s:Col('rubyDefine', 'blue')
 call s:Col('rubyStringDelimiter', 'green')
 
 " HTML (and often Markdown).
-call s:Col('htmlArg', 'blue')
+call s:Col('htmlArg',    'blue')
 call s:Col('htmlItalic', 'magenta')
-call s:Col('htmlBold', 'cyan', '')
+call s:Col('htmlBold',   'cyan', '')
 
 " Python
 call s:Col('pythonStatement', 'blue')

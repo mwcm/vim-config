@@ -19,6 +19,8 @@ setlocal nolist
 setlocal cursorline
 setlocal nobuflisted
 
+hi Search cterm=NONE term=bold ctermfg=white ctermbg=cyan
+
 wincmd J
 
 nnoremap <buffer> <CR> <CR><C-w>p

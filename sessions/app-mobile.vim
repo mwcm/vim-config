@@ -16,18 +16,18 @@ set splitbelow splitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
-let s:l = 236 - ((28 * winheight(0) + 28) / 57)
+let s:l = 75 - ((13 * winheight(0) + 11) / 23)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-236
-normal! 012|
+75
+normal! 02|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=30 winminheight=1 winminwidth=1 shortmess=aoOTIcF
+set winheight=3 winwidth=30 winminheight=1 winminwidth=1 shortmess=aoOTIcF
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)

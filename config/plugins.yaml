@@ -77,14 +77,12 @@
     let g:javascript_plugin_flow = 1
     highlight! link jsFutureKeys PreProc
 
-#- { repo: othree/jspc.vim, on_ft: [ javascript, jsx, javascript.jsx ] }
-#- { repo: MaxMEllon/vim-jsx-pretty, on_ft: [ javascript, jsx, javascript.jsx ]}
-#- { repo: heavenshell/vim-jsdoc, on_ft: [ javascript, jsx, javascript.jsx ] }
-#- { repo: moll/vim-node, on_ft: [ javascript, jsx, javascript.jsx ] }
-#- { repo: elzr/vim-json, on_ft: json }
-#- { repo: jparise/vim-graphql, on_ft: [javascript, jsx, javascript.jsx ] }
-
-#- { repo: benjie/local-npm-bin.vim}
+- { repo: othree/jspc.vim, on_ft: [ javascript, jsx, javascript.jsx ] }
+- { repo: MaxMEllon/vim-jsx-pretty, on_ft: [ javascript, jsx, javascript.jsx ]}
+- { repo: heavenshell/vim-jsdoc, on_ft: [ javascript, jsx, javascript.jsx ] }
+- { repo: moll/vim-node, on_ft: [ javascript, jsx, javascript.jsx ] }
+- { repo: elzr/vim-json, on_ft: json }
+- { repo: jparise/vim-graphql, on_ft: [javascript, jsx, javascript.jsx ] }
 
 # pangloss/javascript vs. othree/yajs
 #- { repo: othree/yajs.vim, on_ft: [ javascript, jsx, javascript.jsx ]}
