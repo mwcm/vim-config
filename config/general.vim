@@ -145,6 +145,13 @@ if exists('+inccommand')
 	set inccommand=nosplit
 endif
 
+" automatically close quickfix if last window
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+aug END
+
+
 " }}}
 " Editor UI Appearance {{{
 " --------------------

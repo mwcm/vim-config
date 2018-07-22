@@ -99,4 +99,9 @@ for m in normal_mode_mappings
 	call denite#custom#map('normal', m[0], m[1], m[2])
 endfor
 
+" looks
+call denite#custom#option('_', 'highlight_mode_insert', 'CursorLine')
+call denite#custom#option('_', 'highlight_matched_range', 'None')
+call denite#custom#option('_', 'highlight_matched_char', 'None')
+
 " vim: set ts=2 sw=2 tw=80 noet :

@@ -273,7 +273,6 @@
       \|   Neomake tidy
       \| endif
 
-
 - repo: w0rp/ale
   if: has('nvim') && empty($VIM_MINIMAL)
   hoke_add: |
@@ -284,9 +283,9 @@
     let g:ale_linter_aliases = {
     \  'jsx': 'css'
     }
-    let b:ale_fixers = {
-    \ 'javascript': ['prettier', 'eslint']
-    \}
+
+- repo: wokalski/autocomplete-flow
+  if: empty($VIM_MINIMAL)
 
 - repo: junegunn/goyo.vim
   if: empty($VIM_MINIMAL)

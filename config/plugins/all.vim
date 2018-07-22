@@ -75,10 +75,16 @@ if dein#tap('nerdtree')
 endif
 
 if dein#tap('ale')
-let g:ale_open_list = 1
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_list_window_size = 5
+	let g:ale_fix_on_save = 1
+  let g:ale_fixers = {'javascript': ['prettier', 'eslint','prettier-eslint']}
+	augroup FiletypeGroup
+			autocmd!
+			au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+	augroup END
+	let g:ale_set_loclist = 0
+	let g:ale_set_quickfix = 1
+	let g:ale_open_list = 1
+	let g:ale_list_window_size = 5
 endif
 
 if dein#tap('neosnippet.vim')

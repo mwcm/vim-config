@@ -62,8 +62,8 @@ let s:colors = {}
 
 " Base colors.
 let s:colors.base0 = { 'gui': '#0c1014', 'cterm': 0 }
-let s:colors.base1 = { 'gui': '#11151c', 'cterm': 8 }
-let s:colors.base2 = { 'gui': '#091f2e', 'cterm': 10 }
+let s:colors.base1 = { 'gui': '#11151c', 'cterm': 8}
+let s:colors.base2 = { 'gui': '#091f2e', 'cterm': 0 }
 let s:colors.base3 = { 'gui': '#0a3749', 'cterm': 12 }
 let s:colors.base4 = { 'gui': '#1e6479', 'cterm': 11 }
 let s:colors.base5 = { 'gui': '#599cab', 'cterm': 14 }
