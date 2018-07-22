@@ -8,4 +8,4 @@
 /.stignore
 /.stfolder
 /.stversions
-./sessions/
+./sessions/*
