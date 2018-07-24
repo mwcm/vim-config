@@ -273,9 +273,12 @@
       \|   Neomake tidy
       \| endif
 
-- repo: w0rp/ale
+
+- repo: gu-fan/colorv.vim
   if: has('nvim') && empty($VIM_MINIMAL)
 
+- repo: w0rp/ale
+  if: has('nvim') && empty($VIM_MINIMAL)
 - repo: wokalski/autocomplete-flow
   if: empty($VIM_MINIMAL)
 

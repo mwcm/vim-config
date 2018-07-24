@@ -79,9 +79,9 @@ if dein#tap('ale')
 	let g:ale_linters_explicit = 1
 	let g:ale_fix_on_save = 1
 	let g:ale_linters = {}
-  let g:ale_linters = {'javascript': ['eslint', 'flow'], 'jsx': ['stylelint','eslint']}
+	let g:ale_linters = {'javascript': ['eslint', 'flow'], 'jsx': ['stylelint','eslint']}
 	let g:ale_linter_aliases = {'jsx': 'css'}
-  let g:ale_fixers = {'javascript': ['prettier', 'eslint','prettier-eslint']}
+	let g:ale_fixers = {'javascript': ['prettier', 'eslint','prettier-eslint']}
 	augroup FiletypeGroup
 			autocmd!
 			au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
@@ -89,7 +89,7 @@ if dein#tap('ale')
 	let g:ale_set_loclist = 0
 	let g:ale_set_quickfix = 1
 	let g:ale_open_list = 1
-	let g:ale_list_window_size = 5
+	let g:ale_list_window_size = 4
 endif
 
 if dein#tap('neosnippet.vim')
