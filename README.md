@@ -1,7 +1,5 @@
 # ~~Rafael Bodill's~~ mwcm's Neo/vim Config
 
-Lean mean Neo/vim machine, 30-45ms startup time.
-
 Best with Neovim or Vim 8 with +python3 extensions enabled.
 
 ## Features
