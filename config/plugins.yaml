@@ -217,8 +217,8 @@
 - repo: whatyouhide/vim-gotham
   if: empty($VIM_MINIMAL)
 
-#- repo: itchyny/lightline.vim
-  #if: empty($VIM_MINIMAL)
+- repo: vim-airline/vim-airline
+  if: empty($VIM_MINIMAL)
 
 - repo: airblade/vim-gitgutter
   on_path: .*
@@ -262,8 +262,8 @@
 # removed javascript, jsx, javascript.jsx
 - repo: benekastah/neomake
   if: has('nvim') && empty($VIM_MINIMAL)
-  on_cmd: Neomake
   hook_source: source $VIMPATH/config/plugins/neomake.vim
+  on_cmd: Neomake
   hook_add: |
     let g:lint_filetypes = [
       \  'ansible', 'python', 'php', 'ruby', 'vim', 'go', 'sh',
