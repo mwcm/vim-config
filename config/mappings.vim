@@ -291,13 +291,9 @@ endif
 
 " search ALL the docsets
 nnoremap <silent> <Leader><S>k :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
-
-" search selected text
+"Search docsets for your selected text:
 " search ALL the docsets
-"nnoremap <silent> <Leader><S-k>k :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
-
- "search related docsets
-"vnoremap <silent> <Leader><S-k> y:<C-U>call Dasht(getreg(0))<Return>
+vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
 
 
 " }}}

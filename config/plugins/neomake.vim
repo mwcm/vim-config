@@ -2,8 +2,13 @@
 " Neomake
 " ---------
 let g:neomake_open_list = 2
+let g:neomake_list_height = 5
 let g:neomake_verbose = 3
+
+
 let g:airline#extensions#neomake#enabled = 1
+
+"why doesn't this seem to work?
 let g:neomake_python_pylint_exe = g:python3_host_prog
 let g:neomake_logfile = '/tmp/neomake.log'
 
@@ -13,21 +18,21 @@ if ! empty(g:python3_host_prog)
 endif
 
 let g:neomake_python_flake8_maker = {
-    \ 'args': ['--ignore=E221,E241,E272,E251,W702,E203,E201,E202',  '--format=default'],
-    \ 'errorformat':
-        \ '%E%f:%l: could not compile,%-Z%p^,' .
-        \ '%A%f:%l:%c: %t%n %m,' .
-        \ '%A%f:%l: %t%n %m,' .
-        \ '%-G%.%#',
-    \ }
+		\ 'args': ['--ignore=E221,E241,E272,E251,W702,E203,E201,E202',  '--format=default'],
+		\ 'errorformat':
+				\ '%E%f:%l: could not compile,%-Z%p^,' .
+				\ '%A%f:%l:%c: %t%n %m,' .
+				\ '%A%f:%l: %t%n %m,' .
+				\ '%-G%.%#',
+		\ }
 
-let g:neomake_python_enabled_makers = ['flake8', 'pylint', 'jedi']
+let g:neomake_python_enabled_makers = ['pylint', 'flake8', 'pycodestyle', 'pyflakes', 'vulture']
 
 " JAVASCRIPT / JSX
-let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_javascript_enabled_makers = ['eslint']
+"let g:neomake_jsx_enabled_makers = ['eslint']
+"let g:neomake_javascript_enabled_makers = ['eslint']
 "let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint'
-let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+"let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
 
 
 " YAML / ANSIBLE

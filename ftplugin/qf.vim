@@ -19,7 +19,7 @@ setlocal nolist
 setlocal cursorline
 setlocal nobuflisted
 
-hi Search cterm=NONE term=bold ctermfg=white ctermbg=13
+hi Search cterm=NONE term=bold ctermfg=white ctermbg=5
 
 wincmd J
 

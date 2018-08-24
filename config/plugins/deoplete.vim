@@ -26,12 +26,12 @@ let g:deoplete#sources#jedi#statement_length = 30
 let g:deoplete#sources#jedi#show_docstring = 1
 let g:deoplete#sources#jedi#short_types = 1
 
-let g:deoplete#sources#ternjs#filetypes = [
-	\ 'jsx',
-	\ 'javascript.jsx',
-	\ 'vue',
-	\ 'javascript'
-	\ ]
+"let g:deoplete#sources#ternjs#filetypes = [
+	"\ 'jsx',
+	"\ 'javascript.jsx',
+	"\ 'vue',
+	"\ 'javascript'
+	"\ ]
 
 let g:deoplete#sources#ternjs#timeout = 3
 let g:deoplete#sources#ternjs#types = 1
@@ -50,7 +50,7 @@ let g:deoplete#sources.go = ['vim-go']
 
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 " let g:deoplete#ignore_sources.html = ['syntax']
-" let g:deoplete#ignore_sources.python = ['syntax']
+ "let g:deoplete#ignore_sources.python = ['syntax']
 " let g:deoplete#ignore_sources.php = ['omni']
 
 " call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
