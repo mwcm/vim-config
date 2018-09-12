@@ -1,7 +1,7 @@
 
 " Neomake
 " ---------
-let g:neomake_open_list = 2
+let g:neomake_open_list = 0
 let g:neomake_list_height = 5
 let g:neomake_verbose = 3
 
