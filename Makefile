@@ -1,5 +1,5 @@
 SHELL = /bin/bash
-vim := $(if $(shell which nvim),nvim,$(shell which vim))
+vim := $(if $(shell which nvim),nvim,$(shell which vim)endif)
 vim_version := '${shell $(vim) --version}'
 XDG_CACHE_HOME ?= $(HOME)/.cache
 

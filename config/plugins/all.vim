@@ -224,7 +224,8 @@ if dein#tap('jedi-vim')
 	let g:jedi#usages_command = '<Leader>n'
 endif
 
-# nnoremap <silent><buffer> K :<C-u>TernDoc<CR>
+" might still use this
+" nnoremap <silent><buffer> K :<C-u>TernDoc<CR>
 if dein#tap('tern_for_vim')
 	autocmd MyAutoCmd FileType javascript,jsx,javascript.jsx
 		\  nnoremap <silent><buffer> K          :<C-u>TernDoc<CR>
