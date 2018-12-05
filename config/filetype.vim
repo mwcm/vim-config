@@ -52,7 +52,7 @@ augroup MyAutoCmd " {{{
 
 	autocmd FileType css setlocal equalprg=csstidy\ -\ --silent=true
 
-	autocmd FileType docker-compose setlocal expandtab
+	autocmd FileType yaml.docker-compose setlocal expandtab
 
 	autocmd FileType gitcommit setlocal spell
 
@@ -90,10 +90,6 @@ augroup END " }}}
 
 " PHP {{{
 let g:PHP_removeCRwhenUnix = 0
-
-" }}}
-" Python {{{
-let g:python_highlight_all = 1
 
 " }}}
 " Vim {{{

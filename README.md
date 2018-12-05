@@ -10,7 +10,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 - Custom side-menu (try it out! <kbd>Leader</kbd>+<kbd>l</kbd>)
 - Modular configuration
 - Denite (Unite's successor) centric work-flow
-- Extensive Deoplete and Neocomplete setup
+- Extensive Deoplete setup (auto-completion)
 - Lightweight simple status/tabline
 - Easy customizable theme
 - Premium color-schemes
@@ -19,6 +19,17 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 ## Screenshot
 
 ![Vim screenshot](http://rafi.io/static/img/project/vim-config/features.png)
+
+## Pre-requisites
+
+* Python 3 (`brew install python`)
+* Python 2 (`brew install python@2`)
+* Neovim (Optional, `brew install neovim`)
+* virtualenv for both python3 and python2:
+  ```
+  pip2 install virtualenv
+  pip3 install virtualenv
+  ```
 
 ## Install
 
@@ -35,15 +46,7 @@ ln -s ~/.vim ~/.config/nvim
   use that instead of `~/.config` in the code above.
   Nvim follows the XDG base-directories convention.
 
-**_2._** Almost done! You'll need a YAML interpreter, if you have Ruby
-installed - you can skip this step. Otherwise, either install [yaml2json],
-or use Python:
-
-```sh
-pip3 install --user --upgrade PyYAML
-```
-
-**_3._** If you are a _first-time Neovim user_, you need the python-neovim
+**_2._** If you are a _first-time Neovim user_, you need the pynvim
 packages. Don't worry, run the script provided:
 
 ```sh
@@ -51,9 +54,9 @@ cd ~/.config/nvim
 ./venv.sh
 ```
 
-**_4._** Run `make test` to test your nvim/vim version and compatibility.
+**_3._** Run `make test` to test your nvim/vim version and compatibility.
 
-**_5._** Run `make` to install all plugins.
+**_4._** Run `make` to install all plugins.
 
 Enjoy!
 
@@ -91,6 +94,9 @@ Run `make update`
 
 If you want to add your own configuration, create the `config/local.vim` file
 and add your personal settings there. This file is ignored by `.gitignore`.
+
+If you'd like to install plugins by yourself, create a
+`config/local.plugins.yaml` file and manage your own plugin collection.
 
 ## Structure
 
@@ -151,7 +157,6 @@ Name           | Description
 [othree/html5.vim] | HTML5 omnicomplete and syntax
 [mustache/vim-mustache-handlebars] | Mustache and handlebars syntax
 [pearofducks/ansible-vim] | Improved YAML support for Ansible
-[mitsuhiko/vim-jinja] | Jinja support in vim
 [groenewege/vim-less] | Syntax for LESS
 [hail2u/vim-css3-syntax] | CSS3 syntax support to vim's built-in `syntax/css.vim`
 [othree/csscomplete.vim] | Updated built-in CSS complete with latest standards
@@ -180,7 +185,7 @@ Name           | Description
 [chrisbra/csv.vim] | Handling column separated data
 [tmux-plugins/vim-tmux] | vim plugin for tmux.conf
 [cespare/vim-toml] | Syntax for TOML
-[PotatoesMaster/i3-vim-syntax] | i3 window manager config syntax
+[mboughaba/i3config.vim] | i3 window manager config syntax
 [dag/vim-fish] | Fish shell edit support
 [ekalinin/Dockerfile.vim] | syntax and snippets for Dockerfile
 [jstrater/mpvim] | Macports portfile configuration files
@@ -241,8 +246,7 @@ Name           | Description
 Name           | Description
 -------------- | ----------------------
 [Shougo/deoplete.nvim] | Neovim: Dark powered asynchronous completion framework
-[Shougo/neocomplete] | Next generation completion framework
-[Shougo/neosnippet.vim] | Contains neocomplete snippets source
+[Shougo/neosnippet.vim] | Snippets with integration to Deoplete
 [Raimondi/delimitMate] | Auto-completion for quotes, parens, brackets
 [ludovicchabant/vim-gutentags] | Manages your tag files
 [mattn/emmet-vim] | Provides support for expanding abbreviations alá emmet
@@ -298,7 +302,6 @@ Name           | Description
 [othree/html5.vim]: https://github.com/othree/html5.vim
 [mustache/vim-mustache-handlebars]: https://github.com/mustache/vim-mustache-handlebars
 [pearofducks/ansible-vim]: https://github.com/pearofducks/ansible-vim
-[mitsuhiko/vim-jinja]: https://github.com/mitsuhiko/vim-jinja
 [groenewege/vim-less]: https://github.com/groenewege/vim-less
 [hail2u/vim-css3-syntax]: https://github.com/hail2u/vim-css3-syntax
 [othree/csscomplete.vim]: https://github.com/othree/csscomplete.vim
@@ -327,7 +330,7 @@ Name           | Description
 [chrisbra/csv.vim]: https://github.com/chrisbra/csv.vim
 [tmux-plugins/vim-tmux]: https://github.com/tmux-plugins/vim-tmux
 [cespare/vim-toml]: https://github.com/cespare/vim-toml
-[PotatoesMaster/i3-vim-syntax]: https://github.com/PotatoesMaster/i3-vim-syntax
+[mboughaba/i3config.vim]: https://github.com/mboughaba/i3config.vim
 [dag/vim-fish]: https://github.com/dag/vim-fish
 [ekalinin/Dockerfile.vim]: https://github.com/ekalinin/Dockerfile.vim
 [jstrater/mpvim]: https://github.com/jstrater/mpvim
@@ -377,7 +380,6 @@ Name           | Description
 [vimwiki/vimwiki]: https://github.com/vimwiki/vimwiki
 
 [Shougo/deoplete.nvim]: https://github.com/Shougo/deoplete.nvim
-[Shougo/neocomplete]: https://github.com/Shougo/neocomplete.vim
 [Shougo/neosnippet.vim]: https://github.com/Shougo/neosnippet.vim
 [Raimondi/delimitMate]: https://github.com/Raimondi/delimitMate
 [ludovicchabant/vim-gutentags]: https://github.com/ludovicchabant/vim-gutentags
@@ -442,8 +444,8 @@ Arrows | Normal | Resize splits (* Enable `g:elite_mode` in `.vault.vim`)
 `}` | Normal | After paragraph motion go to first non-blank char (}^)
 `<` | Visual/Normal | Indent to left and re-select
 `>` | Visual/Normal | Indent to right and re-select
-`Tab` | Visual | Indent to right and re-select
-`Shift`+`Tab` | Visual | Indent to left and re-select
+`Tab` | Visual/Normal | Indent to right and re-select
+`Shift`+`Tab` | Visual/Normal | Indent to left and re-select
 `gh` | Normal | Show highlight group that matches current cursor
 `gp` | Normal | Select last paste
 `Q` | Normal | Start/stop macro recording
@@ -505,8 +507,6 @@ Key   | Mode | Action
 Key   | Mode | Action
 ----- |:----:| ------------------
 `q` | Normal | Quit window (and Vim, if last window)
-`Tab` | Normal | Next window in tab
-`Shift`+`Tab` | Normal | Previous window in tab
 `Ctrl`+`Tab` | Normal | Next tab
 `Ctrl`+`Shift`+`Tab` | Normal | Previous tab
 `\`+`\` | Normal | Jump to last tab
@@ -578,7 +578,7 @@ Key   | Mode | Action
 `gf` | Normal | Search in selected directory for files
 `gr` | Normal | Grep in selected directory
 
-### Plugin: Deoplete / Emmet / Neocomplete
+### Plugin: Deoplete / Emmet
 
 Key   | Mode | Action
 ----- |:----:| ------------------
@@ -701,5 +701,5 @@ Key   | Mode | Action
 Big thanks to the dark knight [Shougo].
 
 [Shougo]: https://github.com/Shougo
-[lazy-loaded]: ./config/plugins.yaml#L21
-[yaml2json]: https://github.com/koraa/large-yaml2json-json2yaml
+[lazy-loaded]: ./config/plugins.yaml#L28
+[yaml2json]: https://github.com/bronze1man/yaml2json

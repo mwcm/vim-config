@@ -4,8 +4,8 @@
 
 if dein#tap('denite.nvim')
 	nnoremap <silent><LocalLeader>r :<C-u>Denite -resume -refresh<CR>
-	nnoremap <silent><LocalLeader>f :<C-u>Denite file_rec<CR>
-	nnoremap <silent><LocalLeader>b :<C-u>Denite buffer file_old -default-action=switch<CR>
+	nnoremap <silent><LocalLeader>f :<C-u>Denite file/rec<CR>
+	nnoremap <silent><LocalLeader>b :<C-u>Denite buffer file/old -default-action=switch<CR>
 	nnoremap <silent><LocalLeader>d :<C-u>Denite directory_rec -default-action=cd<CR>
 	nnoremap <silent><LocalLeader>v :<C-u>Denite register -buffer-name=register<CR>
 	xnoremap <silent><LocalLeader>v :<C-u>Denite register -buffer-name=register -default-action=replace<CR>
@@ -13,14 +13,12 @@ if dein#tap('denite.nvim')
 	nnoremap <silent><LocalLeader>q :<C-u>Denite quickfix -buffer-name=list<CR>
 	nnoremap <silent><LocalLeader>n :<C-u>Denite dein<CR>
 	nnoremap <silent><LocalLeader>g :<C-u>Denite grep<CR>
-	nnoremap <silent><LocalLeader>j :<C-u>Denite jump change file_point<CR>
+	nnoremap <silent><LocalLeader>j :<C-u>Denite jump change file/point<CR>
+	nnoremap <silent><LocalLeader>u :<C-u>Denite junkfile:new junkfile<CR>
 	nnoremap <silent><LocalLeader>o :<C-u>Denite outline<CR>
 	nnoremap <silent><LocalLeader>s :<C-u>Denite session -buffer-name=list<CR>
-	nnoremap <silent><expr> <LocalLeader>t &filetype == 'help' ? "g\<C-]>" :
-		\ ":\<C-u>DeniteCursorWord -buffer-name=tag
-		\  tag:include\<CR>"
-	nnoremap <silent><expr> <LocalLeader>p  &filetype == 'help' ?
-		\ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
+	nnoremap <silent><LocalLeader>t :<C-u>Denite -buffer-name=tag tag:include<CR>
+	nnoremap <silent><LocalLeader>p :<C-u>Denite -mode=normal jump<CR>
 	nnoremap <silent><LocalLeader>h :<C-u>Denite help<CR>
 	nnoremap <silent><LocalLeader>m :<C-u>Denite mpc -buffer-name=mpc<CR>
 	nnoremap <silent><LocalLeader>/ :<C-u>Denite line<CR>
@@ -34,7 +32,8 @@ if dein#tap('denite.nvim')
 	nnoremap <silent> <Leader>gc :<C-u>Denite gitbranch<CR>
 
 	" Open Denite with word under cursor or selection
-	nnoremap <silent> <Leader>gf :DeniteCursorWord file_rec<CR>
+	nnoremap <silent> <Leader>gt :DeniteCursorWord -buffer-name=tag tag:include<CR>
+	nnoremap <silent> <Leader>gf :DeniteCursorWord file/rec<CR>
 	nnoremap <silent> <Leader>gg :DeniteCursorWord grep<CR>
 	vnoremap <silent> <Leader>gg
 		\ :<C-u>call <SID>get_selection('/')<CR>
@@ -60,6 +59,11 @@ if dein#tap('tagbar')
 	let g:tagbar_map_openfold = ['l', '+', 'zo']
 endif
 
+if dein#tap('defx.nvim')
+	nnoremap <silent> <Leader>f
+		\ :<C-u>Defx -resume -toggle -split=vertical -winwidth=25 -direction=topleft -columns=icons:git:filename:type -buffer-name=tab`tabpagenr()`<CR>
+endif
+
 if dein#tap('nerdtree')
 	let g:NERDTreeMapOpenSplit = 'sv'
 	let g:NERDTreeMapOpenVSplit = 'sg'
@@ -70,8 +74,10 @@ if dein#tap('nerdtree')
 	let g:NERDTreeMapCloseChildren = 'T'
 	let g:NERDTreeMapToggleHidden = '.'
 
-	nnoremap <silent> <LocalLeader>e :<C-u>NERDTreeToggle<CR>
-	nnoremap <silent> <LocalLeader>a :<C-u>NERDTreeFind<CR>
+	nnoremap <silent> <LocalLeader>e :<C-u>let NERDTreeWinPos=0 \| NERDTreeToggle<CR>
+	nnoremap <silent> <LocalLeader>a :<C-u>let NERDTreeWinPos=0 \| NERDTreeFind<CR>
+	nnoremap <silent> <LocalLeader>E :<C-u>let NERDTreeWinPos=1 \| NERDTreeToggle<CR>
+	nnoremap <silent> <LocalLeader>A :<C-u>let NERDTreeWinPos=1 \| NERDTreeFind<CR>
 endif
 
 if dein#tap('ale')
@@ -218,10 +224,11 @@ if dein#tap('jedi-vim')
 	let g:jedi#usages_command = '<Leader>n'
 endif
 
+# nnoremap <silent><buffer> K :<C-u>TernDoc<CR>
 if dein#tap('tern_for_vim')
 	autocmd MyAutoCmd FileType javascript,jsx,javascript.jsx
-		\| nnoremap <silent><buffer> K :<C-u>TernDoc<CR>
-		\| nnoremap <silent><buffer> <C-]>      :<C-u>TernDef<CR>
+		\  nnoremap <silent><buffer> K          :<C-u>TernDoc<CR>
+		\| nnoremap <silent><buffer> <C-]>      :<C-u>TernDefSplit<CR>
 		\| nnoremap <silent><buffer> <leader>g  :<C-u>TernType<CR>
 		\| nnoremap <silent><buffer> <leader>n  :<C-u>TernRefs<CR>
 		\| nnoremap <silent><buffer> <leader>r  :<C-u>TernRename<CR>
