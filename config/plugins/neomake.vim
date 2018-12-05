@@ -1,6 +1,15 @@
 
 " Neomake
 " ---------
+"
+let s:default_settings = {
+	\ 'ignore_filetypes': ['startify', 'javascript'],
+	\ }
+
+let g:neomake = get(g:, 'neomake', {})
+let g:neomake.automake = get(g:neomake, 'automake', {})
+call extend(g:neomake.automake, s:default_settings, 'keep')
+
 let g:neomake_open_list = 0
 let g:neomake_list_height = 5
 let g:neomake_verbose = 3
@@ -26,7 +35,7 @@ let g:neomake_python_flake8_maker = {
 				\ '%-G%.%#',
 		\ }
 
-let g:neomake_python_enabled_makers = ['pylint', 'flake8', 'pycodestyle', 'pyflakes', 'vulture']
+let g:neomake_python_enabled_makers = ['pylint', 'flake8', 'pycodestyle', 'pyflakes']
 
 " JAVASCRIPT / JSX
 "let g:neomake_jsx_enabled_makers = ['eslint']

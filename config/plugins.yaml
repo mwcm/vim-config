@@ -258,6 +258,9 @@
   on_path: COMMIT_EDITMSG
   hook_source: let g:committia_min_window_width = 70
 
+- repo: mhinz/vim-startify
+  if: has('nvim') && empty($VIM_MINIMAL)
+
 
 # removed javascript, jsx, javascript.jsx
 - repo: benekastah/neomake

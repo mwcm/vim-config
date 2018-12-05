@@ -1,10 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/Users/mwcmitchell/Projects/reporter/services/src/reports'
-let g:netrw_dirhist_2='/Users/mwcmitchell/Projects/reporter/.git'
-let g:netrw_dirhist_3='/Users/mwcmitchell/Projects/test-app/android/gradle/wrapper'
-let g:netrw_dirhist_4='/Users/mwcmitchell/Projects/app-mobile/src/components/FloatingActionButton'
-let g:netrw_dirhist_5='/Users/mwcmitchell/Projects/app-mobile2/src/components/FloatingActionButton'
-let g:netrw_dirhist_6='/Users/mwcmitchell/Projects/app-mobile/src/components/FloatingActionButton'
-let g:netrw_dirhist_7='/Users/mwcmitchell/Projects/app-mobile/src/categories/RideshareNavigator/views/DriveNavigator/GarageMainNavigator'
-let g:netrw_dirhist_8='/Users/mwcmitchell/Projects/reporter/data/src/util'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/Users/mwcmitchell/Projects/reporter/services/src/reports/xlc/cash_interface/pdf_files/Examples'
