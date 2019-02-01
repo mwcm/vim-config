@@ -88,10 +88,14 @@ augroup END " }}}
 " Internal Plugin Settings  {{{
 " ------------------------
 
+" SQL {{{
+let g:omni_sql_no_default_maps = 1
+"}}}
+
 " PHP {{{
 let g:PHP_removeCRwhenUnix = 0
-
 " }}}
+
 " Vim {{{
 let g:vimsyntax_noerror = 1
 let g:vim_indent_cont = &shiftwidth
