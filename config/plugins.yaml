@@ -18,6 +18,7 @@
 - repo: itchyny/vim-gitbranch
 - repo: itchyny/vim-parenmatch
 - repo: edsono/vim-sessions
+- repo: Shougo/deol.nvim
 - repo: itchyny/vim-cursorword
   hook_add: |
     autocmd MyAutoCmd FileType denite,qf let b:cursorword=0
