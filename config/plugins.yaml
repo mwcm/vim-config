@@ -437,7 +437,9 @@
 - repo: zchee/deoplete-jedi
   on_ft: python
   on_event: InsertEnter
-  hook_source: autocmd MyAutoCmd FileType python setlocal omnifunc=
+  hook_source: |
+    autocmd MyAutoCmd FileType python setlocal omnifunc=
+    let g:deoplete#sources#jedi#ignore_errors = v:true
 
 - repo: carlitux/deoplete-ternjs
   build: npm install -g tern
