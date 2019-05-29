@@ -14,27 +14,19 @@ highlight PmenuSbar ctermbg=0 guibg=#d6d6d6
 let g:deoplete#auto_complete_delay = 5  " Default is 50
 let g:deoplete#auto_refresh_delay = 30  " Default is 500
 
-call deoplete#custom#option('refresh_always', v:false)
-call deoplete#custom#option('camel_case', v:false)
-call deoplete#custom#option('ignore_case', v:true)
-call deoplete#custom#option('smart_case', v:true)
-call deoplete#custom#option('on_insert_enter', v:true)
-call deoplete#custom#option('on_text_changed_i', v:true)
-call deoplete#custom#option('min_pattern_length', 1)
-call deoplete#custom#option('num_processes', 10)
-call deoplete#custom#option('max_list', 10000)
-call deoplete#custom#option('skip_chars', ['(', ')', '<', '>'])
+call deoplete#custom#option({
+	\ 'auto_refresh_delay': 10,
+	\ 'smart_case': v:true,
+	\ 'skip_multibyte': v:true,
+	\ 'prev_completion_mode': 'filter',
+	\ 'min_pattern_length': 1,
+	\ 'max_list': 10000,
+	\ 'skip_chars': ['(', ')', '<', '>'],
+\ })
 
 let g:deoplete#sources#jedi#statement_length = 30
 let g:deoplete#sources#jedi#show_docstring = 1
 let g:deoplete#sources#jedi#short_types = 1
-
-"let g:deoplete#sources#ternjs#filetypes = [
-	"\ 'jsx',
-	"\ 'javascript.jsx',
-	"\ 'vue',
-	"\ 'javascript'
-	"\ ]
 
 let g:deoplete#sources#ternjs#timeout = 3
 let g:deoplete#sources#ternjs#types = 1
@@ -127,14 +119,17 @@ call deoplete#custom#source('syntax',        'rank', 200)
 " Default sorters: ['sorter/rank']
 " Default matchers: ['matcher/length', 'matcher/fuzzy']
 
+call deoplete#custom#source('_', 'matchers',
+	\ ['matcher_fuzzy', 'matcher_length'])
+
 call deoplete#custom#source('_', 'converters', [
 	\ 'converter_remove_paren',
 	\ 'converter_remove_overlap',
+	\ 'matcher_length',
 	\ 'converter_truncate_abbr',
 	\ 'converter_truncate_menu',
 	\ 'converter_auto_delimiter',
-	\ ])
-
+\ ])
 " }}}
 " Key-mappings and Events " {{{
 " ---
