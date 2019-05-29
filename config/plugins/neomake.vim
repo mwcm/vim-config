@@ -11,16 +11,7 @@ let g:neomake.automake = get(g:neomake, 'automake', {})
 call extend(g:neomake.automake, s:default_settings, 'keep')
 
 let g:neomake_open_list = 0
-let g:neomake_list_height = 5
-let g:neomake_verbose = 3
-
-
-let g:airline#extensions#neomake#enabled = 1
-
-"why doesn't this seem to work?
-let g:neomake_python_pylint_exe = g:python3_host_prog
-let g:neomake_logfile = '/tmp/neomake.log'
-
+let g:neomake_verbose = 1
 
 if ! empty(g:python3_host_prog)
 	let g:neomake_python_python_exe = g:python3_host_prog

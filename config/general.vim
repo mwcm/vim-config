@@ -49,7 +49,7 @@ if has('mac')
 		\      '+': 'pbpaste',
 		\      '*': 'pbpaste',
 		\   },
-		\   'cache_enabled': 1,
+		\   'cache_enabled': 0,
 		\ }
 endif
 
@@ -70,7 +70,7 @@ if has('wildmenu')
 	set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store
 	set wildignore+=**/node_modules/**,**/bower_modules/**,*/.sass-cache/*
 	set wildignore+=application/vendor/**,**/vendor/ckeditor/**,media/vendor/**
-	set wildignore+=__pycache__,*.egg-info
+	set wildignore+=__pycache__,*.egg-info,.pytest_cache
 endif
 
 " }}}
@@ -93,8 +93,6 @@ if has('nvim')
 	"   s - Maximum size of an item contents in KiB
 	"   h - Disable the effect of 'hlsearch' when loading the shada
 	set shada='300,<50,@100,s10,h
-	" Write history on idle, for sharing among different sessions
-	autocmd MyAutoCmd CursorHold * if exists(':rshada') | rshada | wshada | endif
 else
 	set viminfo='300,<10,@50,h,n$VARPATH/viminfo
 endif
@@ -149,13 +147,17 @@ set splitbelow splitright       " Splits open bottom right
 set switchbuf=useopen,usetab    " Jump to the first open window in any tab
 set switchbuf+=vsplit           " Switch buffer behavior to vsplit
 set backspace=indent,eol,start  " Intuitive backspacing in insert mode
-set diffopt=filler,iwhite       " Diff mode: show fillers, ignore white
+set diffopt=filler,iwhite       " Diff mode: show fillers, ignore whitespace
 set showfulltag                 " Show tag and tidy search in completion
 set complete=.                  " No wins, buffs, tags, include scanning
 set completeopt=menuone         " Show menu even for one item
 set completeopt+=noselect       " Do not select a match in the menu
 if has('patch-7.4.775')
 	set completeopt+=noinsert
+endif
+
+if has('patch-8.1.0360')
+	set diffopt+=internal,algorithm:patience
 endif
 
 if exists('+inccommand')
@@ -176,14 +178,15 @@ set noshowmode          " Don't show mode in cmd window
 set shortmess=aoOTI     " Shorten messages and don't show intro
 set scrolloff=2         " Keep at least 2 lines above/below
 set sidescrolloff=5     " Keep at least 5 lines left/right
-set number              " Show line numbers
+set nonumber            " Don't show line numbers
 set noruler             " Disable default status ruler
 set list                " Show hidden characters
 
 set showtabline=2       " Always show the tabs line
 set winwidth=30         " Minimum width for active window
 set winminwidth=10      " Minimum width for inactive windows
-set winheight=1         " Minimum height for active window
+set winheight=4         " Minimum height for active window
+set winminheight=2      " Minimum height for inactive window
 set pumheight=15        " Pop-up menu's line height
 set helpheight=12       " Minimum help window height
 set previewheight=12    " Completion preview height
@@ -210,6 +213,10 @@ endif
 " For snippet_complete marker
 if has('conceal') && v:version >= 703
 	set conceallevel=2 concealcursor=niv
+endif
+
+if exists('&pumblend')
+	set pumblend=20
 endif
 
 " }}}

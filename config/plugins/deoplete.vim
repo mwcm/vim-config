@@ -36,12 +36,12 @@ let g:deoplete#sources#ternjs#docs = 1
 " Limit Sources " {{{
 " ---
 
-let g:deoplete#sources = get(g:, 'deoplete#sources', {})
+" let g:deoplete#sources = get(g:, 'deoplete#sources', {})
 " let g:deoplete#sources.go = ['vim-go']
 " let g:deoplete#sources.javascript = ['file', 'ternjs']
 " let g:deoplete#sources.jsx = ['file', 'ternjs']
 
-let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+" let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 " let g:deoplete#ignore_sources.html = ['syntax']
  "let g:deoplete#ignore_sources.python = ['syntax']
 " let g:deoplete#ignore_sources.php = ['omni']
@@ -58,7 +58,12 @@ let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 " let g:deoplete#omni#functions.javascript =
 " 	\ [ 'tern#Complete', 'jspc#omni', 'javascriptcomplete#CompleteJS' ]
 
-" let g:deoplete#omni_patterns = get(g:, 'deoplete#omni_patterns', {})
+let g:deoplete#omni_patterns = get(g:, 'deoplete#omni_patterns', {})
+call deoplete#custom#option('omni_patterns', {
+\ 'complete_method': 'omnifunc',
+\ 'terraform': '[^ *\t"{=$]\w*',
+\})
+" let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
 " let g:deoplete#omni_patterns.html = '<[^>]*'
 " let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
 " let g:deoplete#omni_patterns.javascript = '[^. \t]\.\%\(\h\w*\)\?'
@@ -110,7 +115,7 @@ call deoplete#custom#source('around',        'rank', 330)
 call deoplete#custom#source('buffer',        'rank', 320)
 call deoplete#custom#source('dictionary',    'rank', 310)
 call deoplete#custom#source('tmux-complete', 'rank', 300)
-call deoplete#custom#source('syntax',        'rank', 200)
+call deoplete#custom#source('syntax',        'rank', 50)
 
 " }}}
 " Matchers and Converters " {{{
@@ -152,7 +157,7 @@ imap     <expr><C-u> pumvisible() ? "\<PageUp>" : "\<C-u>"
 " Redraw candidates
 inoremap <expr><C-g> deoplete#refresh()
 inoremap <expr><C-e> deoplete#cancel_popup()
-inoremap <expr><C-l> deoplete#complete_common_string()
+inoremap <silent><expr><C-l> deoplete#complete_common_string()
 
 " <CR>: If popup menu visible, expand snippet or close popup with selection,
 "       Otherwise, check if within empty pair and use delimitMate.
@@ -178,7 +183,7 @@ inoremap <expr><S-Tab>  pumvisible() ? "\<Up>" : "\<C-h>"
 
 function! s:is_whitespace() "{{{
 	let col = col('.') - 1
-	return ! col || getline('.')[col - 1] =~? '\s'
+	return ! col || getline('.')[col - 1] =~ '\s'
 endfunction "}}}
 " }}}
 

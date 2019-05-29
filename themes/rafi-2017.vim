@@ -346,7 +346,7 @@ highlight User8 guifg=#ffb964 guibg=#30302c ctermfg=215 ctermbg=236
 " }}}
 
 let s:disable_statusline =
-	\ 'denite\|unite\|vimfiler\|tagbar\|nerdtree\|undotree\|gundo\|diff\|peekaboo\|sidemenu'
+	\ 'denite\|defx\|tagbar\|nerdtree\|undotree\|diff\|peekaboo\|sidemenu'
 
 " Toggle Statusline {{{
 augroup statusline
@@ -373,6 +373,29 @@ highlight! link pythonIndentError NONE
 highlight! link ExtraWhitespace  SpellBad
 highlight! WarningMsg ctermfg=100 guifg=#CCC566
 " }}}
+
+
+" Plugin: Defx icons and highlights {{{
+" ---------------------------------------------------------
+let g:defx_git#indicators = {
+	\ 'Modified'  : '•',
+	\ 'Staged'    : '✚',
+	\ 'Untracked' : 'ᵁ',
+	\ 'Renamed'   : '≫',
+	\ 'Unmerged'  : '≠',
+	\ 'Ignored'   : 'ⁱ',
+	\ 'Deleted'   : '✖',
+	\ 'Unknown'   : '⁇'
+	\ }
+
+highlight Defx_filename_3_Modified  ctermfg=1  guifg=#D370A3
+highlight Defx_filename_3_Staged    ctermfg=10 guifg=#A3D572
+highlight Defx_filename_3_Ignored   ctermfg=8  guifg=#404660
+highlight def link Defx_filename_3_Untracked Comment
+highlight def link Defx_filename_3_Unknown Comment
+highlight def link Defx_filename_3_Renamed Title
+highlight def link Defx_filename_3_Unmerged Label
+" highlight Defx_git_Deleted   ctermfg=13 guifg=#b294bb
 
 " Plugin: NERDTree icons and highlights {{{
 " ---------------------------------------------------------
@@ -441,10 +464,10 @@ let g:tagbar_iconchars = ['▷', '◢']
 
 " Plugin: Neomake icons {{{
 " ---------------------------------------------------------
-let g:neomake_error_sign = {'text': '!', 'texthl': 'ErrorMsg'}
-let g:neomake_warning_sign = {'text': '!', 'texthl': 'WarningSyntax'}
+let g:neomake_error_sign = {'text': '⚠', 'texthl': 'ErrorMsg'}
+let g:neomake_warning_sign = {'text': '⌁', 'texthl': 'WarningSyntax'}
 let g:neomake_message_sign = {'text': '⌂', 'texthl': 'NeomakeMessageSign'}
-let g:neomake_info_sign = {'text': '⍞', 'texthl': 'NeomakeInfoSign'}
+let g:neomake_info_sign = {'text': '⊹', 'texthl': 'NeomakeInfoSign'}
 "}}}
 highlight! WarningSyntax ctermfg=58 guifg=#7d7629
 

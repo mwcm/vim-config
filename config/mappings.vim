@@ -34,14 +34,14 @@ nmap <silent> <Leader><Leader> V
 vmap <Leader><Leader> <Esc>
 
 " Change current word in a repeatable manner
-nnoremap cn *``cgn
-nnoremap cN *``cgN
+nnoremap <leader>cn *``cgn
+nnoremap <leader>cN *``cgN
 
 " Change selected word in a repeatable manner
-vnoremap <expr> cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
-vnoremap <expr> cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
+vnoremap <expr> <leader>cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
+vnoremap <expr> <leader>cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
-nnoremap cp yap<S-}>p
+nnoremap <leader>cp yap<S-}>p
 nnoremap <leader>a =ip
 
 " xnoremap p  "0p
@@ -103,8 +103,8 @@ xnoremap > >gv|
 " Use tab for indenting
 vnoremap <Tab> >gv|
 vnoremap <S-Tab> <gv
-nmap <Tab>   >>_
-nmap <S-Tab> <<_
+nmap >>  >>_
+nmap <<  <<_
 
 " Select last paste
 nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
@@ -293,10 +293,6 @@ nnoremap <silent> <Leader><S>k :call Dasht([expand('<cword>'), expand('<cWORD>')
 vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
 
 
-" }}}
-
-" Display diff from last save {{{
-command! DiffOrig vert new | setlocal bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 " }}}
 
 " Append modeline to EOF {{{
