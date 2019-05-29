@@ -35,7 +35,7 @@ let g:neomake_python_flake8_maker = {
 				\ '%-G%.%#',
 		\ }
 
-let g:neomake_python_enabled_makers = ['pylint', 'flake8', 'pycodestyle', 'pyflakes']
+let g:neomake_python_enabled_makers = ['pylint', 'flake8', 'pycodestyle', 'pyflakes' ,'pep8']
 
 " YAML / ANSIBLE
 let g:neomake_yaml_enabled_makers = ['yamllint']

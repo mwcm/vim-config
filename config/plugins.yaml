@@ -35,6 +35,7 @@
 
 # Languages
 # ---------
+- { repo: wsdjeg/dein-ui.vim }
 - { repo: haya14busa/dein-command.vim }
 - { repo: hail2u/vim-css3-syntax, on_ft: css }
 - { repo: cakebaker/scss-syntax.vim, on_ft: [ scss, sass ]}
@@ -432,6 +433,10 @@
   if: ! empty($GOPATH)
   build: make
   on_ft: go
+  on_event: InsertEnter
+
+- repo: tbodt/deoplete-tabnine
+  build: './install.sh'
   on_event: InsertEnter
 
 - repo: zchee/deoplete-jedi
