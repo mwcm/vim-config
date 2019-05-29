@@ -161,21 +161,17 @@ inoremap <silent><expr><C-l> deoplete#complete_common_string()
 
 " <CR>: If popup menu visible, expand snippet or close popup with selection,
 "       Otherwise, check if within empty pair and use delimitMate.
-inoremap <silent><expr><CR> pumvisible() ? deoplete#close_popup()
-	\ : (delimitMate#WithinEmptyPair() ? "\<C-R>=delimitMate#ExpandReturn()\<CR>" : "\<CR>")
+imap <expr><silent><CR> pumvisible() ? deoplete#mappings#close_popup() .
+      \  "\<Plug>(neosnippet_expand_or_jump)" : "\<CR>"
+smap <silent><CR> "\<Plug>(neosnippet_expand_or_jump)"
 
-" <Tab> completion:
-" 1. If popup menu is visible, select and insert next item
-" 2. Otherwise, if within a snippet, jump to next input
-" 3. Otherwise, if preceding chars are whitespace, insert tab char
-" 4. Otherwise, start manual autocomplete
 imap <silent><expr><Tab> pumvisible() ? "\<Down>"
-	\ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
+	\ : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)"
 	\ : (<SID>is_whitespace() ? "\<Tab>"
 	\ : deoplete#manual_complete()))
 
 smap <silent><expr><Tab> pumvisible() ? "\<Down>"
-	\ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
+	\ : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)"
 	\ : (<SID>is_whitespace() ? "\<Tab>"
 	\ : deoplete#manual_complete()))
 
