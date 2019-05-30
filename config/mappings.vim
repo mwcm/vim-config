@@ -248,14 +248,13 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
-imap <expr><TAB>
-	 \ pumvisible() ? "\<C-n>" :
-	 \ neosnippet#expandable_or_jumpable() ?
-	 \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"imap <expr><TAB>
+	 "\ pumvisible() ? "\<C-n>" :
+	 "\ neosnippet#expandable_or_jumpable() ?
+	 "\    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
