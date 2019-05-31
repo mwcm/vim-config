@@ -499,39 +499,9 @@
 
 # Only NeoVim ------------------------------
 
-#- repo: deoplete-plugins/deoplete-go
-  #if: ! empty($GOPATH)
-  #build: make
-  #on_ft: go
-  #on_event: InsertEnter
-
-#- repo: tbodt/deoplete-tabnine
-  #build: './install.sh'
-  #on_event: InsertEnter
-
-#- repo: deoplete-plugins/deoplete-jedi
-  #on_ft: python
-  #on_event: InsertEnter
-  #hook_source: |
-    #autocmd MyAutoCmd FileType python setlocal omnifunc=
-    #let g:deoplete#sources#jedi#ignore_errors = v:true
-
-#- repo: carlitux/deoplete-ternjs
-  #build: npm install -g tern
-  #if: executable('npm')
-  #on_event: InsertEnter
-  #on_ft: [ javascript, jsx, javascript.jsx ]
-  #hook_source: |
-    #let g:tern_request_timeout = 1
-    #let g:tern_show_signature_in_pum = 0
-
 - repo: wellle/tmux-complete.vim
   on_event: InsertEnter
   hook_add: let g:tmuxcomplete#trigger = ''
-
-#- repo: fszymanski/deoplete-emoji
-  #on_ft: [ markdown, gitcommit ]
-  #on_event: InsertEnter
 
 - repo: juliosueiras/vim-terraform-completion
   hook_add: let g:terraform_completion_keys = 1
@@ -568,10 +538,10 @@
 - { repo: rafi/vim-denite-session, on_source: denite.nvim }
 
  #- { repo: rafi/vim-denite-task, on_source: denite.nvim }
-- repo: rafi/vim-denite-mpc
-  if: executable('mpc')
-  on_source: denite.nvim
-  hook_source: call denite#custom#var('mpc', 'default_view', 'date')
+#- repo: mwcm/vim-denite-mpc
+  #if: executable('mpc')
+  #on_source: denite.nvim
+  #hook_source: call denite#custom#var('mpc', 'default_view', 'date')
 
 # ==========================================
 # Operators

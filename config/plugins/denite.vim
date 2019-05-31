@@ -15,6 +15,7 @@ call denite#custom#option('default', {
 
 call denite#custom#option('list', {})
 call denite#custom#option('mpc', { 'mode': 'normal', 'winheight': 20 })
+call denite#custom#var('mpc', 'port', 6600)
 
 " MATCHERS
 " Default is 'matcher/fuzzy'
@@ -62,19 +63,19 @@ elseif executable('ack')
 	call denite#custom#var('grep', 'separator', ['--'])
 	call denite#custom#var('grep', 'final_opts', [])
 	call denite#custom#var('grep', 'default_opts',
-			\ ['--ackrc', $HOME.'/.config/ackrc', '-H',
-			\ '--nopager', '--nocolor', '--nogroup', '--column'])
+		\ ['--ackrc', $HOME.'/.config/ackrc', '-H',
+		\ '--nopager', '--nocolor', '--nogroup', '--column'])
 
 elseif executable('rg')
 	" Ripgrep
-  call denite#custom#var('file/rec', 'command',
-        \ ['rg', '--files', '--glob', '!.git'])
-  call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
-  call denite#custom#var('grep', 'recursive_opts', [])
-  call denite#custom#var('grep', 'final_opts', [])
-  call denite#custom#var('grep', 'separator', ['--'])
-  call denite#custom#var('grep', 'default_opts',
-        \ ['-i', '--vimgrep', '--no-heading'])
+	call denite#custom#var('file/rec', 'command',
+		\ ['rg', '--files', '--glob', '!.git'])
+	call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
+	call denite#custom#var('grep', 'recursive_opts', [])
+	call denite#custom#var('grep', 'final_opts', [])
+	call denite#custom#var('grep', 'separator', ['--'])
+	call denite#custom#var('grep', 'default_opts',
+		\ ['-i', '--vimgrep', '--no-heading'])
 endif
 
 " KEY MAPPINGS

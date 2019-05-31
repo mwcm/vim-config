@@ -1,3 +1,4 @@
 {
-    "suggest.noselect": false
+    "suggest.noselect": false,
+    "python.linting.pylintPath": "/Users/mwcmitchell/.cache/vim/venv/neovim3/bin/pylint"
 }
