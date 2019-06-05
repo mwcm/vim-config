@@ -1,5 +1,30 @@
 {
     "languageserver": {
+        "dockerfile": {
+            "args": [
+                "--stdio"
+            ],
+            "command": "docker-langserver",
+            "filetypes": [
+                "dockerfile"
+            ]
+        },
+        "flow": {
+            "args": [
+                "lsp"
+            ],
+            "command": "flow",
+            "filetypes": [
+                "javascript",
+                "javascriptreact"
+            ],
+            "initializationOptions": {},
+            "requireRootPattern": true,
+            "rootPatterns": [
+                ".flowconfig"
+            ],
+            "settings": {}
+        },
         "python": {
             "args": [
                 "-mpyls",
