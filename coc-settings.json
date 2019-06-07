@@ -16,7 +16,8 @@
             "command": "flow",
             "filetypes": [
                 "javascript",
-                "javascriptreact"
+                "javascriptreact",
+                "javascript.jsx"
             ],
             "initializationOptions": {},
             "requireRootPattern": true,
