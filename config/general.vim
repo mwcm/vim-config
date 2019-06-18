@@ -182,6 +182,7 @@ set sidescrolloff=5     " Keep at least 5 lines left/right
 set noruler             " Disable default status ruler
 set list                " Show hidden characters
 
+set number              " always show line numbers
 set showtabline=2       " Always show the tabs line
 set winwidth=30         " Minimum width for active window
 set winminwidth=10      " Minimum width for inactive windows

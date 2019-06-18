@@ -294,12 +294,12 @@ if has('mac')
 	nmap <Leader>? :!open dict://<cword><CR><CR>
 
 	" Use Dash on Mac, for context help
-	if executable('/Applications/Dash.app/Contents/MacOS/Dash')
-		autocmd MyAutoCmd FileType yaml.ansible,php,css,less,html,markdown
-			\ nmap <silent><buffer> K :!open -g dash://"<C-R>=split(&ft, '\.')[0]<CR>:<cword>"&<CR><CR>
-		autocmd MyAutoCmd FileType javascript,javascript.jsx,sql,ruby,conf,sh
-			\ nmap <silent><buffer> K :!open -g dash://"<cword>"&<CR><CR>
-	endif
+	"if executable('/Applications/Dash.app/Contents/MacOS/Dash')
+		"autocmd MyAutoCmd FileType yaml.ansible,php,css,less,html,markdown
+			"\ nmap <silent><buffer> K :!open -g dash://"<C-R>=split(&ft, '\.')[0]<CR>:<cword>"&<CR><CR>
+		"autocmd MyAutoCmd FileType javascript,javascript.jsx,sql,ruby,conf,sh
+			"\ nmap <silent><buffer> K :!open -g dash://"<cword>"&<CR><CR>
+	"endif
 
 " Use Zeal on Linux for context help
 elseif executable('zeal')
@@ -311,8 +311,7 @@ endif
 
 " search ALL the docsets
 nnoremap <silent> <Leader><S>k :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
-"Search docsets for your selected text:
-" search ALL the docsets
+"Search ALL docsets for your selected text:
 vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
 
 

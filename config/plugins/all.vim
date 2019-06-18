@@ -414,9 +414,9 @@ if dein#tap('vim-textobj-function')
 endif
 
 if dein#tap('vim-livedown')
-	"let g:livedown_autorun = 1
 	let g:livedown_open = 1
 	let g:livedown_port = 1337
+	let g:livedown_browser = "firefox"
 endif
 
 if dein#tap('Colorizer')

@@ -275,6 +275,8 @@
 - repo: junegunn/vim-easy-align
   if: empty($VIM_MINIMAL)
 
+- repo: Vigemus/iron.nvim
+
 # ==========================================
 # Interface
 # ---------
