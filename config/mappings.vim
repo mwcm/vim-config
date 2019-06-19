@@ -240,7 +240,6 @@ function! s:toggle_contrast(delta)
 	endif
 endfunction
 
-inoremap <C-n> <Plug>(neosnippet_expand_or_jump)
 " completion
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
 	\"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -250,9 +249,6 @@ inoremap <silent><expr> <TAB>
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-	\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 inoremap <expr><S-Tab> pumvisible() ? "\<Up>" : "\<C-h>"
 

@@ -435,15 +435,15 @@
 
 - repo: jsfaint/coc-neoinclude
 
-- repo: Shougo/neosnippet.vim
-  depends: [ neosnippet-snippets, context_filetype.vim ]
+- repo: honza/vim-snippets
+- repo: SirVer/ultisnips
+  depends: [ vim-snippets, context_filetype.vim ]
   on_event: InsertCharPre
   on_ft: snippet
-  hook_add: let g:neosnippet#snippets_directory = $VARPATH.'/snippets'
   hook_source: |
-    let g:neosnippet#enable_completed_snippet = 1
-    let g:neosnippet#expand_word_boundary = 1
-    autocmd MyAutoCmd InsertLeave * NeoSnippetClearMarkers
+    let g:UltiSnipsExpandTrigger="<Return>"
+    let g:UltiSnipsJumpForwardTrigger="<TAB>"
+    let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 
 - repo: ludovicchabant/vim-gutentags
   if: executable('ctags')
