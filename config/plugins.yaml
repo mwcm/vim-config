@@ -441,9 +441,19 @@
   on_event: InsertCharPre
   on_ft: snippet
   hook_source: |
-    let g:UltiSnipsExpandTrigger="<Return>"
+    let g:ulti_expand_or_jump_res = 0
+    let g:UltiSnipsExpandTrigger="<NUL>"
     let g:UltiSnipsJumpForwardTrigger="<TAB>"
     let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
+    function! <SID>ExpandSnippetOrReturn()
+      let snippet = UltiSnips#ExpandSnippetOrJump()
+      if g:ulti_expand_or_jump_res > 0
+        return snippet
+      else
+        return "\<CR>"
+      endif
+    endfunction
+    inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
 
 - repo: ludovicchabant/vim-gutentags
   if: executable('ctags')
