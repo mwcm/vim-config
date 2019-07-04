@@ -238,13 +238,6 @@ autocmd MyAutoCmd BufWritePost *
 	\   execute 'normal! zx' |
 	\ endif
 
-" BACKUPS:
-" https://gist.github.com/nepsilon/1c998cd95907ef5d2d29
-set backup
-set backupdir=/Volumes/GoogleDrive/My\ Drive/Vim/
-set writebackup
-set backupcopy=no
-au BufWritePost * let &bex = '@' . strftime("%F.%H:%M")
 
 if has('folding')
 	set foldenable

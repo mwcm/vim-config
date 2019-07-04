@@ -33,11 +33,16 @@
                 "--log-file",
                 "/tmp/lsp_python.log"
             ],
-            "command": "python",
+            "command": "python3",
             "filetypes": [
                 "python"
             ],
             "settings": {
+                "python.linting.pylintEnable": true,
+                "python.venvPath": "~/.cache/vim/venv",
+                "python.venvFolders": [".virtualenvs"],
+                "python.pythonPath": "/usr/local/bin/python3",
+                "python.linting.pylintPath": "/Users/mwcmitchell/.cache/vim/venv/neovim3/bin/pylint",
                 "pyls": {
                     "commandPath": "",
                     "configurationSources": [
@@ -94,6 +99,5 @@
             "trace.server": "verbose"
         }
     },
-    "python.linting.pylintPath": "/Users/mwcmitchell/.cache/vim/venv/neovim3/bin/pylint",
     "suggest.noselect": false
 }

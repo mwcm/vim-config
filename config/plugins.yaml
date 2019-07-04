@@ -339,22 +339,23 @@
   if: has('nvim') && empty($VIM_MINIMAL)
 
 
+# using coc.nvim
 # removed javascript, jsx, javascript.jsx
-- repo: benekastah/neomake
-  if: has('nvim')
-  on_cmd: [ Neomake, NeomakeFile, NeomakeEnable ]
-  hook_source: source $VIMPATH/config/plugins/neomake.vim
-  hook_add: |
-    let g:lint_types = [
-      \  'yaml.ansible', 'python', 'php', 'ruby', 'vim', 'go', 'sh', 'json',
-      \  'css', 'markdown', 'html', 'yaml'
-      \ ]
-    autocmd MyAutoCmd BufWritePost *
-      \  if expand('%:p') !~ $VIMPATH
-      \      && index(g:lint_types, &filetype) > -1
-      \      && empty(&buftype)
-      \|   Neomake
-      \| endif
+#- repo: benekastah/neomake
+  #if: has('nvim')
+  #on_cmd: [ Neomake, NeomakeFile, NeomakeEnable ]
+  #hook_source: source $VIMPATH/config/plugins/neomake.vim
+  #hook_add: |
+    #let g:lint_types = [
+      #\  'yaml.ansible', 'python', 'php', 'ruby', 'vim', 'go', 'sh', 'json',
+      #\  'css', 'markdown', 'html', 'yaml'
+      #\ ]
+    #autocmd MyAutoCmd BufWritePost *
+      #\  if expand('%:p') !~ $VIMPATH
+      #\      && index(g:lint_types, &filetype) > -1
+      #\      && empty(&buftype)
+      #\|   Neomake
+      #\| endif
 
 
 - repo: gu-fan/colorv.vim
@@ -441,19 +442,8 @@
   on_event: InsertCharPre
   on_ft: snippet
   hook_source: |
-    let g:ulti_expand_or_jump_res = 0
-    let g:UltiSnipsExpandTrigger="<NUL>"
     let g:UltiSnipsJumpForwardTrigger="<TAB>"
     let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
-    function! <SID>ExpandSnippetOrReturn()
-      let snippet = UltiSnips#ExpandSnippetOrJump()
-      if g:ulti_expand_or_jump_res > 0
-        return snippet
-      else
-        return "\<CR>"
-      endif
-    endfunction
-    inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
 
 - repo: ludovicchabant/vim-gutentags
   if: executable('ctags')
