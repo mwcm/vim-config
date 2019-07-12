@@ -6,6 +6,7 @@
 call denite#custom#option('_', {
 	\ 'empty': 0,
 	\ 'auto_resume': 1,
+	\ 'auto_resize': 1,
 	\ 'statusline': 1,
 	\ 'start_filter': 1,
 	\ 'vertical_preview': 1,
@@ -15,7 +16,7 @@ call denite#custom#option('_', {
 	\ })
 
 if has('nvim')
-	call denite#custom#option('_', { 'split': 'floating' })
+	call denite#custom#option('_', { 'split': 'horizontal' })
 endif
 
 call denite#custom#option('search', { 'start_filter': 0, 'no_empty': 1 })

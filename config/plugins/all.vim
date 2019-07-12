@@ -69,6 +69,7 @@ endif
 
 if dein#tap('coc.nvim')
 	let g:airline#extensions#coc#enabled = 1
+	autocmd CursorHold * silent call CocActionAsync('highlight')
 	nmap <silent> gd <Plug>(coc-definition)
 	nmap <silent> gy <Plug>(coc-type-definition)
 	nmap <silent> gi <Plug>(coc-implementation)
