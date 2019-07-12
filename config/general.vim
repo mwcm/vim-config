@@ -115,7 +115,7 @@ set shiftround      " Round indent to multiple of 'shiftwidth'
 " ------
 set timeout ttimeout
 set timeoutlen=750  " Time out on mappings
-set updatetime=1000 " Idle time to write swap and trigger CursorHold
+set updatetime=300 " Idle time to write swap and trigger CursorHold
 
 " Time out on key codes
 set ttimeoutlen=10
@@ -216,9 +216,10 @@ if has('conceal') && v:version >= 703
 	set conceallevel=2 concealcursor=niv
 endif
 
-if exists('&pumblend')
-	set pumblend=20
-endif
+" no blend for popup menu
+"if exists('&pumblend')
+	"set pumblend=20
+"endif
 
 " }}}
 " Folds {{{

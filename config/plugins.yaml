@@ -431,8 +431,8 @@
   on_ft: python
   depends: python-language-server
 
-- repo: chrisbra/Colorizer
-  if: empty($VIM_MINIMAL)
+#- repo: chrisbra/Colorizer
+  #if: empty($VIM_MINIMAL)
 
 - repo: neoclide/coc.nvim
   merge: 0

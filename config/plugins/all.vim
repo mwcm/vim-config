@@ -69,6 +69,10 @@ endif
 
 if dein#tap('coc.nvim')
 	let g:airline#extensions#coc#enabled = 1
+	nmap <silent> gd <Plug>(coc-definition)
+	nmap <silent> gy <Plug>(coc-type-definition)
+	nmap <silent> gi <Plug>(coc-implementation)
+	nmap <silent> gr <Plug>(coc-references)
 endif
 
 

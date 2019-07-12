@@ -100,7 +100,8 @@
         }
     },
     "coc.preferences.colorSupport": true,
+    "suggest.enablePreview": true,
     "highlight.document.enable": true,
-    "highlight.colors.enable": false,
+    "highlight.colors.enable": true,
     "suggest.noselect": false
 }
