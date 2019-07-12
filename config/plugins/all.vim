@@ -74,6 +74,12 @@ if dein#tap('coc.nvim')
 	nmap <silent> gy <Plug>(coc-type-definition)
 	nmap <silent> gi <Plug>(coc-implementation)
 	nmap <silent> gr <Plug>(coc-references)
+	function! CocNvimHighlight()
+		highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
+		highlight CocErrorLine ctermfg=Red  guifg=#ff0000
+		highlight CocHighlightText  guibg=#111111 ctermbg=240
+	endfunction
+	autocmd VimEnter * silent call CocNvimHighlight()
 endif
 
 
