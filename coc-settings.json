@@ -99,5 +99,8 @@
             "trace.server": "verbose"
         }
     },
+    "coc.preferences.colorSupport": true,
+    "highlight.document.enable": true,
+    "highlight.colors.enable": false,
     "suggest.noselect": false
 }

@@ -286,9 +286,6 @@
 - { repo: t9md/vim-quickhl, on_map: { nv: <Plug> }}
 - { repo: rafi/vim-sidemenu, on_map: { nv: <Plug> }}
 
-- repo: chrisbra/Colorizer
-  if: empty($VIM_MINIMAL)
-
 - repo: whatyouhide/vim-gotham
   if: empty($VIM_MINIMAL)
 
@@ -434,12 +431,31 @@
   on_ft: python
   depends: python-language-server
 
+- repo: chrisbra/Colorizer
+  if: empty($VIM_MINIMAL)
+
 - repo: neoclide/coc.nvim
-  build: './install.sh'
+  merge: 0
+  rev: 'release'
+  hook_source: |
+    function! CocNvimHighlight()
+        highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
+        highlight CocWarningHighlight ctermfg=Red  guifg=#ff0000
+        highlight CocInfoHighlight ctermfg=Red  guifg=#ff0000
+        highlight CocHintHighlight ctermfg=Red  guifg=#ff0000
+        highlight CocErrorLine ctermfg=Red  guifg=#ff0000
+        highlight CocWarningLine ctermfg=Red  guifg=#ff0000
+        highlight CocInfoLine ctermfg=Red  guifg=#ff0000
+        highlight CocHintLine ctermfg=Red  guifg=#ff0000
+        highlight CocHighlightText  guibg=#111111 ctermbg=92
+    endfunction
+    autocmd VimEnter * silent call CocNvimHighlight()
+    autocmd CursorHold * silent call CocActionAsync('highlight')
 
 - repo: jsfaint/coc-neoinclude
 
 - repo: honza/vim-snippets
+
 - repo: SirVer/ultisnips
   depends: [ vim-snippets, context_filetype.vim ]
   on_event: InsertCharPre
