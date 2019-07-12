@@ -1,4 +1,18 @@
 {
+    "python.linting.pylintEnabled": false,
+    "python.linting.pylamaEnabled": true,
+    "suggest.noselect": false,
+    "suggest.triggerAfterInsertEnter": true,
+    "suggest.enablePreview": true,
+    "javascript.validate.enable": false,
+    "eslint.filetypes": [
+        "javascript",
+        "javascript.jsx",
+        "javascriptreact"
+    ],
+    "eslint.autoFix": true,
+    "eslint.autoFixOnSave": true,
+    "diagnostic.refreshOnInsertMode": true,
     "languageserver": {
         "dockerfile": {
             "args": [
@@ -25,83 +39,6 @@
                 ".flowconfig"
             ],
             "settings": {}
-        },
-        "python": {
-            "args": [
-                "-mpyls",
-                "-vv",
-                "--log-file",
-                "/tmp/lsp_python.log"
-            ],
-            "command": "python3",
-            "filetypes": [
-                "python"
-            ],
-            "settings": {
-                "python.linting.pylintEnable": true,
-                "python.venvPath": "~/.cache/vim/venv",
-                "python.venvFolders": [".virtualenvs"],
-                "python.pythonPath": "/usr/local/bin/python3",
-                "python.linting.pylintPath": "/Users/mwcmitchell/.cache/vim/venv/neovim3/bin/pylint",
-                "pyls": {
-                    "commandPath": "",
-                    "configurationSources": [
-                        "pycodestyle"
-                    ],
-                    "enable": true,
-                    "plugins": {
-                        "jedi_completion": {
-                            "enabled": true
-                        },
-                        "jedi_hover": {
-                            "enabled": true
-                        },
-                        "jedi_references": {
-                            "enabled": true
-                        },
-                        "jedi_signature_help": {
-                            "enabled": true
-                        },
-                        "jedi_symbols": {
-                            "all_scopes": true,
-                            "enabled": true
-                        },
-                        "mccabe": {
-                            "enabled": true,
-                            "threshold": 15
-                        },
-                        "preload": {
-                            "enabled": true
-                        },
-                        "pycodestyle": {
-                            "enabled": true
-                        },
-                        "pydocstyle": {
-                            "enabled": false,
-                            "match": "(?!test_).*\\.py",
-                            "matchDir": "[^\\.].*"
-                        },
-                        "pyflakes": {
-                            "enabled": true
-                        },
-                        "rope_completion": {
-                            "enabled": true
-                        },
-                        "yapf": {
-                            "enabled": true
-                        }
-                    },
-                    "trace": {
-                        "server": "verbose"
-                    }
-                }
-            },
-            "trace.server": "verbose"
         }
-    },
-    "coc.preferences.colorSupport": true,
-    "suggest.enablePreview": true,
-    "highlight.document.enable": true,
-    "highlight.colors.enable": true,
-    "suggest.noselect": false
+    }
 }

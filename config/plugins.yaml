@@ -262,7 +262,7 @@
 - repo: ctrlpvim/ctrlp.vim
   if: empty($VIM_MINIMAL)
   hook_source: |
-    let g:ctrlp_match_current_file = 1 " to include current file in matches
+    let g:ctrlp_match_current_file = 1 " to include current file in matches"
 
 - repo: vim-scripts/LargeFile
 
@@ -338,30 +338,7 @@
 - repo: mhinz/vim-startify
   if: has('nvim') && empty($VIM_MINIMAL)
 
-
-# using coc.nvim
-# removed javascript, jsx, javascript.jsx
-#- repo: benekastah/neomake
-  #if: has('nvim')
-  #on_cmd: [ Neomake, NeomakeFile, NeomakeEnable ]
-  #hook_source: source $VIMPATH/config/plugins/neomake.vim
-  #hook_add: |
-    #let g:lint_types = [
-      #\  'yaml.ansible', 'python', 'php', 'ruby', 'vim', 'go', 'sh', 'json',
-      #\  'css', 'markdown', 'html', 'yaml'
-      #\ ]
-    #autocmd MyAutoCmd BufWritePost *
-      #\  if expand('%:p') !~ $VIMPATH
-      #\      && index(g:lint_types, &filetype) > -1
-      #\      && empty(&buftype)
-      #\|   Neomake
-      #\| endif
-
-
 - repo: gu-fan/colorv.vim
-  if: has('nvim') && empty($VIM_MINIMAL)
-
-- repo: w0rp/ale
   if: has('nvim') && empty($VIM_MINIMAL)
 
 - repo: wokalski/autocomplete-flow
@@ -415,54 +392,22 @@
 
 # ==========================================
 # Completion
-# ----------
-
-#- repo: Shougo/deoplete.nvim
-  #depends: context_filetype.vim
-  #on_event: InsertEnter
-  #hook_source: |
-    #source $VIMPATH/config/plugins/deoplete.vim
-    #call deoplete#enable()
+# ---------"
 
 - repo: palantir/python-language-server
-  if: has('nvim') && empty($VIM_MINIMAL)
+  on_ft: python
 
 - repo: paradoxxxzero/pyls-isort
   on_ft: python
   depends: python-language-server
 
-#- repo: chrisbra/Colorizer
-  #if: empty($VIM_MINIMAL)
-
 - repo: neoclide/coc.nvim
   merge: 0
   rev: 'release'
-  hook_source: |
-    function! CocNvimHighlight()
-        highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
-        highlight CocWarningHighlight ctermfg=Red  guifg=#ff0000
-        highlight CocInfoHighlight ctermfg=Red  guifg=#ff0000
-        highlight CocHintHighlight ctermfg=Red  guifg=#ff0000
-        highlight CocErrorLine ctermfg=Red  guifg=#ff0000
-        highlight CocWarningLine ctermfg=Red  guifg=#ff0000
-        highlight CocInfoLine ctermfg=Red  guifg=#ff0000
-        highlight CocHintLine ctermfg=Red  guifg=#ff0000
-        highlight CocHighlightText  guibg=#111111 ctermbg=92
-    endfunction
-    autocmd VimEnter * silent call CocNvimHighlight()
-    autocmd CursorHold * silent call CocActionAsync('highlight')
 
 - repo: jsfaint/coc-neoinclude
 
 - repo: honza/vim-snippets
-
-- repo: SirVer/ultisnips
-  depends: [ vim-snippets, context_filetype.vim ]
-  on_event: InsertCharPre
-  on_ft: snippet
-  hook_source: |
-    let g:UltiSnipsJumpForwardTrigger="<TAB>"
-    let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 
 - repo: ludovicchabant/vim-gutentags
   if: executable('ctags')
@@ -503,20 +448,6 @@
 - { repo: Shougo/neoinclude.vim, on_source: coc.nvim }
 - { repo: Shougo/neco-syntax, on_source: coc.nvim }
 
-- repo: davidhalter/jedi-vim
-  on_ft: python
-  hook_add: |
-    let g:jedi#completions_enabled = 0
-    let g:jedi#auto_vim_configuration = 0
-    let g:jedi#smart_auto_mappings = 0
-    let g:jedi#show_call_signatures = 1
-  hook_source: |
-    let g:jedi#use_tag_stack = 0
-    let g:jedi#popup_select_first = 0
-    let g:jedi#popup_on_dot = 0
-    let g:jedi#max_doc_height = 100
-    let g:jedi#quickfix_window_height = 10
-    let g:jedi#use_splits_not_buffers = 'right'
 
 # Only NeoVim ------------------------------
 
