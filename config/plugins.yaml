@@ -197,23 +197,64 @@
   hook_source: |
     call which_key#register('<Space>', "g:which_key_map")
     let g:which_key_map = {}
+    let g:which_key_map = {
+     \'a':  'align-paragraph',
+     \'b':  'toggle-theme-background',
+     \'d':  'duplicate-line-or-selection',
+     \'e':  'toggle-filemenu',
+     \'gu': 'which_key_ignore',
+     \'G':  'toggle-distraction-free',
+     \'l':  'toggle-sidemenu',
+     \'ml': 'which_key_ignore',
+     \'o':  'toggle-tagbar',
+     \'os': 'which_key_ignore',
+     \'S':  'source-selection',
+     \'se': 'which_key_ignore',
+     \'T':  'thesaurus-lookup',
+     \'v':  'toggle-single-line-comment',
+     \'V':  'toggle-block-comment',
+     \'W':  'open-wiki',
+     \'y':  'copy-relative-file-path',
+     \'Y':  'copy-absolute-file-path',
+     \'-':  'choosewin-jump',
+     \',':  'highlight-cursor-word',
+     \'?':  'dictionary-lookup',
+     \}
     let g:which_key_map['t'] = {
       \'name': '+text-options',
-      \'i': 'toggle-indentation-lines',
-      \'s': 'toggle-spellchecker',
-      \'n': 'toggle-line-numbers',
-      \'l': 'toggle-hidden-characters',
-      \'h': 'toggle-highlighted-search',
-      \'w': 'toggle-wrap',
+      \'i':    'toggle-indentation-lines',
+      \'s':    'toggle-spellchecker',
+      \'n':    'toggle-line-numbers',
+      \'l':    'toggle-hidden-characters',
+      \'h':    'toggle-highlighted-search',
+      \'w':    'toggle-wrap',
       \ }
     let g:which_key_map['c'] = {
-      \'name': '+change-command-options',
-      \'d': 'cd-buffer-dir',
-      \'n': 'change-current-word-repeatable',
-      \'N': 'change-current-word-repeatable',
-      \'p': 'duplicate-paragraph',
+      \'name': '+change-color-comment',
+      \'d':    'cd-buffer-dir',
+      \'n':    'change-current-word-repeatable',
+      \'N':    'change-current-word-repeatable',
+      \'p':    'duplicate-paragraph',
       \ }
-    let g:which_key_map.c.g = {'name': '+colorv-relative-colors'}
+    let g:which_key_map['s'] = {
+      \'name': '+save',
+      \'e':    'save-workspace-session',
+      \ }
+    let g:which_key_map['o'] = {
+      \'name': '+open',
+      \'s':    'open-last-saved-session',
+      \ }
+    let g:which_key_map['g'] = {
+      \'name': '+git-grep-etc',
+      \'u':    'toggle-undo-tree',
+      \ }
+    let g:which_key_map['m'] = {
+      \'name': '+modeline',
+      \'l': 'append-modeline',
+      \ }
+    let g:which_key_map.c.g = {
+      \'name': '+colorv-relative-colors'
+      \ }
 
 
 - repo: scrooloose/nerdtree
@@ -569,6 +610,3 @@
   depends: vim-textobj-user
   on_map: { ox: <Plug> }
   hook_add: let g:textobj_function_no_default_key_mappings = 1
-
-#  vim: set ts=2 sw=2 tw=80 et :
-
