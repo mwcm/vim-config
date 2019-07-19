@@ -194,6 +194,26 @@
     vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
     nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
     vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ';'<CR>
+  hook_source: |
+    call which_key#register('<Space>', "g:which_key_map")
+    let g:which_key_map = {}
+    let g:which_key_map['t'] = {
+      \'name': '+text-options',
+      \'i': 'toggle-indentation-lines',
+      \'s': 'toggle-spellchecker',
+      \'n': 'toggle-line-numbers',
+      \'l': 'toggle-hidden-characters',
+      \'h': 'toggle-highlighted-search',
+      \'w': 'toggle-wrap',
+      \ }
+    let g:which_key_map['c'] = {
+      \'name': '+change-command-options',
+      \'d': 'cd-buffer-dir',
+      \'n': 'change-current-word-repeatable',
+      \'N': 'change-current-word-repeatable',
+      \'p': 'duplicate-paragraph',
+      \ }
+    let g:which_key_map.c.g = {'name': '+colorv-relative-colors'}
 
 
 - repo: scrooloose/nerdtree
