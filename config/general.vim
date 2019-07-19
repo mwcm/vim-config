@@ -114,7 +114,7 @@ set shiftround      " Round indent to multiple of 'shiftwidth'
 " Timing {{{
 " ------
 set timeout ttimeout
-set timeoutlen=750  " Time out on mappings
+set timeoutlen=500  " Time out on mappings
 set updatetime=300 " Idle time to write swap and trigger CursorHold
 
 " Time out on key codes

@@ -1,28 +1,31 @@
 # ==========================================
 
-# CAREFUL COMMENTING THINGS OUT
+# "CAREFUL COMMENTING THINGS OUT
 # ALL #'s MUST be at leftmost position
 # otherwise will break things (mostly tab completion)
 
 # Startup
-# -------
+# -------"
 - repo: Shougo/dein.vim
 - repo: rafi/awesome-vim-colorschemes
 - repo: rafi/vim-badge
 - repo: thinca/vim-localrc
 - repo: christoomey/vim-tmux-navigator
 - repo: junegunn/vim-peekaboo
+- repo: romainl/vim-cool
+
 - repo: tpope/vim-sleuth
+  hook_add: let g:sleuth_neighbor_limit = 5
+
 - repo: sgur/vim-editorconfig
 - repo: itchyny/vim-gitbranch
 - repo: itchyny/vim-parenmatch
+
+# GUI ONLY
+- { repo: equalsraf/neovim-gui-shim, if: has('gui_running') }
+
 - repo: edsono/vim-sessions
 - repo: Shougo/deol.nvim
-- repo: itchyny/vim-cursorword
-  hook_add: |
-    autocmd MyAutoCmd FileType denite,qf let b:cursorword=0
-    autocmd MyAutoCmd InsertEnter * let b:cursorword=0
-    autocmd MyAutoCmd InsertLeave * let b:cursorword=1
 
 # Vim8 only:
 - { repo: roxma/nvim-yarp, if: ! has('nvim') }
@@ -184,6 +187,15 @@
     let g:defx_icons_column_length = 2
     let g:defx_icons_mark_icon = '✓'
 
+- repo: liuchengxu/vim-which-key
+  on_cmd: WhichKey
+  hook_add: |
+    nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+    vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
+    nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
+    vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ';'<CR>
+
+
 - repo: scrooloose/nerdtree
   on_map: { n: <Plug> }
   trusted: 1
@@ -191,7 +203,10 @@
 
 - { repo: Xuyuanp/nerdtree-git-plugin, on_source: nerdtree }
 - { repo: mortonfox/nerdtree-clip, on_source: nerdtree }
+
+# maybe replace with caw.vim eventually
 - { repo: tpope/vim-commentary, on_map: <Plug>Commentary }
+
 - { repo: t9md/vim-choosewin, on_map: { n: <Plug> }}
 - { repo: kana/vim-niceblock, on_map: { x: <Plug> }}
 - { repo: guns/xterm-color-table.vim, on_cmd: XtermColorTable }
