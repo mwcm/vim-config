@@ -336,6 +336,18 @@ nnoremap <silent> [Window]b  :b#<CR>
 nnoremap <silent> [Window]c  :close<CR>
 nnoremap <silent> [Window]x  :<C-u>call <SID>BufferEmpty()<CR>
 
+" WhichKey
+
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
+vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ';'<CR>
+nnoremap <silent> s :WhichKey 's'<CR>
+
+" Close whichkey if it's the only buffer left in the window
+autocmd MyAutoCmd WinEnter * if &ft == 'whickey' && winnr('$') == 1 | q | endif
+
+
 " Split current buffer, go to previous window and previous buffer
 nnoremap <silent> [Window]sv :split<CR>:wincmd p<CR>:e#<CR>
 nnoremap <silent> [Window]sg :vsplit<CR>:wincmd p<CR>:e#<CR>

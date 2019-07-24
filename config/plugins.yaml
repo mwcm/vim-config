@@ -187,17 +187,72 @@
     let g:defx_icons_column_length = 2
     let g:defx_icons_mark_icon = '✓'
 
+
+# TODO: split this into it's own file
 - repo: liuchengxu/vim-which-key
   on_cmd: WhichKey
   hook_add: |
-    nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-    vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
-    nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
-    vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ';'<CR>
   hook_source: |
-    call which_key#register('<Space>', "g:which_key_map")
-    let g:which_key_map = {}
-    let g:which_key_map = {
+    call which_key#register('s', "g:s_map")
+    let g:s_map = {}
+    let g:s_map = {
+      \'name': '+splits-surround-easymotion',
+      \'a': 'surround',
+      \'aa': 'surround-block',
+      \'d': 'jump-one-character',
+      \'dd': 'surround-rm',
+      \'f': 'jump-over-windows',
+      \'g': 'vertical-split',
+      \'h': 'jump-inline-backwards',
+      \'j': 'jump-downwards',
+      \'k': 'jump-upwards',
+      \'l': 'jump-inline-forwards',
+      \'n': 'smart-next-occurence',
+      \'o': 'close-other-windows',
+      \'p': 'smart-prev-occurence',
+      \'r': 'surround-replace',
+      \'rr': 'surround-block-replace',
+      \'s': 'jump-two-characters',
+      \'t': 'new-tab',
+      \'q': 'close-buffer',
+      \'v': 'horizontal-split',
+      \'x': 'rm-buffer',
+      \'/': 'jump-free-search',
+      \'-': 'contrast-down',
+      \'=': 'contrast-up',
+    \}
+    call which_key#register(';', "g:local_leader_map")
+    let g:local_leader_map = {}
+    let g:local_leader_map = {
+      \'name': '+denite-defx',
+      \'a':  'defx-current-file',
+      \'b':  'mru-buffers',
+      \'d':  'directories',
+      \'e':  'defx',
+      \'f':  'files',
+      \'g':  'grep',
+      \'h':  'help',
+      \'j':  'jump-points',
+      \'l':  'location-list',
+      \'m':  'memo-list',
+      \'n':  'plugin-list',
+      \'o':  'outline-tags',
+      \'p':  'previous-postions',
+      \'q':  'quickfix-list',
+      \'r':  'resume',
+      \'s':  'sessions',
+      \'sl': 'iron-send-line',
+      \'t':  'tag-list',
+      \'u':  'junk-files',
+      \'v':  'yank-history',
+      \'z':  'z-jump-around',
+      \'/':  'buffer-lines',
+      \'*':  'cursor-word',
+      \';':  'command-history',
+      \}
+    call which_key#register('<Space>', "g:leader_map")
+    let g:leader_map = {}
+    let g:leader_map = {
      \'a':  'align-paragraph',
      \'b':  'toggle-theme-background',
      \'d':  'duplicate-line-or-selection',
@@ -220,7 +275,7 @@
      \',':  'highlight-cursor-word',
      \'?':  'dictionary-lookup',
      \}
-    let g:which_key_map['t'] = {
+    let g:leader_map['t'] = {
       \'name': '+text-options',
       \'i':    'toggle-indentation-lines',
       \'s':    'toggle-spellchecker',
@@ -229,30 +284,68 @@
       \'h':    'toggle-highlighted-search',
       \'w':    'toggle-wrap',
       \ }
-    let g:which_key_map['c'] = {
+    let g:leader_map['c'] = {
       \'name': '+change-color-comment',
+      \'1':    'colorv-min-size',
+      \'2':    '+colorv-to',
+      \'3':    'colorv-max-size',
       \'d':    'cd-buffer-dir',
+      \'e':    'color-move-and-edit',
       \'n':    'change-current-word-repeatable',
       \'N':    'change-current-word-repeatable',
       \'p':    'duplicate-paragraph',
+      \'$':    'comment-to-eol',
       \ }
-    let g:which_key_map['s'] = {
+    let g:leader_map.c['2'] = {
+      \'name': '+colorv-to',
+      \'0': 'colorv-to-hex0',
+      \'2': 'colorv-to-hex',
+      \'h': 'colorv-to-hsv',
+      \'l': 'colorv-to-hsl',
+      \'m': 'colorv-to-cmyk',
+      \'n': 'colorv-to-name',
+      \'r': 'colorv-to-rgb',
+      \'s': 'colorv-to-hex#',
+      \}
+    let g:leader_map.c.2['a'] = {
+      \'name': '+to-hsla-rgba',
+      \'l': '+colorv-to-hsla',
+      \'r': '+colorv-to-rgba',
+      \}
+    let g:leader_map.c.2['p'] = {
+      \'name': '+to-rgbap-rgbp',
+      \'a': '+colorv-to-rgbap',
+      \'r': '+colorv-to-rgbp',
+      \}
+    let g:leader_map['s'] = {
       \'name': '+save',
       \'e':    'save-workspace-session',
       \ }
-    let g:which_key_map['o'] = {
+    let g:leader_map['o'] = {
       \'name': '+open',
       \'s':    'open-last-saved-session',
       \ }
-    let g:which_key_map['g'] = {
+    let g:leader_map['g'] = {
       \'name': '+git-grep-etc',
+      \'b':    'git-blame',
+      \'B':    'git-open-browser',
+      \'c':    'git-commit',
+      \'d':    'git-diff',
+      \'D':    'git-diff-close',
+      \'f':    'find-file-for-cursor-word',
+      \'g':    'grep-cursor-word',
+      \'l':    'git-log-all',
+      \'p':    'git-push',
+      \'s':    'git-status-denite',
+      \'S':    'git-status-easygit',
+      \'t':    'find-tags-for-cursor-word',
       \'u':    'toggle-undo-tree',
       \ }
-    let g:which_key_map['m'] = {
+    let g:leader_map['m'] = {
       \'name': '+modeline',
       \'l': 'append-modeline',
       \ }
-    let g:which_key_map.c.g = {
+    let g:leader_map.c.g = {
       \'name': '+colorv-relative-colors'
       \ }
 
