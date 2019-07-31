@@ -193,34 +193,34 @@
   on_cmd: WhichKey
   hook_add: |
   hook_source: |
-    call which_key#register('s', "g:s_map")
-    let g:s_map = {}
-    let g:s_map = {
-      \'name': '+splits-surround-easymotion',
-      \'a': 'surround',
-      \'aa': 'surround-block',
-      \'d': 'jump-one-character',
-      \'dd': 'surround-rm',
-      \'f': 'jump-over-windows',
-      \'g': 'vertical-split',
-      \'h': 'jump-inline-backwards',
-      \'j': 'jump-downwards',
-      \'k': 'jump-upwards',
-      \'l': 'jump-inline-forwards',
-      \'n': 'smart-next-occurence',
-      \'o': 'close-other-windows',
-      \'p': 'smart-prev-occurence',
-      \'r': 'surround-replace',
-      \'rr': 'surround-block-replace',
-      \'s': 'jump-two-characters',
-      \'t': 'new-tab',
-      \'q': 'close-buffer',
-      \'v': 'horizontal-split',
-      \'x': 'rm-buffer',
-      \'/': 'jump-free-search',
-      \'-': 'contrast-down',
-      \'=': 'contrast-up',
-    \}
+    #call which_key#register('s', "g:s_map")
+    #let g:s_map = {}
+    #let g:s_map = {
+      #\'name': '+splits-surround-easymotion',
+      #\'a': 'surround',
+      #\'aa': 'surround-block',
+      #\'d': 'jump-one-character',
+      #\'dd': 'surround-rm',
+      #\'f': 'jump-over-windows',
+      #\'g': 'vertical-split',
+      #\'h': 'jump-inline-backwards',
+      #\'j': 'jump-downwards',
+      #\'k': 'jump-upwards',
+      #\'l': 'jump-inline-forwards',
+      #\'n': 'smart-next-occurence',
+      #\'o': 'close-other-windows',
+      #\'p': 'smart-prev-occurence',
+      #\'r': 'surround-replace',
+      #\'rr': 'surround-block-replace',
+      #\'s': 'jump-two-characters',
+      #\'t': 'new-tab',
+      #\'q': 'close-buffer',
+      #\'v': 'horizontal-split',
+      #\'x': 'rm-buffer',
+      #\'/': 'jump-free-search',
+      #\'-': 'contrast-down',
+      #\'=': 'contrast-up',
+    #\}
     call which_key#register(';', "g:local_leader_map")
     let g:local_leader_map = {}
     let g:local_leader_map = {
@@ -444,7 +444,7 @@
 - repo: junegunn/vim-easy-align
   if: empty($VIM_MINIMAL)
 
-- repo: Vigemus/iron.nvim
+- repo: randomizedthinking/iron.nvim
 
 # ==========================================
 # Interface

@@ -181,6 +181,9 @@ nmap <silent> \\ :execute 'tabn '.g:lasttab<CR>
 " Totally Custom {{{
 " --------------
 
+" python send to repl (Iron)
+autocmd Filetype python vmap <buffer> <localleader>\ $<Plug>(iron-send-motion)
+
 " remap thesaurus
 nnoremap <Leader>T :OnlineThesaurusCurrentWord<CR>
 
@@ -326,6 +329,17 @@ function! s:append_modeline() "{{{
 endfunction "}}}
 " }}}
 
+
+" WhichKey
+
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
+vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ';'<CR>
+" Close whichkey if it's the only buffer left in the window
+autocmd MyAutoCmd WinEnter * if &ft == 'whickey' && winnr('$') == 1 | q | endif
+
+
 " s: Windows and buffers {{{
 
 nnoremap <silent> [Window]v  :<C-u>split<CR>
@@ -335,17 +349,6 @@ nnoremap <silent> [Window]o  :<C-u>only<CR>
 nnoremap <silent> [Window]b  :b#<CR>
 nnoremap <silent> [Window]c  :close<CR>
 nnoremap <silent> [Window]x  :<C-u>call <SID>BufferEmpty()<CR>
-
-" WhichKey
-
-nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
-vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ';'<CR>
-nnoremap <silent> s :WhichKey 's'<CR>
-
-" Close whichkey if it's the only buffer left in the window
-autocmd MyAutoCmd WinEnter * if &ft == 'whickey' && winnr('$') == 1 | q | endif
 
 
 " Split current buffer, go to previous window and previous buffer
