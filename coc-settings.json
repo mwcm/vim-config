@@ -1,4 +1,10 @@
 {
+  "list.normalMappings": {
+    "<C-c>": "do:exit"
+  },
+  "list.insertMappings": {
+    "<C-c>": "do:exit"
+  },
     "python.linting.pylintEnabled": false,
     "python.linting.pylamaEnabled": true,
     "suggest.noselect": false,
