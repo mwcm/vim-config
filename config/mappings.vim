@@ -4,7 +4,8 @@
 
 " Non-standard {{{
 " ------------
-
+inoremap <C-c> <Esc>
+nnoremap <C-c> <Esc>
 " EASY ALIGN
 "
 " Start interactive EasyAlign in visual mode (e.g. vipga)
