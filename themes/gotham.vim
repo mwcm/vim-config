@@ -494,6 +494,15 @@ highlight! BookmarkSign            ctermfg=12 guifg=#4EA9D7
 highlight! BookmarkAnnotationSign  ctermfg=11 guifg=#EACF49
 " }}}
 
+
+" Plugin: vim-indent-guides {{{
+" ---------------------------------------------------------
+hi IndentGuidesOdd  guibg='#5198B5'   ctermbg=6
+hi IndentGuidesEven guibg='#47CBCE' ctermbg=2
+
+" }}}
+
+
 " Plugin: vim-choosewin {{{
 " ---------------------------------------------------------
 let g:choosewin_label = 'SDFJKLZXCV'
