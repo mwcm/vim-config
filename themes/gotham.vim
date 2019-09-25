@@ -497,8 +497,8 @@ highlight! BookmarkAnnotationSign  ctermfg=11 guifg=#EACF49
 
 " Plugin: vim-indent-guides {{{
 " ---------------------------------------------------------
-hi IndentGuidesOdd  guibg='#5198B5'   ctermbg=6
-hi IndentGuidesEven guibg='#47CBCE' ctermbg=2
+"highlight! IndentGuidesOdd  guibg='#5198B5' ctermbg=6
+"highlight! IndentGuidesEven guibg='#47CBCE' ctermbg=2
 
 " }}}
 
