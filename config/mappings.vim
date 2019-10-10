@@ -356,6 +356,10 @@ nnoremap <silent> [Window]x  :<C-u>call <SID>BufferEmpty()<CR>
 nnoremap <silent> [Window]sv :split<CR>:wincmd p<CR>:e#<CR>
 nnoremap <silent> [Window]sg :vsplit<CR>:wincmd p<CR>:e#<CR>
 
+" Vertical + Horizontal new buffer splits
+nnoremap <silent> sz :new<CR>
+nnoremap <silent> szv :vnew<CR>
+
 function! WipeHiddenBuffers()
 	let tpbl=[]
 	call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
