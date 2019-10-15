@@ -54,7 +54,7 @@ if dein#tap('vim-denite-z')
 endif
 
 if dein#tap('tagbar')
-	nnoremap <silent> <Leader>o   :<C-u>TagbarOpenAutoClose<CR>
+	nnoremap <silent> <Leader>o   :<C-u>TagbarToggle<CR>
 	" Also use h/l to open/close folds
 	let g:tagbar_map_closefold = ['h', '-', 'zc']
 	let g:tagbar_map_openfold = ['l', '+', 'zo']
