@@ -80,6 +80,7 @@ if dein#tap('coc.nvim')
 		highlight CocHighlightText  guibg=#111111 ctermbg=240
 	endfunction
 	autocmd VimEnter * silent call CocNvimHighlight()
+	inoremap <C-c> <Esc><Esc>
 endif
 
 
