@@ -325,13 +325,13 @@
       \ }
 
 
-- repo: scrooloose/nerdtree
-  on_map: { n: <Plug> }
-  trusted: 1
-  hook_post_source: source $VIMPATH/config/plugins/nerdtree.vim
+#- repo: scrooloose/nerdtree
+  #on_map: { n: <Plug> }
+  #trusted: 1
+  #hook_post_source: source $VIMPATH/config/plugins/nerdtree.vim
 
-- { repo: Xuyuanp/nerdtree-git-plugin, on_source: nerdtree }
-- { repo: mortonfox/nerdtree-clip, on_source: nerdtree }
+#- { repo: Xuyuanp/nerdtree-git-plugin, on_source: nerdtree }
+#- { repo: mortonfox/nerdtree-clip, on_source: nerdtree }
 
 # maybe replace with caw.vim eventually
 - { repo: tpope/vim-commentary, on_map: <Plug>Commentary }
