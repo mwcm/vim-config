@@ -35,7 +35,7 @@ function! s:defx_my_settings() abort
 	nnoremap <silent><buffer><expr> <BS>  defx#async_action('cd', ['..'])
 	nnoremap <silent><buffer><expr> st    defx#do_action('drop', 'tabnew')
 	nnoremap <silent><buffer><expr> sg    defx#do_action('drop', 'vsplit')
-	nnoremap <silent><buffer><expr> sv    defx#do_action('drop', 'split')
+	nnoremap <silent><buffer><expr> sv    defx#do_action('multi', [['drop', 'split'], 'quit'])
 	nnoremap <silent><buffer><expr> P     defx#do_action('open', 'pedit')
 	nnoremap <silent><buffer><expr> K     defx#do_action('new_directory')
 	nnoremap <silent><buffer><expr> N     defx#do_action('new_multiple_files')
