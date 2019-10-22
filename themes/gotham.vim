@@ -255,9 +255,6 @@ call s:Col('PmenuThumb', '', 'blue')
 " ---------------------------------------------------------
 "
 
-" TODO: SHOULD ACTIVE TABLINE + STATUSLINE FONT COLOR BE WHITE INSTEAD OF base6?
-
-
 " TabLineFill: Tab pages line, where there are no labels
 call s:Col('TablineFill', 'base4', 'base3')
 
