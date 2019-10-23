@@ -12,7 +12,7 @@
     "suggest.enablePreview": true,
     "suggest.autoTrigger": "always",
     "javascript.validate.enable": false,
-    "python.jediEnabled": true,
+    "python.jediEnabled": false,
     "eslint.filetypes": [
         "javascript",
         "javascript.jsx",

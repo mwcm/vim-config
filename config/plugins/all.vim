@@ -82,6 +82,7 @@ if dein#tap('coc.nvim')
 	autocmd CursorHold * silent call CocActionAsync('highlight')
 	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 	inoremap <C-c> <Esc><Esc=coc#start()>
+	" typing . fixes the insert mode "from x import y" issue in python
 	inoremap <silent><expr> <c-space> coc#refresh()
 endif
 
