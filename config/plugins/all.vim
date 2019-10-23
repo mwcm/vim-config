@@ -72,6 +72,7 @@ if dein#tap('coc.nvim')
 	nmap <silent> gy <Plug>(coc-type-definition)
 	nmap <silent> gi <Plug>(coc-implementation)
 	nmap <silent> gr <Plug>(coc-references)
+	nmap <silent> rn <Plug>(coc-rename)
 	function! CocNvimHighlight()
 		highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
 		highlight CocErrorLine ctermfg=Red  guifg=#ff0000
@@ -80,7 +81,8 @@ if dein#tap('coc.nvim')
 	autocmd VimEnter * silent call CocNvimHighlight()
 	autocmd CursorHold * silent call CocActionAsync('highlight')
 	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-	inoremap <C-c> <Esc><Esc>
+	inoremap <C-c> <Esc><Esc=coc#start()>
+	inoremap <silent><expr> <c-space> coc#refresh()
 endif
 
 
