@@ -7,12 +7,27 @@
   },
     "python.linting.pylintEnabled": false,
     "python.linting.pylamaEnabled": true,
+
+
+
+
+
+
+
+
+    "python.jediEnabled": false,
+
+
+
+
+
+
+
     "suggest.noselect": false,
     "suggest.triggerAfterInsertEnter": true,
     "suggest.enablePreview": true,
     "suggest.autoTrigger": "always",
     "javascript.validate.enable": false,
-    "python.jediEnabled": false,
     "eslint.filetypes": [
         "javascript",
         "javascript.jsx",
