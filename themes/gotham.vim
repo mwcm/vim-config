@@ -302,6 +302,7 @@ endfunction "}}}
 let &tabline='%!Tabline()'
 " }}}
 
+
 " Statusline {{{
 let s:stl  = " %7*%{&paste ? '=' : ''}%*"         " Paste symbol
 let s:stl .= "%4*%{&readonly ? '' : '#'}%*"       " Modifide symbol

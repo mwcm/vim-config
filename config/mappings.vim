@@ -30,10 +30,6 @@ if get(g:, 'elite_mode')
 	nnoremap <Right> :vertical resize -2<CR>
 endif
 
-" Double leader key for toggling visual-line mode
-nmap <silent> <Leader><Leader> V
-vmap <Leader><Leader> <Esc>
-
 " Change current word in a repeatable manner
 nnoremap <leader>cn *``cgn
 nnoremap <leader>cN *``cgN
@@ -256,6 +252,9 @@ inoremap <silent><expr> <TAB>
 
 inoremap <expr><S-Tab> pumvisible() ? "\<Up>" : "\<C-h>"
 
+" figure this out
+"imap <silent><expr> <leader><Space> coc#refresh()
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -310,10 +309,9 @@ elseif executable('zeal')
 endif
 
 " search ALL the docsets
-nnoremap <silent> <Leader><S>k :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
+nnoremap <silent> <Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
 "Search ALL docsets for your selected text:
-vnoremap <silent> <Leader><Leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
-
+vnoremap <silent> <Leader>k y:<C-U>call Dasht(getreg(0), '!')<Return>
 
 " }}}
 

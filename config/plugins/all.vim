@@ -68,9 +68,6 @@ if dein#tap('defx.nvim')
 endif
 
 if dein#tap('coc.nvim')
-	let g:airline#extensions#coc#enabled = 1
-  let g:airline_section_y = "%{coc#status()}*"
-	autocmd CursorHold * silent call CocActionAsync('highlight')
 	nmap <silent> gd <Plug>(coc-definition)
 	nmap <silent> gy <Plug>(coc-type-definition)
 	nmap <silent> gi <Plug>(coc-implementation)
@@ -81,6 +78,8 @@ if dein#tap('coc.nvim')
 		highlight CocHighlightText  guibg=#111111 ctermbg=240
 	endfunction
 	autocmd VimEnter * silent call CocNvimHighlight()
+	autocmd CursorHold * silent call CocActionAsync('highlight')
+	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 	inoremap <C-c> <Esc><Esc>
 endif
 
