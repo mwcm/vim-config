@@ -86,6 +86,9 @@ if dein#tap('coc.nvim')
 	inoremap <silent><expr> <c-space> coc#refresh()
 endif
 
+if dein#tap('vim-dasht')
+	let g:dasht_results_window = 'vnew'
+endif
 
 if dein#tap('nerdtree')
 	let g:NERDTreeMapOpenSplit = 'sv'
