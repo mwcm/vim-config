@@ -329,16 +329,6 @@ endfunction "}}}
 " }}}
 
 
-" WhichKey
-
-nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
-vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ';'<CR>
-" Close whichkey if it's the only buffer left in the window
-autocmd MyAutoCmd WinEnter * if &ft == 'whickey' && winnr('$') == 1 | q | endif
-
-
 " s: Windows and buffers {{{
 
 nnoremap <silent> [Window]v  :<C-u>split<CR>
