@@ -1,25 +1,30 @@
-
 " File Types
-"-------------------------------------------------
+" ===
 
-" Reload vim config automatically {{{
-execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/config/*,vimrc nested'
-	\ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
-" }}}
+augroup user_plugin_filetype " {{{
+	autocmd!
 
-augroup MyAutoCmd " {{{
+	" Reload vim config automatically
+	autocmd BufWritePost $VIM_PATH/{*.vim,*.yaml,vimrc} nested
+		\ source $MYVIMRC | redraw
 
 	" Highlight current line only on focused window
-	autocmd WinEnter,InsertLeave * set cursorline
-	autocmd WinLeave,InsertEnter * set nocursorline
+	autocmd WinEnter,InsertLeave * if &ft !~# 'denite' | set cursorline | endif
+	autocmd WinLeave,InsertEnter * if &ft !~# 'denite' | set nocursorline | endif
 
 	" Automatically set read-only for files being edited elsewhere
 	autocmd SwapExists * nested let v:swapchoice = 'o'
 
-	" Check if file changed when its window is focus, more eager than 'autoread'
-	autocmd WinEnter,FocusGained * checktime
+	" Equalize window dimensions when resizing vim window
+	autocmd VimResized * tabdo wincmd =
 
-	autocmd Syntax * if 5000 < line('$') | syntax sync minlines=200 | endif
+	" Force write shada on leaving nvim
+	autocmd VimLeave * if has('nvim') | wshada! | else | wviminfo! | endif
+
+	" Check if file changed when its window is focus, more eager than 'autoread'
+	autocmd FocusGained * checktime
+
+	autocmd Syntax * if line('$') > 5000 | syntax sync minlines=200 | endif
 
 	" Update filetype on save if empty
 	autocmd BufWritePost * nested
@@ -31,21 +36,18 @@ augroup MyAutoCmd " {{{
 	" Reload Vim script automatically if setlocal autoread
 	autocmd BufWritePost,FileWritePost *.vim nested
 		\ if &l:autoread > 0 | source <afile> |
-		\   echo 'source '.bufname('%') |
+		\   echo 'source ' . bufname('%') |
 		\ endif
 
 	" When editing a file, always jump to the last known cursor position.
 	" Don't do it when the position is invalid or when inside an event handler
 	autocmd BufReadPost *
-		\ if &ft !~ '^git\c' && ! &diff && line("'\"") > 0 && line("'\"") <= line("$")
+		\ if &ft !~# 'commit' && ! &diff &&
+		\      line("'\"") >= 1 && line("'\"") <= line("$")
 		\|   execute 'normal! g`"zvzz'
 		\| endif
 
-	autocmd TabLeave * let g:lasttab = tabpagenr()
-
 	autocmd FileType crontab setlocal nobackup nowritebackup
-
-	autocmd FileType css setlocal equalprg=csstidy\ -\ --silent=true
 
 	autocmd FileType yaml.docker-compose setlocal expandtab
 
@@ -54,23 +56,38 @@ augroup MyAutoCmd " {{{
 	autocmd FileType gitcommit,qfreplace setlocal nofoldenable
 
 	" https://webpack.github.io/docs/webpack-dev-server.html#working-with-editors-ides-supporting-safe-write
+<<<<<<< HEAD
 	autocmd FileType css,javascript,jsx,javascript.jsx
 		\ setlocal backupcopy=yes
 		\| setlocal equalprg=prettier\ %
+=======
+	autocmd FileType css,javascript,javascriptreact setlocal backupcopy=yes
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
-	autocmd FileType zsh setlocal foldenable foldmethod=marker
+	autocmd FileType php
+		\ setlocal matchpairs-=<:> iskeyword+=\\ path+=/usr/local/share/pear
+"		\ | setlocal formatoptions=qroct " Correct indent after opening a phpdocblock
 
+<<<<<<< HEAD
 
 	autocmd FileType html
 		\ setlocal path+=./;/
 		\ | setlocal equalprg=tidy\ -i\ -q
 
 	autocmd FileType json setlocal equalprg=python\ -m\ json.tool
+=======
+	autocmd FileType python
+		\ setlocal foldmethod=indent expandtab smarttab nosmartindent
+		\ | setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80
+
+	autocmd FileType zsh setlocal foldenable foldmethod=marker
+
+	autocmd FileType html setlocal path+=./;/
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 	autocmd FileType markdown
-		\ set expandtab
+		\ setlocal expandtab spell conceallevel=0
 		\ | setlocal autoindent formatoptions=tcroqn2 comments=n:>
-		\ | setlocal spell conceallevel=0
 
 	autocmd FileType apache setlocal path+=./;/
 
@@ -78,9 +95,6 @@ augroup MyAutoCmd " {{{
 
 	" autocmd FileType go highlight default link goErr WarningMsg |
 	" 	\ match goErr /\<err\>/
-
-	autocmd FileType xml
-		\ setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 augroup END " }}}
 
@@ -123,22 +137,8 @@ let g:SimpleJsIndenter_BriefMode = 1
 let g:SimpleJsIndenter_CaseIndentLevel = -1
 
 " }}}
-" Markdown {{{
-let g:markdown_fenced_languages = [
-	\  'css',
-	\  'javascript',
-	\  'js=javascript',
-	\  'json=javascript',
-	\  'python',
-	\  'py=python',
-	\  'docker=Dockerfile',
-	\  'makefile=make',
-	\  'sh',
-	\  'sass',
-	\  'xml',
-	\  'yaml',
-	\  'vim'
-	\]
+" Ruby {{{
+let g:ruby_no_expensive = 1
 
 " }}}
 " Folding {{{

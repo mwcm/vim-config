@@ -1,5 +1,8 @@
 " Vim Only Terminal Tweaks: Colors, cursor shape, and tmux
-"---------------------------------------------------------
+" ---
+
+" Enable 256 color terminal
+set t_Co=256
 
 while true; do
 	if test -n "`tmux showb 2> /dev/null`"; then

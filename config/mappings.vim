@@ -1,8 +1,8 @@
-
 " Key-mappings
-"---------------------------------------------------------
+" ===
 
 " Non-standard {{{
+<<<<<<< HEAD
 " ------------
 inoremap <C-c> <Esc>
 nnoremap <C-c> <Esc>
@@ -13,6 +13,9 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+=======
+" ---
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 " Window-control prefix
 nnoremap  [Window]   <Nop>
@@ -39,7 +42,6 @@ vnoremap <expr> <leader>cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
 vnoremap <expr> <leader>cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
 nnoremap <leader>cp yap<S-}>p
-nnoremap <leader>a =ip
 
 " xnoremap p  "0p
 " nnoremap x "_x
@@ -48,7 +50,7 @@ nnoremap <leader>a =ip
 nnoremap <CR> za
 
 " Focus the current fold by closing all others
-nnoremap <S-Return> zMza
+nnoremap <S-Return> zMzvzt
 
 " Use backspace key for matchit.vim
 nmap <BS> %
@@ -71,9 +73,6 @@ cnoreabbrev bD bd
 
 " Start new line from any cursor position
 inoremap <S-Return> <C-o>o
-
-" Quick substitute within selected area
-xnoremap s :s//g<Left><Left>
 
 nnoremap zl z5l
 nnoremap zh z5h
@@ -98,10 +97,10 @@ xnoremap < <gv
 xnoremap > >gv|
 
 " Use tab for indenting
-vnoremap <Tab> >gv|
-vnoremap <S-Tab> <gv
-nmap >>  >>_
-nmap <<  <<_
+xnoremap <Tab> >gv|
+xnoremap <S-Tab> <gv
+" nmap >>  >>_
+" nmap <<  <<_
 
 " Select last paste
 nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
@@ -123,7 +122,7 @@ cnoremap <Down> <C-n>
 " File operations {{{
 " ---------------
 
-" When pressing <leader>cd switch to the directory of the open buffer
+" Switch to the directory of the opened buffer
 map <Leader>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Fast saving
@@ -133,23 +132,18 @@ nnoremap <silent><C-s> :<C-u>write<CR>
 vnoremap <silent><C-s> :<C-u>write<CR>
 cnoremap <silent><C-s> <C-u>write<CR>
 
-" Save a file with sudo
-" http://forrst.com/posts/Use_w_to_sudo_write_a_file_with_Vim-uAN
-cmap W!! w !sudo tee % >/dev/null
-
 " }}}
 " Editor UI {{{
 " ---------
 
 " I like to :quit with 'q', shrug.
 nnoremap <silent> q :<C-u>:quit<CR>
-autocmd MyAutoCmd FileType man nnoremap <silent><buffer> q :<C-u>:quit<CR>
 
 " Macros
 nnoremap Q q
 nnoremap gQ @q
 
-" Show highlight names under cursor
+" Show vim syntax highlight groups for character under cursor
 nmap <silent> gh :echo 'hi<'.synIDattr(synID(line('.'), col('.'), 1), 'name')
 	\.'> trans<'.synIDattr(synID(line('.'), col('.'), 0), 'name').'> lo<'
 	\.synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name').'>'<CR>
@@ -164,15 +158,11 @@ nmap <silent> <Leader>tw :setlocal wrap! breakindent!<CR>
 " Tabs
 nnoremap <silent> g0 :<C-u>tabfirst<CR>
 nnoremap <silent> g$ :<C-u>tablast<CR>
-nnoremap <silent> gr :<C-u>tabprevious<CR>
+nnoremap <silent> g5 :<C-u>tabprevious<CR>
 nnoremap <silent> <A-j> :<C-U>tabnext<CR>
 nnoremap <silent> <A-k> :<C-U>tabprevious<CR>
 nnoremap <silent> <C-Tab> :<C-U>tabnext<CR>
 nnoremap <silent> <C-S-Tab> :<C-U>tabprevious<CR>
-" Uses g:lasttab set on TabLeave in MyAutoCmd
-let g:lasttab = 1
-nmap <silent> \\ :execute 'tabn '.g:lasttab<CR>
-
 
 " }}}
 " Totally Custom {{{
@@ -185,10 +175,13 @@ autocmd Filetype python vmap <buffer> <localleader>\ $<Plug>(iron-send-motion)
 nnoremap <Leader>T :OnlineThesaurusCurrentWord<CR>
 
 " Remove spaces at the end of lines
-nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+nnoremap <silent> <Leader>cw :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
 " C-r: Easier search and replace
 xnoremap <C-r> :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
+
+" Quick substitute within selected area
+xnoremap sg :s//gc<Left><Left><Left>
 
 " Returns visually selected text
 function! s:get_selection(cmdtype) "{{{
@@ -198,6 +191,7 @@ function! s:get_selection(cmdtype) "{{{
 	let @s = temp
 endfunction "}}}
 
+<<<<<<< HEAD
 " Background dark/light toggle and contrasts
 nnoremap <silent><Leader>b :<C-u>call <SID>toggle_background()<CR>
 nmap <silent> s- :<c-u>call <SID>toggle_contrast(-v:count1)<cr>
@@ -265,6 +259,13 @@ let g:coc_snippet_next = '<tab>'
 " Location list movement
 nmap <Leader>j :lnext<CR>
 nmap <Leader>k :lprev<CR>
+=======
+" Location/quickfix list movement
+nmap ]c :lnext<CR>
+nmap [c :lprev<CR>
+nmap ]q :cnext<CR>
+nmap [q :cprev<CR>
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 " Duplicate lines
 nnoremap <Leader>d m`YP``
@@ -274,24 +275,37 @@ vnoremap <Leader>d YPgv
 vnoremap <Leader>S y:execute @@<CR>:echo 'Sourced selection.'<CR>
 nnoremap <Leader>S ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
 
-" Yank buffer's absolute path to X11 clipboard
-nnoremap <Leader>y :let @+=expand("%")<CR>:echo 'Relative path copied to clipboard.'<CR>
-nnoremap <Leader>Y :let @+=expand("%:p")<CR>:echo 'Absolute path copied to clipboard.'<CR>
+" Yank buffer's absolute path to clipboard
+nnoremap <Leader>y :let @+=expand("%")<CR>:echo 'Yanked relative path'<CR>
+nnoremap <Leader>Y :let @+=expand("%:p")<CR>:echo 'Yanked absolute path'<CR>
 
 " Drag current line/s vertically and auto-indent
-vnoremap mk :m-2<CR>gv=gv
-vnoremap mj :m'>+<CR>gv=gv
-noremap  mk :m-2<CR>
-noremap  mj :m+<CR>
+vnoremap <Leader>k :m-2<CR>gv=gv
+vnoremap <Leader>j :m'>+<CR>gv=gv
+noremap  <Leader>k :m-2<CR>
+noremap  <Leader>j :m+<CR>
 
-" Session management shortcuts
-nmap <silent> <Leader>se :<C-u>execute 'SessionSave' fnamemodify(resolve(getcwd()), ':p:gs?/?_?')<CR>
-nmap <silent> <Leader>os :<C-u>execute 'source '.g:session_directory.'/'.fnamemodify(resolve(getcwd()), ':p:gs?/?_?').'.vim'<CR>
+" Context-aware action-menu, neovim only (see plugin/actionmenu.vim)
+if has('nvim')
+	nmap <silent> <LocalLeader>c :<C-u>ActionMenu<CR>
+endif
+
+" Whitespace jump (see plugin/whitespace.vim)
+nnoremap ]w :<C-u>WhitespaceNext<CR>
+nnoremap [w :<C-u>WhitespacePrev<CR>
+
+" Session management shortcuts (see plugin/sessions.vim)
+nmap <silent> <Leader>se :<C-u>SessionSave<CR>
+nmap <silent> <Leader>os :<C-u>SessionLoad<CR>
+
+nmap <silent> <Leader>o :<C-u>OpenSCM<CR>
+vmap <silent> <Leader>o :OpenSCM<CR>
 
 if has('mac')
 	" Open the macOS dictionary on current word
 	nmap <Leader>? :!open dict://<cword><CR><CR>
 
+<<<<<<< HEAD
 	" Use Dash on Mac, for context help
 	"if executable('/Applications/Dash.app/Contents/MacOS/Dash')
 		"autocmd MyAutoCmd FileType yaml.ansible,php,css,less,html,markdown
@@ -306,6 +320,14 @@ elseif executable('zeal')
 		\ nmap <silent><buffer> K :!zeal --query "<C-R>=split(&ft, '\.')[0]<CR>:<cword>"&<CR><CR>
 	autocmd MyAutoCmd FileType javascript,javascript.jsx,sql,ruby,conf,sh
 		\ nmap <silent><buffer> K :!zeal --query "<cword>"&<CR><CR>
+=======
+	" Use Marked for real-time Markdown preview
+	"
+	if executable('/Applications/Marked 2.app/Contents/MacOS/Marked 2')
+		autocmd user_events FileType markdown
+			\ nmap <buffer><Leader>P :silent !open -a Marked\ 2.app '%:p'<CR>
+	endif
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 endif
 
 " search ALL the docsets
@@ -314,7 +336,6 @@ nnoremap <silent> <Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')], 
 vnoremap <silent> <Leader>k y:<C-U>call Dasht(getreg(0), '!')<Return>
 
 " }}}
-
 " Append modeline to EOF {{{
 nnoremap <silent> <Leader>ml :call <SID>append_modeline()<CR>
 
@@ -326,10 +347,14 @@ function! s:append_modeline() "{{{
 	let l:modeline = substitute(&commentstring, '%s', l:modeline, '')
 	call append(line('$'), l:modeline)
 endfunction "}}}
-" }}}
 
+<<<<<<< HEAD
 
 " s: Windows and buffers {{{
+=======
+" }}}
+" Windows and buffers {{{
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 nnoremap <silent> [Window]v  :<C-u>split<CR>
 nnoremap <silent> [Window]g  :<C-u>vsplit<CR>
@@ -337,13 +362,14 @@ nnoremap <silent> [Window]t  :tabnew<CR>
 nnoremap <silent> [Window]o  :<C-u>only<CR>
 nnoremap <silent> [Window]b  :b#<CR>
 nnoremap <silent> [Window]c  :close<CR>
-nnoremap <silent> [Window]x  :<C-u>call <SID>BufferEmpty()<CR>
+nnoremap <silent> [Window]x  :<C-u>call <SID>window_empty_buffer()<CR>
 
 
 " Split current buffer, go to previous window and previous buffer
 nnoremap <silent> [Window]sv :split<CR>:wincmd p<CR>:e#<CR>
 nnoremap <silent> [Window]sg :vsplit<CR>:wincmd p<CR>:e#<CR>
 
+<<<<<<< HEAD
 " Vertical + Horizontal new buffer splits
 nnoremap <silent> sz :new<CR>
 nnoremap <silent> szv :vnew<CR>
@@ -355,34 +381,57 @@ function! WipeHiddenBuffers()
 		silent execute 'bwipeout' buf
 	endfor
 endfunction
+=======
+" Background dark/light toggle and contrasts
+nmap <silent> [Window]h :<C-u>call <SID>toggle_background()<CR>
+nmap <silent> [Window]- :<c-u>call <SID>toggle_contrast(-v:count1)<cr>
+nmap <silent> [Window]= :<c-u>call <SID>toggle_contrast(+v:count1)<cr>
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
-function! s:BufferEmpty()
+function! s:toggle_background()
+	if ! exists('g:colors_name')
+		echomsg 'No colorscheme set'
+		return
+	endif
+	let l:scheme = g:colors_name
+
+	if l:scheme =~# 'dark' || l:scheme =~# 'light'
+		" Rotate between different theme backgrounds
+		execute 'colorscheme' (l:scheme =~# 'dark'
+					\ ? substitute(l:scheme, 'dark', 'light', '')
+					\ : substitute(l:scheme, 'light', 'dark', ''))
+	else
+		execute 'set background='.(&background ==# 'dark' ? 'light' : 'dark')
+		if ! exists('g:colors_name')
+			execute 'colorscheme' l:scheme
+			echomsg 'The colorscheme `'.l:scheme
+				\ .'` doesn''t have background variants!'
+		else
+			echo 'Set colorscheme to '.&background.' mode'
+		endif
+	endif
+endfunction
+
+function! s:toggle_contrast(delta)
+	let l:scheme = ''
+	if g:colors_name =~# 'solarized8'
+		let l:schemes = map(['_low', '_flat', '', '_high'],
+			\ '"solarized8_".(&background).v:val')
+		let l:contrast = ((a:delta + index(l:schemes, g:colors_name)) % 4 + 4) % 4
+		let l:scheme = l:schemes[l:contrast]
+	endif
+	if l:scheme !=# ''
+		execute 'colorscheme' l:scheme
+	endif
+endfunction
+
+function! s:window_empty_buffer()
 	let l:current = bufnr('%')
 	if ! getbufvar(l:current, '&modified')
 		enew
 		silent! execute 'bdelete '.l:current
 	endif
 endfunction
+" }}}
 
-function! s:SweepBuffers()
-	let bufs = range(1, bufnr('$'))
-	let hidden = filter(bufs, 'buflisted(v:val) && !bufloaded(v:val)')
-	if ! empty(hidden)
-		execute 'silent bdelete' join(hidden)
-	endif
-endfunction
-
-" OpenChangedFiles COMMAND
-" Open a split for each dirty file in git
-function! OpenChangedFiles()
-	only " Close all windows, unless they're modified
-	let status =
-		\ system('git status -s | grep "^ \?\(M\|A\|UU\)" | sed "s/^.\{3\}//"')
-	let filenames = split(status, "\n")
-	exec 'edit ' . filenames[0]
-	for filename in filenames[1:]
-		exec 'sp ' . filename
-	endfor
-endfunction
-
-" vim: set ts=2 sw=2 tw=80 noet :
+" vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :

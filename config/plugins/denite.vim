@@ -1,43 +1,66 @@
 
-" denite.nvim
-" -----------
+" :h denite.txt
+" ---
+" Problems? https://github.com/Shougo/denite.nvim/issues
 
 " INTERFACE
 call denite#custom#option('_', {
-	\ 'empty': 0,
+	\ 'prompt': '❯',
 	\ 'auto_resume': 1,
+<<<<<<< HEAD
 	\ 'auto_resize': 1,
 	\ 'statusline': 1,
+=======
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 	\ 'start_filter': 1,
+	\ 'statusline': 1,
+	\ 'smartcase': 1,
 	\ 'vertical_preview': 1,
-	\ 'prompt': '❯❯❯',
-	\ 'highlight_prompt': 'Function',
-	\ 'highlight_window_background': 'CursorColumn',
+	\ 'max_dynamic_update_candidates': 50000,
 	\ })
+	"\ 'direction': 'dynamicbottom',
 
 if has('nvim')
+<<<<<<< HEAD
 	call denite#custom#option('_', { 'split': 'horizontal' })
+=======
+	call denite#custom#option('_', { 'split': 'floating', 'statusline': 0 })
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 endif
 
-call denite#custom#option('search', { 'start_filter': 0, 'no_empty': 1 })
-call denite#custom#option('list', { 'start_filter': 0 })
-call denite#custom#option('jump', { 'start_filter': 0 })
-call denite#custom#option('git', { 'start_filter': 0 })
-call denite#custom#option('mpc', { 'winheight': 20 })
+" Allow customizable window positions: top (default), bottom, center
+function! s:denite_resize(position)
+	if a:position ==# 'top'
+		call denite#custom#option('_', {
+			\ 'winwidth': &columns,
+			\ 'winheight': &lines / 3,
+			\ 'wincol': 0,
+			\ 'winrow': 1,
+			\ })
+	elseif a:position ==# 'bottom'
+		call denite#custom#option('_', {
+			\ 'winwidth': &columns,
+			\ 'winheight': &lines / 3,
+			\ 'wincol': 0,
+			\ 'winrow': (&lines - 3) - (&lines / 3),
+			\ })
+	elseif a:position ==# 'center'
+		" This is denite's default
+	else
+		echoerr
+			\ 'Unknown position for s:denite_position (' . string(a:position) . ')'
+	endif
+endfunction
+
+call s:denite_resize(get(g:, 'denite_position', 'top'))
 
 " MATCHERS
 " Default is 'matcher/fuzzy'
-call denite#custom#source('tag', 'matchers', ['matcher/substring'])
-" call denite#custom#source('file/rec', 'matchers', ['matcher/fruzzy'])
-
-if has('nvim') && &runtimepath =~# '\/cpsm'
-	call denite#custom#source(
-		\ 'buffer,file_mru,file_old,file/rec,grep,mpc,line,neoyank',
-		\ 'matchers', ['matcher/cpsm', 'matcher/fuzzy'])
-endif
+" call denite#custom#source('tag', 'matchers', ['matcher/substring'])
 
 " SORTERS
 " Default is 'sorter/rank'
+" call denite#custom#source('file/rec,grep', 'sorters', ['sorter/sublime'])
 call denite#custom#source('z', 'sorters', ['sorter_z'])
 
 " CONVERTERS
@@ -63,6 +86,17 @@ if executable('ag')
 	call denite#custom#var('grep', 'default_opts',
 		\ [ '--vimgrep', '--smart-case', '--hidden' ])
 
+elseif executable('rg')
+	" Ripgrep
+	call denite#custom#var('file/rec', 'command',
+		\ ['rg', '--files', '--glob', '!.git'])
+	call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
+	call denite#custom#var('grep', 'recursive_opts', [])
+	call denite#custom#var('grep', 'final_opts', [])
+	call denite#custom#var('grep', 'separator', ['--'])
+	call denite#custom#var('grep', 'default_opts',
+		\ ['-i', '--vimgrep', '--no-heading'])
+
 elseif executable('ack')
 	" Ack command
 	call denite#custom#var('grep', 'command', ['ack'])
@@ -71,6 +105,7 @@ elseif executable('ack')
 	call denite#custom#var('grep', 'separator', ['--'])
 	call denite#custom#var('grep', 'final_opts', [])
 	call denite#custom#var('grep', 'default_opts',
+<<<<<<< HEAD
 		\ ['--ackrc', $HOME.'/.config/ackrc', '-H',
 		\ '--nopager', '--nocolor', '--nogroup', '--column'])
 
@@ -84,15 +119,29 @@ elseif executable('rg')
 	call denite#custom#var('grep', 'separator', ['--'])
 	call denite#custom#var('grep', 'default_opts',
 		\ ['-i', '--vimgrep', '--no-heading'])
+=======
+			\ ['--ackrc', $HOME.'/.config/ackrc', '-H',
+			\ '--nopager', '--nocolor', '--nogroup', '--column'])
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 endif
 
 " KEY MAPPINGS
-autocmd FileType denite call s:denite_settings()
+augroup user_plugin_denite
+	autocmd!
+
+	autocmd FileType denite call s:denite_settings()
+	autocmd FileType denite-filter call s:denite_filter_settings()
+
+	autocmd VimResized * call s:denite_resize(get(g:, 'denite_position', 'top'))
+augroup END
+
 function! s:denite_settings() abort
-	highlight! link CursorLine Visual
+	setlocal signcolumn=no cursorline
+
 	nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
 	nnoremap <silent><buffer><expr> i    denite#do_map('open_filter_buffer')
-	nnoremap <silent><buffer><expr> d    denite#do_map('do_action', 'delete')
+	nnoremap <silent><buffer><expr> /    denite#do_map('open_filter_buffer')
+	nnoremap <silent><buffer><expr> dd   denite#do_map('do_action', 'delete')
 	nnoremap <silent><buffer><expr> p    denite#do_map('do_action', 'preview')
 	nnoremap <silent><buffer><expr> st   denite#do_map('do_action', 'tabopen')
 	nnoremap <silent><buffer><expr> sg   denite#do_map('do_action', 'vsplit')
@@ -102,14 +151,14 @@ function! s:denite_settings() abort
 	nnoremap <silent><buffer><expr> r    denite#do_map('redraw')
 	nnoremap <silent><buffer><expr> yy   denite#do_map('do_action', 'yank')
 	nnoremap <silent><buffer><expr> <Esc>   denite#do_map('quit')
-	nnoremap <silent><buffer><expr> <C-u>   denite#do_map('restore_sources')
-	nnoremap <silent><buffer><expr> <C-f>   denite#do_map('do_action', 'defx')
-	nnoremap <silent><buffer><expr> <C-x>   denite#do_map('choose_action')
+	nnoremap <silent><buffer><expr> <Tab>   denite#do_map('choose_action')
 	nnoremap <silent><buffer><expr><nowait> <Space> denite#do_map('toggle_select').'j'
 endfunction
 
-autocmd FileType denite-filter call s:denite_filter_settings()
 function! s:denite_filter_settings() abort
+	setlocal signcolumn=yes nocursorline nonumber norelativenumber
+	call deoplete#custom#buffer_option('auto_complete', v:false)
+
 	nnoremap <silent><buffer><expr> <Esc>  denite#do_map('quit')
 	" inoremap <silent><buffer><expr> <Esc>  denite#do_map('quit')
 	nnoremap <silent><buffer><expr> q      denite#do_map('quit')

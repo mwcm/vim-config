@@ -1,13 +1,19 @@
+" Neo/vim Settings
+" ===
 
+<<<<<<< HEAD
 " General Settings
 " 
 "---------------------------------------------------------
+=======
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 " General {{{
 set mouse=nv                 " Disable mouse in command-line mode
 set modeline                 " automatically setting options from modelines
 set report=0                 " Don't report on line changes
 set errorbells               " Trigger bell on error
 set visualbell               " Use visual bell instead of beeping
+set signcolumn=yes           " Always show signs column
 set hidden                   " hide buffers when abandoned instead of unload
 set fileformats=unix,dos,mac " Use Unix as the standard file type
 set magic                    " For regular expressions turn magic on
@@ -25,18 +31,14 @@ if has('vim_starting')
 	scriptencoding utf-8
 endif
 
-" What to save for views:
-set viewoptions-=options
-set viewoptions+=slash,unix
+" Enables 24-bit RGB color in the TUI
+if has('termguicolors')
+	set termguicolors
+endif
 
-" What to save in sessions:
-set sessionoptions-=blank
-set sessionoptions-=options
-set sessionoptions-=globals
-set sessionoptions-=folds
-set sessionoptions-=help
-set sessionoptions-=buffers
-set sessionoptions+=tabpages
+" What to save for views and sessions:
+set viewoptions=folds,cursor,curdir,slash,unix
+set sessionoptions=curdir,help,tabpages,winsize
 
 if has('mac')
 	let g:clipboard = {
@@ -77,25 +79,49 @@ endif
 " Vim Directories {{{
 " ---------------
 set undofile swapfile nobackup
-set directory=$VARPATH/swap//,$VARPATH,~/tmp,/var/tmp,/tmp
-set undodir=$VARPATH/undo//,$VARPATH,~/tmp,/var/tmp,/tmp
-set backupdir=$VARPATH/backup/,$VARPATH,~/tmp,/var/tmp,/tmp
-set viewdir=$VARPATH/view/
-set nospell spellfile=$VIMPATH/spell/en.utf-8.add
+set directory=$DATA_PATH/swap//,$DATA_PATH,~/tmp,/var/tmp,/tmp
+set undodir=$DATA_PATH/undo//,$DATA_PATH,~/tmp,/var/tmp,/tmp
+set backupdir=$DATA_PATH/backup/,$DATA_PATH,~/tmp,/var/tmp,/tmp
+set viewdir=$DATA_PATH/view/
+set nospell spellfile=$VIM_PATH/spell/en.utf-8.add
 
 " History saving
-set history=2000
+set history=1000
 if has('nvim')
-	"  ShaDa/viminfo:
-	"   ' - Maximum number of previously edited files marks
-	"   < - Maximum number of lines saved for each register
-	"   @ - Maximum number of items in the input-line history to be
-	"   s - Maximum size of an item contents in KiB
-	"   h - Disable the effect of 'hlsearch' when loading the shada
 	set shada='300,<50,@100,s10,h
 else
-	set viminfo='300,<10,@50,h,n$VARPATH/viminfo
+	set viminfo='300,<10,@50,h,n$DATA_PATH/viminfo
 endif
+
+" If sudo, disable vim swap/backup/undo/shada/viminfo writing
+if $SUDO_USER !=# '' && $USER !=# $SUDO_USER
+		\ && $HOME !=# expand('~'.$USER)
+		\ && $HOME ==# expand('~'.$SUDO_USER)
+
+	set noswapfile
+	set nobackup
+	set nowritebackup
+	set noundofile
+	if has('nvim')
+		set shada="NONE"
+	else
+		set viminfo="NONE"
+	endif
+endif
+
+" Secure sensitive information, disable backup files in temp directories
+if exists('&backupskip')
+	set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*
+	set backupskip+=.vault.vim
+endif
+
+" Disable swap/undo/viminfo/shada files in temp directories or shm
+augroup user_secure
+	autocmd!
+	silent! autocmd BufNewFile,BufReadPre
+		\ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim
+		\ setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada=
+augroup END
 
 " }}}
 " Tabs and Indents {{{
@@ -114,11 +140,17 @@ set shiftround      " Round indent to multiple of 'shiftwidth'
 " Timing {{{
 " ------
 set timeout ttimeout
+<<<<<<< HEAD
 set timeoutlen=500  " Time out on mappings
 set updatetime=300 " Idle time to write swap and trigger CursorHold
 
 " Time out on key codes
 set ttimeoutlen=10
+=======
+set timeoutlen=750  " Time out on mappings
+set updatetime=400  " Idle time to write swap and trigger CursorHold
+set ttimeoutlen=10  " Time out on key codes
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 " }}}
 " Searching {{{
@@ -127,12 +159,25 @@ set ignorecase      " Search ignoring case
 set smartcase       " Keep case when searching with *
 set infercase       " Adjust case in insert completion mode
 set incsearch       " Incremental search
-set hlsearch        " Highlight search results
 set wrapscan        " Searches wrap around the end of the file
 set showmatch       " Jump to matching bracket
 set matchpairs+=<:> " Add HTML brackets to pair matching
 set matchtime=1     " Tenths of a second to show the matching paren
 set cpoptions-=m    " showmatch will wait 0.5s or until a char is typed
+set showfulltag     " Show tag and tidy search in completion
+"set complete=.      " No wins, buffs, tags, include scanning
+
+if exists('+inccommand')
+	set inccommand=nosplit
+endif
+
+if executable('rg')
+	set grepformat=%f:%l:%m
+	let &grepprg = 'rg --vimgrep' . (&smartcase ? ' --smart-case' : '')
+elseif executable('ag')
+	set grepformat=%f:%l:%m
+	let &grepprg = 'ag --vimgrep' . (&smartcase ? ' --smart-case' : '')
+endif
 
 " }}}
 " Behavior {{{
@@ -148,20 +193,17 @@ set switchbuf=useopen,usetab    " Jump to the first open window in any tab
 set switchbuf+=vsplit           " Switch buffer behavior to vsplit
 set backspace=indent,eol,start  " Intuitive backspacing in insert mode
 set diffopt=filler,iwhite       " Diff mode: show fillers, ignore whitespace
-set showfulltag                 " Show tag and tidy search in completion
-set complete=.                  " No wins, buffs, tags, include scanning
-set completeopt=menuone         " Show menu even for one item
+set completeopt=menuone         " Always show menu, even for one item
 set completeopt+=noselect       " Do not select a match in the menu
+
 if has('patch-7.4.775')
+	" Do not insert any text for a match until the user selects from menu
 	set completeopt+=noinsert
 endif
 
-if has('patch-8.1.0360')
+if has('patch-8.1.0360') || has('nvim-0.4')
 	set diffopt+=internal,algorithm:patience
-endif
-
-if exists('+inccommand')
-	set inccommand=nosplit
+	" set diffopt=indent-heuristic,algorithm:patience
 endif
 
 " automatically close quickfix if last window
@@ -172,7 +214,7 @@ aug END
 
 
 " }}}
-" Editor UI Appearance {{{
+" Editor UI {{{
 " --------------------
 set noshowmode          " Don't show mode in cmd window
 set shortmess=aoOTI     " Shorten messages and don't show intro
@@ -187,35 +229,47 @@ set showtabline=2       " Always show the tabs line
 set winwidth=30         " Minimum width for active window
 set winminwidth=10      " Minimum width for inactive windows
 set winheight=4         " Minimum height for active window
-set winminheight=2      " Minimum height for inactive window
+set winminheight=1      " Minimum height for inactive window
 set pumheight=15        " Pop-up menu's line height
 set helpheight=12       " Minimum help window height
 set previewheight=12    " Completion preview height
 
-set noshowcmd           " Don't show command in status line
+set showcmd             " Show command in status line
 set cmdheight=2         " Height of the command line
 set cmdwinheight=5      " Command-line lines
-set noequalalways       " Don't resize windows on split or close
+set equalalways         " Resize windows on split or close
 set laststatus=2        " Always show a status line
 set colorcolumn=80      " Highlight the 80th character limit
 set display=lastline
 
-" Do not display completion messages
-" Patch: https://groups.google.com/forum/#!topic/vim_dev/WeBBjkXE8H8
+if has('folding')
+	set foldenable
+	set foldmethod=syntax
+	set foldlevelstart=99
+endif
+
+" UI Symbols
+" icons:  ▏│ ¦ ╎ ┆ ⋮ ⦙ ┊ 
+set showbreak=↪
+set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
+"set fillchars=vert:▉,fold:─
+
 if has('patch-7.4.314')
+	" Do not display completion messages
 	set shortmess+=c
 endif
 
-" Do not display message when editing files
 if has('patch-7.4.1570')
+	" Do not display message when editing files
 	set shortmess+=F
 endif
 
-" For snippet_complete marker
 if has('conceal') && v:version >= 703
+	" For snippet_complete marker
 	set conceallevel=2 concealcursor=niv
 endif
 
+<<<<<<< HEAD
 " no blend for popup menu
 "if exists('&pumblend')
 	"set pumblend=20
@@ -245,30 +299,17 @@ if has('folding')
 	set foldmethod=syntax
 	set foldlevelstart=99
 	set foldtext=FoldText()
+=======
+if exists('&pumblend')
+	" pseudo-transparency for completion menu
+	set pumblend=20
 endif
 
-" Improved Vim fold-text
-" See: http://www.gregsexton.org/2011/03/improving-the-text-displayed-in-a-fold/
-function! FoldText()
-	" Get first non-blank line
-	let fs = v:foldstart
-	while getline(fs) =~? '^\s*$' | let fs = nextnonblank(fs + 1)
-	endwhile
-	if fs > v:foldend
-		let line = getline(v:foldstart)
-	else
-		let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
-	endif
-
-	let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-	let foldSize = 1 + v:foldend - v:foldstart
-	let foldSizeStr = ' ' . foldSize . ' lines '
-	let foldLevelStr = repeat('+--', v:foldlevel)
-	let lineCount = line('$')
-	let foldPercentage = printf('[%.1f', (foldSize*1.0)/lineCount*100) . '%] '
-	let expansionString = repeat('.', w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-	return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
-endfunction
+if exists('&winblend')
+	" pseudo-transparency for floating window
+	set winblend=20
+>>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
+endif
 
 " }}}
 

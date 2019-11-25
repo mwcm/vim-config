@@ -7,15 +7,15 @@ default: install
 
 install:
 	@mkdir -vp "$(XDG_CACHE_HOME)/vim/"{backup,session,swap,tags,undo}; \
-	$(vim) --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE \
-		-c "try | call dein#update() | finally | call confirm('') | qall! | endtry"
-	./venv.sh
+	$(vim) -V1 -es -i NONE -N -u config/init.vim -c "try | call dein#update() | finally | echomsg '' | qall! | endtry"
 
-update:
-	@git pull --ff --ff-only; \
-	$(vim) --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE \
-		-c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"
-	./venv.sh
+update-repo:
+	@git pull --ff --ff-only
+
+update-plugins:
+	$(vim) -V1 -es -i NONE -N -u config/init.vim -c "try | call dein#clear_state() | call dein#update() | finally | qall! | endtry"
+
+update: update-repo update-plugins
 
 upgrade: update
 
@@ -24,27 +24,21 @@ uninstall:
 
 test:
 ifeq ('$(vim)','nvim')
-	$(info Testing NVIM...)
-	$(if $(findstring NVIM,$(vim_version)),\
+	$(info Testing NVIM 0.4+...)
+	$(if $(shell echo "$(vim_version)" | egrep "NVIM v0\.[4-9]"),\
 		$(info OK),\
-		$(error   .. MISSING! Is Neovim available in PATH?))
+		$(error   .. You need Neovim 0.4.x or newer))
 else
-	$(info Testing VIM 7.4...)
-	$(if $(findstring 7.4,$(vim_version)),\
+	$(info Testing VIM 8.x...)
+	$(if $(shell echo "$(vim_version)" | egrep "VIM .* 8\."),\
 		$(info OK),\
-		$(error   .. MISSING! Install newer $nvim version))
+		$(error   .. You need Vim 8.x))
 
-	$(info Testing +lua... )
-	$(if $(findstring +lua,$(vim_version)),\
+	$(info Testing +python3... )
+	$(if $(findstring +python3,$(vim_version)),\
 		$(info OK),\
-		$(error   .. MISSING! Install $nvim with "+lua" enabled))
-
-	$(info Testing +python... )
-	$(if $(findstring +python,$(vim_version)),\
-		$(info OK),\
-		$(error .. MISSING! Install $nvim with "+python" enabled))
+		$(error .. MISSING! Install Vim 8.x with "+python3" enabled))
 endif
 	@echo All tests passed, hooray!
 
-
-.PHONY: install update upgrade uninstall test
+.PHONY: install update-repo update-plugins update upgrade uninstall test
