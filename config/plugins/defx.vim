@@ -37,6 +37,9 @@ call defx#custom#column('git', {
 
 call defx#custom#column('mark', { 'readonly_icon': '', 'selected_icon': '' })
 
+
+
+
 " defx-icons plugin
 let g:defx_icons_column_length = 2
 let g:defx_icons_mark_icon = ''
@@ -127,10 +130,18 @@ function! s:jump_dirty(dir) abort
 	endif
 endfunction
 
+" only works if setlocal cursorline is also called on the ft
+augroup NerdCursor
+  autocmd!
+  autocmd BufEnter *defx]* setlocal cursorline
+  autocmd BufEnter *defx]* hi CursorLine gui=underline
+  autocmd BufWinEnter *defx]* hi Cursorline gui=underline
+  autocmd BufLeave *defx]* highlight clear CursorLine
+augroup END
+
 function! s:defx_mappings() abort
 	" Defx window keyboard mappings
 	setlocal signcolumn=no expandtab
-	setlocal cursorline
 
 	nnoremap <silent><buffer><expr> <CR>  <SID>defx_toggle_tree()
 	nnoremap <silent><buffer><expr> e     <SID>defx_toggle_tree()
@@ -138,12 +149,9 @@ function! s:defx_mappings() abort
 	nnoremap <silent><buffer><expr> h     defx#do_action('close_tree')
 	nnoremap <silent><buffer><expr> <BS>  defx#async_action('cd', ['..'])
 	nnoremap <silent><buffer><expr> t     defx#do_action('open_tree_recursive')
-	"nnoremap <silent><buffer><expr> st    defx#do_action('drop', 'tabnew')
-	"nnoremap <silent><buffer><expr> sg    defx#do_action('drop', 'vsplit')
-	"nnoremap <silent><buffer><expr> sv    defx#do_action('drop', 'split')
-	nnoremap <silent><buffer><expr> st    defx#do_action('multi', [['drop', 'tabnew'], 'quit'])
-	nnoremap <silent><buffer><expr> sg    defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
-	nnoremap <silent><buffer><expr> sv    defx#do_action('multi', [['drop', 'split'], 'quit'])
+	nnoremap <silent><buffer><expr> st    defx#do_action('drop', 'tabnew')
+	nnoremap <silent><buffer><expr> sg    defx#do_action('drop', 'vsplit')
+	nnoremap <silent><buffer><expr> sv    defx#do_action('drop', 'split')
 	nnoremap <silent><buffer><expr> P     defx#do_action('open', 'pedit')
 	nnoremap <silent><buffer><expr> y     defx#do_action('yank_path')
 	nnoremap <silent><buffer><expr> x     defx#do_action('execute_system')

@@ -173,7 +173,7 @@ nnoremap <silent> <C-S-Tab> :<C-U>tabprevious<CR>
 autocmd Filetype python vmap <buffer> <localleader>\ $<Plug>(iron-send-motion)
 
 " remap thesaurus
-nnoremap <Leader>T :OnlineThesaurusCurrentWord<CR>
+nnoremap <Leader>T :ThesaurusQueryReplaceCurrentWord<CR>
 
 " Remove spaces at the end of lines
 nnoremap <silent> <Leader>cw :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
