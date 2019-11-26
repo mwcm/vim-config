@@ -62,21 +62,9 @@ if filereadable($VIM_PATH . '/.vault.vim')
 	call s:source_file('.vault.vim')
 endif
 
-<<<<<<< HEAD
-call s:source_file('plugins/all.vim')
-
-filetype plugin indent on
-syntax enable
-
- "if ! has('vim_starting')
-	call dein#call_hook('source')
-	call dein#call_hook('post_source')
- "endif
-=======
 " Initialize plugin-manager and load main config files
 call s:source_file('config/init.vim')
 call s:source_file('config/plugins/all.vim')
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 " Initialize all my configurations
 call s:source_file('config/general.vim')

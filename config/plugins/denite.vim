@@ -7,11 +7,8 @@
 call denite#custom#option('_', {
 	\ 'prompt': '❯',
 	\ 'auto_resume': 1,
-<<<<<<< HEAD
 	\ 'auto_resize': 1,
 	\ 'statusline': 1,
-=======
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 	\ 'start_filter': 1,
 	\ 'statusline': 1,
 	\ 'smartcase': 1,
@@ -21,11 +18,7 @@ call denite#custom#option('_', {
 	"\ 'direction': 'dynamicbottom',
 
 if has('nvim')
-<<<<<<< HEAD
-	call denite#custom#option('_', { 'split': 'horizontal' })
-=======
 	call denite#custom#option('_', { 'split': 'floating', 'statusline': 0 })
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 endif
 
 " Allow customizable window positions: top (default), bottom, center
@@ -105,24 +98,8 @@ elseif executable('ack')
 	call denite#custom#var('grep', 'separator', ['--'])
 	call denite#custom#var('grep', 'final_opts', [])
 	call denite#custom#var('grep', 'default_opts',
-<<<<<<< HEAD
-		\ ['--ackrc', $HOME.'/.config/ackrc', '-H',
-		\ '--nopager', '--nocolor', '--nogroup', '--column'])
-
-elseif executable('rg')
-	" Ripgrep
-	call denite#custom#var('file/rec', 'command',
-		\ ['rg', '--files', '--glob', '!.git'])
-	call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
-	call denite#custom#var('grep', 'recursive_opts', [])
-	call denite#custom#var('grep', 'final_opts', [])
-	call denite#custom#var('grep', 'separator', ['--'])
-	call denite#custom#var('grep', 'default_opts',
-		\ ['-i', '--vimgrep', '--no-heading'])
-=======
 			\ ['--ackrc', $HOME.'/.config/ackrc', '-H',
 			\ '--nopager', '--nocolor', '--nogroup', '--column'])
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 endif
 
 " KEY MAPPINGS

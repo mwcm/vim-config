@@ -2,20 +2,21 @@
 " ===
 
 " Non-standard {{{
-<<<<<<< HEAD
 " ------------
+
+" use C-c as escape, for coc.nvim
 inoremap <C-c> <Esc>
 nnoremap <C-c> <Esc>
+
 " EASY ALIGN
-"
+" ----------
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-=======
-" ---
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
+
+" --- }}}
 
 " Window-control prefix
 nnoremap  [Window]   <Nop>
@@ -191,53 +192,6 @@ function! s:get_selection(cmdtype) "{{{
 	let @s = temp
 endfunction "}}}
 
-<<<<<<< HEAD
-" Background dark/light toggle and contrasts
-nnoremap <silent><Leader>b :<C-u>call <SID>toggle_background()<CR>
-nmap <silent> s- :<c-u>call <SID>toggle_contrast(-v:count1)<cr>
-nmap <silent> s= :<c-u>call <SID>toggle_contrast(+v:count1)<cr>
-
-function! s:toggle_background()
-	if ! exists('g:colors_name')
-		echomsg 'No colorscheme set'
-		return
-	endif
-	let l:scheme = g:colors_name
-
-	if l:scheme =~# 'dark' || l:scheme =~# 'light'
-		" Rotate between different theme backgrounds
-		execute 'colorscheme' (l:scheme =~# 'dark'
-					\ ? substitute(l:scheme, 'dark', 'light', '')
-					\ : substitute(l:scheme, 'light', 'dark', ''))
-	else
-		execute 'set background='.(&background ==# 'dark' ? 'light' : 'dark')
-		if ! exists('g:colors_name')
-			execute 'colorscheme' l:scheme
-			echomsg 'The colorscheme `'.l:scheme
-				\ .'` doesn''t have background variants!'
-		else
-			echo 'Set colorscheme to '.&background.' mode'
-		endif
-	endif
-endfunction
-
-function! s:toggle_contrast(delta)
-	let l:scheme = ''
-	if g:colors_name =~# 'solarized8'
-		let l:schemes = map(['_low', '_flat', '', '_high'],
-			\ '"solarized8_".(&background).v:val')
-		let l:contrast = ((a:delta + index(l:schemes, g:colors_name)) % 4 + 4) % 4
-		let l:scheme = l:schemes[l:contrast]
-	endif
-	if l:scheme !=# ''
-		execute 'colorscheme' l:scheme
-	endif
-endfunction
-
-" completion
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
-	\"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -249,6 +203,11 @@ inoremap <expr><S-Tab> pumvisible() ? "\<Up>" : "\<C-h>"
 " figure this out
 "imap <silent><expr> <leader><Space> coc#refresh()
 
+" completion
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
+	\"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -259,13 +218,13 @@ let g:coc_snippet_next = '<tab>'
 " Location list movement
 nmap <Leader>j :lnext<CR>
 nmap <Leader>k :lprev<CR>
-=======
+
+" any reason for these weird bindings?
 " Location/quickfix list movement
-nmap ]c :lnext<CR>
-nmap [c :lprev<CR>
-nmap ]q :cnext<CR>
-nmap [q :cprev<CR>
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
+" nmap ]c :lnext<CR>
+" nmap [c :lprev<CR>
+" nmap ]q :cnext<CR>
+" nmap [q :cprev<CR>
 
 " Duplicate lines
 nnoremap <Leader>d m`YP``
@@ -305,7 +264,6 @@ if has('mac')
 	" Open the macOS dictionary on current word
 	nmap <Leader>? :!open dict://<cword><CR><CR>
 
-<<<<<<< HEAD
 	" Use Dash on Mac, for context help
 	"if executable('/Applications/Dash.app/Contents/MacOS/Dash')
 		"autocmd MyAutoCmd FileType yaml.ansible,php,css,less,html,markdown
@@ -320,14 +278,6 @@ elseif executable('zeal')
 		\ nmap <silent><buffer> K :!zeal --query "<C-R>=split(&ft, '\.')[0]<CR>:<cword>"&<CR><CR>
 	autocmd MyAutoCmd FileType javascript,javascript.jsx,sql,ruby,conf,sh
 		\ nmap <silent><buffer> K :!zeal --query "<cword>"&<CR><CR>
-=======
-	" Use Marked for real-time Markdown preview
-	"
-	if executable('/Applications/Marked 2.app/Contents/MacOS/Marked 2')
-		autocmd user_events FileType markdown
-			\ nmap <buffer><Leader>P :silent !open -a Marked\ 2.app '%:p'<CR>
-	endif
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 endif
 
 " search ALL the docsets
@@ -348,13 +298,8 @@ function! s:append_modeline() "{{{
 	call append(line('$'), l:modeline)
 endfunction "}}}
 
-<<<<<<< HEAD
-
-" s: Windows and buffers {{{
-=======
 " }}}
 " Windows and buffers {{{
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 nnoremap <silent> [Window]v  :<C-u>split<CR>
 nnoremap <silent> [Window]g  :<C-u>vsplit<CR>
@@ -364,29 +309,19 @@ nnoremap <silent> [Window]b  :b#<CR>
 nnoremap <silent> [Window]c  :close<CR>
 nnoremap <silent> [Window]x  :<C-u>call <SID>window_empty_buffer()<CR>
 
-
 " Split current buffer, go to previous window and previous buffer
 nnoremap <silent> [Window]sv :split<CR>:wincmd p<CR>:e#<CR>
 nnoremap <silent> [Window]sg :vsplit<CR>:wincmd p<CR>:e#<CR>
 
-<<<<<<< HEAD
+" TODO: make sure this still works
 " Vertical + Horizontal new buffer splits
-nnoremap <silent> sz :new<CR>
-nnoremap <silent> szv :vnew<CR>
+nnoremap <silent> [Window]sz  :new<CR>
+nnoremap <silent> [Window]szv :vnew<CR>
 
-function! WipeHiddenBuffers()
-	let tpbl=[]
-	call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
-	for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-		silent execute 'bwipeout' buf
-	endfor
-endfunction
-=======
 " Background dark/light toggle and contrasts
 nmap <silent> [Window]h :<C-u>call <SID>toggle_background()<CR>
 nmap <silent> [Window]- :<c-u>call <SID>toggle_contrast(-v:count1)<cr>
 nmap <silent> [Window]= :<c-u>call <SID>toggle_contrast(+v:count1)<cr>
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 function! s:toggle_background()
 	if ! exists('g:colors_name')

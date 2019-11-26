@@ -45,7 +45,6 @@ if dein#tap('denite.nvim')
 		normal! gv"sy
 		let @/ = substitute(escape(@s, '\' . a:cmdtype), '\n', '\\n', 'g')
 		let @s = temp
-<<<<<<< HEAD
 	endfunction "}}}
 endif
 
@@ -59,9 +58,6 @@ if dein#tap('tagbar')
 	" Also use h/l to open/close folds
 	let g:tagbar_map_closefold = ['h', '-', 'zc']
 	let g:tagbar_map_openfold = ['l', '+', 'zo']
-=======
-	endfunction
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 endif
 
 if dein#tap('defx.nvim')
@@ -71,7 +67,6 @@ if dein#tap('defx.nvim')
 		\ :<C-u>Defx -resume -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
 endif
 
-<<<<<<< HEAD
 if dein#tap('coc.nvim')
 	nmap <silent> gd <Plug>(coc-definition)
 	nmap <silent> gy <Plug>(coc-type-definition)
@@ -94,22 +89,6 @@ endif
 if dein#tap('vim-dasht')
 	let g:dasht_results_window = 'vnew'
 endif
-
-if dein#tap('nerdtree')
-	let g:NERDTreeMapOpenSplit = 'sv'
-	let g:NERDTreeMapOpenVSplit = 'sg'
-	let g:NERDTreeMapOpenInTab = 'st'
-	let g:NERDTreeMapOpenInTabSilent = 'sT'
-	let g:NERDTreeMapUpdirKeepOpen = '<BS>'
-	let g:NERDTreeMapOpenRecursively = 't'
-	let g:NERDTreeMapCloseChildren = 'T'
-	let g:NERDTreeMapToggleHidden = '.'
-=======
-if dein#tap('vim-denite-z')
-	command! -nargs=+ -complete=file Z
-		\ call denite#start([{'name': 'z', 'args': [<q-args>], {'immediately': 1}}])
-endif
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 if dein#tap('vista.vim')
 	nnoremap <silent> <Leader>t :<C-u>Vista<CR>
@@ -335,13 +314,7 @@ if dein#tap('phpcomplete-extended')
 endif
 
 if dein#tap('vimagit')
-<<<<<<< HEAD
-	nnoremap <silent> mg :Magit<CR>
-	 autocmd MyAutoCmd FileType magit
-		 \ nnoremap <silent><buffer> <CR> za
-=======
 	nnoremap <silent> <Leader>mg :Magit<CR>
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 endif
 
 if dein#tap('vim-easygit')
@@ -368,13 +341,8 @@ if dein#tap('undotree')
 	nnoremap <Leader>gu :UndotreeToggle<CR>
 endif
 
-<<<<<<< HEAD
-if dein#tap('vim-online-thesaurus')
-	nnoremap <silent> <Leader>T :<C-u>OnlineThesaurusCurrentWord<CR>
-=======
 if dein#tap('thesaurus_query.vim')
-	nnoremap <silent> <Leader>K :<C-u>ThesaurusQueryReplaceCurrentWord<CR>
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
+	nnoremap <silent> <Leader>T :<C-u>ThesaurusQueryReplaceCurrentWord<CR>
 endif
 
 if dein#tap('vim-asterisk')
@@ -450,27 +418,7 @@ if dein#tap('caw.vim')
 	call InitCaw()
 endif
 
-<<<<<<< HEAD
-if dein#tap('vim-sessions')
-	let g:sessions_project_path = "$HOME/projects"
-endif
 
-if dein#tap('vim-easymotion')
-	nmap ss <Plug>(easymotion-s2)
-	nmap sd <Plug>(easymotion-s)
-	nmap sf <Plug>(easymotion-overwin-f)
-	map  sh <Plug>(easymotion-linebackward)
-	map  sl <Plug>(easymotion-lineforward)
-	" map  sj <Plug>(easymotion-j)
-	" map  sk <Plug>(easymotion-k)
-	map  s/ <Plug>(easymotion-sn)
-	omap s/ <Plug>(easymotion-tn)
-	map  sn <Plug>(easymotion-next)
-	map  sp <Plug>(easymotion-prev)
-endif
-
-=======
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 if dein#tap('vim-textobj-multiblock')
 	omap <silent> ab <Plug>(textobj-multiblock-a)
 	omap <silent> ib <Plug>(textobj-multiblock-i)

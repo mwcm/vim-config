@@ -56,34 +56,21 @@ augroup user_plugin_filetype " {{{
 	autocmd FileType gitcommit,qfreplace setlocal nofoldenable
 
 	" https://webpack.github.io/docs/webpack-dev-server.html#working-with-editors-ides-supporting-safe-write
-<<<<<<< HEAD
-	autocmd FileType css,javascript,jsx,javascript.jsx
-		\ setlocal backupcopy=yes
-		\| setlocal equalprg=prettier\ %
-=======
 	autocmd FileType css,javascript,javascriptreact setlocal backupcopy=yes
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 	autocmd FileType php
 		\ setlocal matchpairs-=<:> iskeyword+=\\ path+=/usr/local/share/pear
 "		\ | setlocal formatoptions=qroct " Correct indent after opening a phpdocblock
 
-<<<<<<< HEAD
-
-	autocmd FileType html
-		\ setlocal path+=./;/
-		\ | setlocal equalprg=tidy\ -i\ -q
+	autocmd FileType html setlocal path+=./;/
 
 	autocmd FileType json setlocal equalprg=python\ -m\ json.tool
-=======
+
 	autocmd FileType python
 		\ setlocal foldmethod=indent expandtab smarttab nosmartindent
 		\ | setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80
 
 	autocmd FileType zsh setlocal foldenable foldmethod=marker
-
-	autocmd FileType html setlocal path+=./;/
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 	autocmd FileType markdown
 		\ setlocal expandtab spell conceallevel=0

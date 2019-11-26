@@ -1,39 +1,11 @@
 
 " Neomake
 " ---------
-<<<<<<< HEAD
-"
-let s:default_settings = {
-	\ 'ignore_filetypes': ['startify', 'javascript'],
-	\ }
-
-let g:neomake = get(g:, 'neomake', {})
-let g:neomake.automake = get(g:neomake, 'automake', {})
-call extend(g:neomake.automake, s:default_settings, 'keep')
-
-let g:neomake_open_list = 0
-let g:neomake_verbose = 1
-
-=======
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 if ! empty(g:python3_host_prog)
 	let g:neomake_python_python_exe = g:python3_host_prog
 endif
 
-<<<<<<< HEAD
-let g:neomake_python_flake8_maker = {
-		\ 'args': ['--ignore=E221,E241,E272,E251,W702,E203,E201,E202',  '--format=default'],
-		\ 'errorformat':
-				\ '%E%f:%l: could not compile,%-Z%p^,' .
-				\ '%A%f:%l:%c: %t%n %m,' .
-				\ '%A%f:%l: %t%n %m,' .
-				\ '%-G%.%#',
-		\ }
-
-let g:neomake_python_enabled_makers = ['pylint', 'flake8', 'pycodestyle', 'pyflakes' ,'pep8']
-=======
 let g:neomake_virtualtext_current_error = 0
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 " YAML / ANSIBLE
 let g:neomake_yaml_enabled_makers = ['yamllint']

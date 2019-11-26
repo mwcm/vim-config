@@ -2,6 +2,13 @@
 " ---
 " See https://github.com/shougo/defx.nvim
 
+" not doing anything?
+"augroup cursor_off
+    "autocmd!
+		"autocmd BufLeave * if (&ft ==? "defx") | set nocursorline nocursorcolumn | endif
+		"autocmd BufEnter * if (&ft ==? "defx") | set cursorline cursorcolumn | endif
+"augroup END
+
 call defx#custom#option('_', {
 	\ 'winwidth': 25,
 	\ 'split': 'vertical',
@@ -123,22 +130,20 @@ endfunction
 function! s:defx_mappings() abort
 	" Defx window keyboard mappings
 	setlocal signcolumn=no expandtab
+	setlocal cursorline
 
 	nnoremap <silent><buffer><expr> <CR>  <SID>defx_toggle_tree()
 	nnoremap <silent><buffer><expr> e     <SID>defx_toggle_tree()
 	nnoremap <silent><buffer><expr> l     <SID>defx_toggle_tree()
 	nnoremap <silent><buffer><expr> h     defx#do_action('close_tree')
-<<<<<<< HEAD
 	nnoremap <silent><buffer><expr> <BS>  defx#async_action('cd', ['..'])
-	nnoremap <silent><buffer><expr> st    defx#do_action('drop', 'tabnew')
-	nnoremap <silent><buffer><expr> sg    defx#do_action('drop', 'vsplit')
-	nnoremap <silent><buffer><expr> sv    defx#do_action('drop', 'split')
-=======
 	nnoremap <silent><buffer><expr> t     defx#do_action('open_tree_recursive')
+	"nnoremap <silent><buffer><expr> st    defx#do_action('drop', 'tabnew')
+	"nnoremap <silent><buffer><expr> sg    defx#do_action('drop', 'vsplit')
+	"nnoremap <silent><buffer><expr> sv    defx#do_action('drop', 'split')
 	nnoremap <silent><buffer><expr> st    defx#do_action('multi', [['drop', 'tabnew'], 'quit'])
 	nnoremap <silent><buffer><expr> sg    defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
 	nnoremap <silent><buffer><expr> sv    defx#do_action('multi', [['drop', 'split'], 'quit'])
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 	nnoremap <silent><buffer><expr> P     defx#do_action('open', 'pedit')
 	nnoremap <silent><buffer><expr> y     defx#do_action('yank_path')
 	nnoremap <silent><buffer><expr> x     defx#do_action('execute_system')

@@ -1,12 +1,6 @@
 " Neo/vim Settings
 " ===
 
-<<<<<<< HEAD
-" General Settings
-" 
-"---------------------------------------------------------
-=======
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 " General {{{
 set mouse=nv                 " Disable mouse in command-line mode
 set modeline                 " automatically setting options from modelines
@@ -140,17 +134,9 @@ set shiftround      " Round indent to multiple of 'shiftwidth'
 " Timing {{{
 " ------
 set timeout ttimeout
-<<<<<<< HEAD
-set timeoutlen=500  " Time out on mappings
-set updatetime=300 " Idle time to write swap and trigger CursorHold
-
-" Time out on key codes
-set ttimeoutlen=10
-=======
 set timeoutlen=750  " Time out on mappings
 set updatetime=400  " Idle time to write swap and trigger CursorHold
 set ttimeoutlen=10  " Time out on key codes
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 
 " }}}
 " Searching {{{
@@ -269,37 +255,6 @@ if has('conceal') && v:version >= 703
 	set conceallevel=2 concealcursor=niv
 endif
 
-<<<<<<< HEAD
-" no blend for popup menu
-"if exists('&pumblend')
-	"set pumblend=20
-"endif
-
-" }}}
-" Folds {{{
-" -----
-
-" FastFold
-" Credits: https://github.com/Shougo/shougo-s-github
-autocmd MyAutoCmd TextChangedI,TextChanged *
-	\ if &l:foldenable && &l:foldmethod !=# 'manual' |
-	\   let b:foldmethod_save = &l:foldmethod |
-	\   let &l:foldmethod = 'manual' |
-	\ endif
-
-autocmd MyAutoCmd BufWritePost *
-	\ if &l:foldmethod ==# 'manual' && exists('b:foldmethod_save') |
-	\   let &l:foldmethod = b:foldmethod_save |
-	\   execute 'normal! zx' |
-	\ endif
-
-
-if has('folding')
-	set foldenable
-	set foldmethod=syntax
-	set foldlevelstart=99
-	set foldtext=FoldText()
-=======
 if exists('&pumblend')
 	" pseudo-transparency for completion menu
 	set pumblend=20
@@ -308,7 +263,6 @@ endif
 if exists('&winblend')
 	" pseudo-transparency for floating window
 	set winblend=20
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 endif
 
 " }}}
