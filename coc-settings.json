@@ -5,14 +5,22 @@
   "list.insertMappings": {
     "<C-c>": "do:exit"
   },
+    "python.linting.enabled": true,
+    "python.venvFolders": [
+      ".virtualenvs",
+      ".cache/vim/venv"
+    ],
+    "coc.preferences.formatOnType": true,
+    "python.pythonPath": "/usr/local/bin/python3",
+    "python.autoComplete.addBrackets": true,
     "python.linting.pylintEnabled": false,
     "python.linting.pylamaEnabled": true,
     "python.formatting.provider": "black",
+    "python.formatting.blackPath": "/usr/local/bin/black",
     "suggest.noselect": false,
     "suggest.triggerAfterInsertEnter": true,
     "suggest.enablePreview": true,
     "suggest.autoTrigger": "always",
-    "javascript.validate.enable": false,
     "python.jediEnabled": true,
     "eslint.filetypes": [
         "javascript",
@@ -50,5 +58,4 @@
             "settings": {}
         }
     },
-    "python.linting.enabled": true
 }

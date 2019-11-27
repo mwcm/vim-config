@@ -89,14 +89,10 @@ we'll also symlink it for Vim:
 
 ```bash
 mkdir ~/.config
-<<<<<<< HEAD
 git clone git://github.com/mwcm/vim-config.git ~/.config/nvim
 ln -s ~/.vim ~/.config/nvim
-=======
-git clone git://github.com/rafi/vim-config.git ~/.config/nvim
 cd ~/.config/nvim
 ln -s ~/.config/nvim ~/.vim  # For Vim8
->>>>>>> 2e124338d076cb66bd08a8b0d121c5b66935a1ef
 ```
 
 * _**Note**:_ If you set a custom `$XDG_CONFIG_HOME`,
