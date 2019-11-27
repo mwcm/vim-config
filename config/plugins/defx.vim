@@ -1,13 +1,10 @@
 " Defx settings
 " ---
 " See https://github.com/shougo/defx.nvim
+"
 
-" not doing anything?
-"augroup cursor_off
-    "autocmd!
-		"autocmd BufLeave * if (&ft ==? "defx") | set nocursorline nocursorcolumn | endif
-		"autocmd BufEnter * if (&ft ==? "defx") | set cursorline cursorcolumn | endif
-"augroup END
+" TODO: https://github.com/weirongxu/coc-explorer
+
 
 call defx#custom#option('_', {
 	\ 'winwidth': 25,
@@ -131,7 +128,7 @@ function! s:jump_dirty(dir) abort
 endfunction
 
 " only works if setlocal cursorline is also called on the ft
-augroup NerdCursor
+augroup DefxCursor
   autocmd!
   autocmd BufEnter *defx]* setlocal cursorline
   autocmd BufEnter *defx]* hi CursorLine gui=underline

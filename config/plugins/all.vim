@@ -91,8 +91,8 @@ if dein#tap('vim-dasht')
 endif
 
 if dein#tap('vista.vim')
-	nnoremap <silent> <Leader>t :<C-u>Vista<CR>
-	nnoremap <silent> <Leader>a :<C-u>Vista show<CR>
+	nnoremap <silent> <Leader>t :<C-u>Vista coc<CR>
+	nnoremap <silent> <Leader>a :<C-u>Vista coc<CR>
 endif
 
 if dein#tap('ale')

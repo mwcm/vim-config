@@ -10,7 +10,7 @@
       ".virtualenvs",
       ".cache/vim/venv"
     ],
-    "coc.preferences.formatOnType": true,
+    "coc.preferences.formatOnType": false,
     "coc.preferences.colorSupport": true,
     "coc.preferences.enableFloatHighlight": true,
     "coc.preferences.formatOnSaveFiletypes": ["python"],
