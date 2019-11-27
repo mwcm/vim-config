@@ -104,10 +104,9 @@ endfunction
 
 function! s:denite_filter_settings() abort
 	setlocal signcolumn=yes nocursorline nonumber norelativenumber
-	call deoplete#custom#buffer_option('auto_complete', v:false)
+	"call deoplete#custom#buffer_option('auto_complete', v:false)
 
 	nnoremap <silent><buffer><expr> <Esc>  denite#do_map('quit')
-	" inoremap <silent><buffer><expr> <Esc>  denite#do_map('quit')
 	nnoremap <silent><buffer><expr> q      denite#do_map('quit')
 	inoremap <silent><buffer><expr> <C-c>  denite#do_map('quit')
 	nnoremap <silent><buffer><expr> <C-c>  denite#do_map('quit')
