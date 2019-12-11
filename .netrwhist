@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/mwcmitchell/Projects/rs_hose_data'
-let g:netrw_dirhist_2='/Users/mwcmitchell/.zplug'
-let g:netrw_dirhist_3='/docker'
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/Applications/appmodechrome.app'
+let g:netrw_dirhist_3='/Applications/appmodechrome.app/Contents/MacOS'
+let g:netrw_dirhist_2='/Applications/appmodechrome.app/Contents'
+let g:netrw_dirhist_1='/Applications/appmodechrome.app'

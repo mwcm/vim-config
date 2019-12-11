@@ -6,16 +6,14 @@
     "<C-c>": "do:exit"
   },
     "python.linting.enabled": true,
-    "python.venvFolders": [
-      ".virtualenvs",
-      ".cache/vim/venv"
-    ],
     "coc.preferences.formatOnType": false,
     "coc.preferences.colorSupport": true,
     "coc.preferences.enableFloatHighlight": true,
-    "coc.preferences.formatOnSaveFiletypes": ["python"],
+    "coc.preferences.formatOnSaveFiletypes": ["python",
+                                            "javascript",
+                                            "javascriptreact",
+                                            "javascript.jsx"],
     "python.pythonPath": "/usr/local/bin/python3",
-    "python.autoComplete.addBrackets": true,
     "python.linting.pylintEnabled": false,
     "python.linting.pylamaEnabled": true,
     "python.formatting.provider": "black",

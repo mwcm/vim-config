@@ -461,6 +461,9 @@
 - repo: neoclide/coc.nvim
   merge: 0
   rev: 'ec3a954^' # gets locationlist working again
+  hook_add: |
+    command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 
 - repo: neoclide/coc-denite
 - repo: jsfaint/coc-neoinclude
