@@ -34,6 +34,7 @@ endif
 set viewoptions=folds,cursor,curdir,slash,unix
 set sessionoptions=curdir,help,tabpages,winsize
 
+
 if has('mac')
 	let g:clipboard = {
 		\   'name': 'macOS-clipboard',
@@ -47,7 +48,22 @@ if has('mac')
 		\   },
 		\   'cache_enabled': 0,
 		\ }
+else
+  let g:clipboard = {
+	  \   'name': 'clipboard',
+	  \   'copy': {
+	  \      '+': 'xclip -i -selection clipboard',
+	  \      '*': 'xclip -i -selection clipboard',
+	  \    },
+	  \   'paste': {
+	  \      '+': 'xclip -o -selection clipboard',
+	  \      '*': 'xclip -o -selection clipboard',
+	  \   },
+	  \   'cache_enabled': 0,
+	  \ }
 endif
+
+
 
 if has('clipboard')
 	set clipboard& clipboard+=unnamedplus

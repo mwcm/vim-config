@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/mwcm/.config/nvim'
+let g:netrw_dirhist_5='/home/mwcm/.config/alacritty'
 let g:netrw_dirhist_4='/Applications/appmodechrome.app'
 let g:netrw_dirhist_3='/Applications/appmodechrome.app/Contents/MacOS'
 let g:netrw_dirhist_2='/Applications/appmodechrome.app/Contents'

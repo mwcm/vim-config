@@ -1,31 +1,16 @@
 " Theme
 " -----
-
-
-" TODO: needs these anymore?
 " Enable 256 color terminal
-" set t_Co=256
+ set t_Co=256
 
-" Enable true color
-" if has('termguicolors')
-" 		set termguicolors
-" endif
-
-" if has('gui_running')
-"	set background=dark
-"	set lines=40
-"	set columns=150
-" endif
-
-" function! s:theme_reload(name)
-"	let theme_path = $VIMPATH.'/themes/'.a:name.'.vim'
-"	if filereadable(theme_path)
-"		execute 'source' fnameescape(theme_path)
-
+ "Enable true color
+ if has('termguicolors')
+		 set termguicolors
+ endif
 
 function! s:theme_init()
 	" Load cached colorscheme or hybrid by default
-	let l:default = 'hybrid'
+	let l:default = 'gotham'
 	let l:cache = s:theme_cache_file()
 	if ! exists('g:colors_name')
 		set background=dark
