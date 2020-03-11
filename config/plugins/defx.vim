@@ -1,10 +1,6 @@
-" Defx settings
+" :h defx
 " ---
-" See https://github.com/shougo/defx.nvim
-"
-
-" TODO: https://github.com/weirongxu/coc-explorer
-
+" Problems? https://github.com/Shougo/defx.nvim/issues
 
 call defx#custom#option('_', {
 	\ 'winwidth': 25,
@@ -17,7 +13,6 @@ call defx#custom#option('_', {
 	\     '.mypy_cache,.pytest_cache,.git,.hg,.svn,.stversions'
 	\   . ',__pycache__,.sass-cache,*.egg-info,.DS_Store,*.pyc'
 	\ })
-	"\ 'listed': 1,
 
 call defx#custom#column('git', {
 	\   'indicators': {
@@ -56,29 +51,37 @@ augroup user_plugin_defx
 	" Move focus to the next window if current buffer is defx
 	autocmd TabLeave * if &filetype == 'defx' | wincmd w | endif
 
+	" Clean Defx window once a tab-page is closed
 	" autocmd TabClosed * call <SID>defx_close_tab(expand('<afile>'))
 
 	" Automatically refresh opened Defx windows when changing working-directory
-	autocmd DirChanged * call <SID>defx_handle_dirchanged(v:event)
+	" autocmd DirChanged * call <SID>defx_handle_dirchanged(v:event)
 
 	" Define defx window mappings
 	autocmd FileType defx call <SID>defx_mappings()
+
+	" autocmd WinEnter * if &filetype ==# 'defx'
+	"	\ |   silent! highlight! link CursorLine TabLineSel
+	"	\ | endif
+	"
+	" autocmd WinLeave * if &filetype ==# 'defx'
+	"	\ |   silent! highlight! link CursorLine NONE
+	"	\ | endif
 
 augroup END
 
 " Internal functions
 " ---
 
-" Deprecated after disabling defx's (buf)listed
-" function! s:defx_close_tab(tabnr)
-" 	" When a tab is closed, find and delete any associated defx buffers
-" 	for l:nr in tabpagebuflist()
-" 		if getbufvar(l:nr, '&filetype') ==# 'defx'
-" 			silent! execute 'bdelete '.l:nr
-" 			break
-" 		endif
-" 	endfor
-" endfunction
+function! s:defx_close_tab(tabnr)
+	" When a tab is closed, find and delete any associated defx buffers
+	for l:nr in tabpagebuflist()
+		if getbufvar(l:nr, '&filetype') ==# 'defx'
+			silent! execute 'bdelete '.l:nr
+			break
+		endif
+	endfor
+endfunction
 
 function! s:defx_toggle_tree() abort
 	" Open current file, or toggle directory expand/collapse
@@ -166,7 +169,7 @@ function! s:defx_mappings() abort
 	nnoremap <silent><buffer><expr><nowait> m  defx#do_action('move')
 	nnoremap <silent><buffer><expr><nowait> p  defx#do_action('paste')
 	nnoremap <silent><buffer><expr><nowait> r  defx#do_action('rename')
-	nnoremap <silent><buffer><expr><nowait> d  defx#do_action('remove_trash')
+	nnoremap <silent><buffer><expr> dd defx#do_action('remove_trash')
 	nnoremap <silent><buffer><expr> K  defx#do_action('new_directory')
 	nnoremap <silent><buffer><expr> N  defx#do_action('new_multiple_files')
 

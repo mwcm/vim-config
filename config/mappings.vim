@@ -28,10 +28,10 @@ map! <Nul> <C-Space>
 
 " Disable arrow movement, resize splits instead.
 if get(g:, 'elite_mode')
-	nnoremap <Up>    :resize +2<CR>
-	nnoremap <Down>  :resize -2<CR>
-	nnoremap <Left>  :vertical resize +2<CR>
-	nnoremap <Right> :vertical resize -2<CR>
+	nnoremap <silent><Up>    :resize +1<CR>
+	nnoremap <silent><Down>  :resize -1<CR>
+	nnoremap <silent><Left>  :vertical resize +1<CR>
+	nnoremap <silent><Right> :vertical resize -1<CR>
 endif
 
 " Change current word in a repeatable manner
@@ -42,8 +42,10 @@ nnoremap <leader>cN *``cgN
 vnoremap <expr> <leader>cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
 vnoremap <expr> <leader>cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
+" Duplicate paragraph
 nnoremap <leader>cp yap<S-}>p
 
+" Cut & paste without pushing to register
 " xnoremap p  "0p
 " nnoremap x "_x
 
@@ -53,7 +55,15 @@ nnoremap <CR> za
 " Focus the current fold by closing all others
 nnoremap <S-Return> zMzvzt
 
-" Use backspace key for matchit.vim
+" Start new line from any cursor position in insert-mode
+inoremap <S-Return> <C-o>o
+
+" The plugin rhysd/accelerated-jk moves through display-lines in normal mode,
+" these mappings will move through display-lines in visual mode too.
+vnoremap j gj
+vnoremap k gk
+
+" Use backspace key for matching parens
 nmap <BS> %
 xmap <BS> %
 
@@ -62,7 +72,27 @@ xmap <BS> %
 " ---------------
 
 " Start an external command with a single bang
-nnoremap ! :!
+nnoremap Y y$
+
+" Open file under the cursor in a vsplit
+nnoremap gf :rightbelow wincmd f<CR>
+
+" Backspace should delete selection and put me in insert mode
+" vnoremap <BS> "_xi
+
+" `<Tab>`/`<S-Tab>` to move between matches without leaving incremental search.
+" Note dependency on `'wildcharm'` being set to `<C-z>` in order for this to
+" work.
+cnoremap <expr> <Tab>
+	\ getcmdtype() == '/' \|\| getcmdtype() == '?' ? '<CR>/<C-r>/' : '<C-z>'
+cnoremap <expr> <S-Tab>
+	\ getcmdtype() == '/' \|\| getcmdtype() == '?' ? '<CR>?<C-r>/' : '<S-Tab>'
+
+" Start an external command with a single bang
+nnoremap !  :!
+
+" Put vim command output into buffer
+nnoremap g! :<C-u>put=execute('')<Left><Left>
 
 " Allow misspellings
 cnoreabbrev qw wq
@@ -72,50 +102,44 @@ cnoreabbrev Qa qa
 cnoreabbrev Bd bd
 cnoreabbrev bD bd
 
-" Start new line from any cursor position
-inoremap <S-Return> <C-o>o
-
-nnoremap zl z5l
-nnoremap zh z5h
+nnoremap zl z4l
+nnoremap zh z4h
 
 " Improve scroll, credits: https://github.com/Shougo
-nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
-	\ 'zt' : (winline() == 1) ? 'zb' : 'zz'
 noremap <expr> <C-f> max([winheight(0) - 2, 1])
 	\ ."\<C-d>".(line('w$') >= line('$') ? "L" : "M")
 noremap <expr> <C-b> max([winheight(0) - 2, 1])
 	\ ."\<C-u>".(line('w0') <= 1 ? "H" : "M")
+nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
+	\ 'zt' : (winline() == 1) ? 'zb' : 'zz'
 noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
 noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
 
 " Window control
 nnoremap <C-q> <C-w>
-nnoremap <C-x> <C-w>x<C-w>w
+nnoremap <C-x> <C-w>x
 nnoremap <silent><C-w>z :vert resize<CR>:resize<CR>:normal! ze<CR>
 
-" Select blocks after indenting
+" Re-select blocks after indenting in visual/select mode
 xnoremap < <gv
 xnoremap > >gv|
 
-" Use tab for indenting
+" Use tab for indenting in visual/select mode
 xnoremap <Tab> >gv|
 xnoremap <S-Tab> <gv
-" nmap >>  >>_
-" nmap <<  <<_
-
-" Select last paste
-nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
+" Indent and jump to first non-blank character linewise
+nmap >>  >>_
+nmap <<  <<_
 
 " Navigation in command line
 cnoremap <C-h> <Home>
 cnoremap <C-l> <End>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
-cnoremap <C-d> <C-w>
 
 " Switch history search pairs, matching my bash shell
-cnoremap <C-p>  <Up>
-cnoremap <C-n>  <Down>
+cnoremap <expr> <C-p>  pumvisible() ? "\<C-p>" : "\<Up>"
+cnoremap <expr> <C-n>  pumvisible() ? "\<C-n>" : "\<Down>"
 cnoremap <Up>   <C-p>
 cnoremap <Down> <C-n>
 
@@ -123,22 +147,24 @@ cnoremap <Down> <C-n>
 " File operations {{{
 " ---------------
 
-" Switch to the directory of the opened buffer
+" Switch (window) to the directory of the current opened buffer
 map <Leader>cd :lcd %:p:h<CR>:pwd<CR>
 
-" Fast saving
-nnoremap <silent><Leader>w :write<CR>
-vnoremap <silent><Leader>w <Esc>:write<CR>
-nnoremap <silent><C-s> :<C-u>write<CR>
-vnoremap <silent><C-s> :<C-u>write<CR>
-cnoremap <silent><C-s> <C-u>write<CR>
+" Fast saving from all modes
+nnoremap <Leader>w :write<CR>
+xnoremap <Leader>w <Esc>:write<CR>
+nnoremap <C-s> :<C-u>write<CR>
+xnoremap <C-s> :<C-u>write<CR>
+cnoremap <C-s> <C-u>write<CR>
 
 " }}}
 " Editor UI {{{
 " ---------
 
-" I like to :quit with 'q', shrug.
-nnoremap <silent> q :<C-u>:quit<CR>
+" Ultimatus Quitos
+autocmd user_events BufWinEnter * if &buftype == ''
+	\ | nnoremap <silent><buffer> q :quit<CR>
+	\ | endif
 
 " Macros
 nnoremap Q q
@@ -149,21 +175,28 @@ nmap <silent> gh :echo 'hi<'.synIDattr(synID(line('.'), col('.'), 1), 'name')
 	\.'> trans<'.synIDattr(synID(line('.'), col('.'), 0), 'name').'> lo<'
 	\.synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name').'>'<CR>
 
-" Toggle editor visuals
-nmap <silent> <Leader>ts :setlocal spell!<cr>
-nmap <silent> <Leader>tn :setlocal nonumber!<CR>
-nmap <silent> <Leader>tl :setlocal nolist!<CR>
-nmap <silent> <Leader>th :nohlsearch<CR>
-nmap <silent> <Leader>tw :setlocal wrap! breakindent!<CR>
+" Toggle editor's visual effects
+nmap <Leader>ts :setlocal spell!<cr>
+nmap <Leader>tn :setlocal nonumber!<CR>
+nmap <Leader>tl :setlocal nolist!<CR>
+nmap <Leader>th :nohlsearch<CR>
+
+" Smart wrap toggle (breakindent and colorcolumn toggle as-well)
+nmap <Leader>tw :execute('setlocal wrap! breakindent! colorcolumn=' .
+	\ (&colorcolumn == '' ? &textwidth : ''))<CR>
 
 " Tabs
-nnoremap <silent> g0 :<C-u>tabfirst<CR>
-nnoremap <silent> g$ :<C-u>tablast<CR>
+nnoremap <silent> g1 :<C-u>tabfirst<CR>
 nnoremap <silent> g5 :<C-u>tabprevious<CR>
-nnoremap <silent> <A-j> :<C-U>tabnext<CR>
-nnoremap <silent> <A-k> :<C-U>tabprevious<CR>
+nnoremap <silent> g9 :<C-u>tablast<CR>
 nnoremap <silent> <C-Tab> :<C-U>tabnext<CR>
 nnoremap <silent> <C-S-Tab> :<C-U>tabprevious<CR>
+nnoremap <silent> <A-j> :<C-U>tabnext<CR>
+nnoremap <silent> <A-k> :<C-U>tabprevious<CR>
+nnoremap <silent> <A-{> :<C-u>-tabmove<CR>
+nnoremap <silent> <A-}> :<C-u>+tabmove<CR>
+" nnoremap <silent> <A-[> :<C-u>tabprevious<CR>
+" nnoremap <silent> <A-]> :<C-u>tabnext<CR>
 
 " }}}
 " Totally Custom {{{
@@ -176,9 +209,9 @@ autocmd Filetype python vmap <buffer> <localleader>\ $<Plug>(iron-send-motion)
 nnoremap <Leader>T :ThesaurusQueryReplaceCurrentWord<CR>
 
 " Remove spaces at the end of lines
-nnoremap <silent> <Leader>cw :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+nnoremap <Leader>cw :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
-" C-r: Easier search and replace
+" C-r: Easier search and replace visual/select mode
 xnoremap <C-r> :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
 
 " Quick substitute within selected area
@@ -219,12 +252,14 @@ let g:coc_snippet_next = '<tab>'
 nmap <Leader>j :lnext<CR>
 nmap <Leader>k :lprev<CR>
 
-" any reason for these weird bindings?
 " Location/quickfix list movement
-" nmap ]c :lnext<CR>
-" nmap [c :lprev<CR>
-" nmap ]q :cnext<CR>
-" nmap [q :cprev<CR>
+nmap ]l :lnext<CR>
+nmap [l :lprev<CR>
+nmap ]q :cnext<CR>
+nmap [q :cprev<CR>
+
+" Select last paste
+nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
 " Duplicate lines
 nnoremap <Leader>d m`YP``
@@ -234,15 +269,15 @@ vnoremap <Leader>d YPgv
 vnoremap <Leader>S y:execute @@<CR>:echo 'Sourced selection.'<CR>
 nnoremap <Leader>S ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
 
-" Yank buffer's absolute path to clipboard
-nnoremap <Leader>y :let @+=expand("%")<CR>:echo 'Yanked relative path'<CR>
+" Yank buffer's relative/absolute path to clipboard
+nnoremap <Leader>y :let @+=expand("%:~:.")<CR>:echo 'Yanked relative path'<CR>
 nnoremap <Leader>Y :let @+=expand("%:p")<CR>:echo 'Yanked absolute path'<CR>
 
 " Drag current line/s vertically and auto-indent
-vnoremap <Leader>k :m-2<CR>gv=gv
+nnoremap <Leader>k :m-2<CR>
+nnoremap <Leader>j :m+<CR>
+vnoremap <Leader>k :m'<-2<CR>gv=gv
 vnoremap <Leader>j :m'>+<CR>gv=gv
-noremap  <Leader>k :m-2<CR>
-noremap  <Leader>j :m+<CR>
 
 " Context-aware action-menu, neovim only (see plugin/actionmenu.vim)
 if has('nvim')
@@ -254,11 +289,11 @@ nnoremap ]w :<C-u>WhitespaceNext<CR>
 nnoremap [w :<C-u>WhitespacePrev<CR>
 
 " Session management shortcuts (see plugin/sessions.vim)
-nmap <silent> <Leader>se :<C-u>SessionSave<CR>
-nmap <silent> <Leader>os :<C-u>SessionLoad<CR>
+nmap <Leader>se :<C-u>SessionSave<CR>
+nmap <Leader>sl :<C-u>SessionLoad<CR>
 
-nmap <silent> <Leader>o :<C-u>OpenSCM<CR>
-vmap <silent> <Leader>o :OpenSCM<CR>
+nmap <Leader>o :<C-u>OpenSCM<CR>
+vmap <Leader>o :OpenSCM<CR>
 
 if has('mac')
 	" Open the macOS dictionary on current word
