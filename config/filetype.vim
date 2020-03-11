@@ -64,7 +64,7 @@ augroup user_plugin_filetype " {{{
 
 	autocmd FileType html setlocal path+=./;/
 
-	autocmd FileType json setlocal equalprg=python\ -m\ json.tool
+	autocmd FileType json setlocal equalprg=python3\ -m\ json.tool
 
 	autocmd FileType python
 		\ setlocal foldmethod=indent expandtab smarttab nosmartindent

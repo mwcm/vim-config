@@ -15,6 +15,7 @@
 - repo: thinca/vim-localrc
 - repo: romainl/vim-cool
 - repo: sgur/vim-editorconfig
+- repo: junegunn/vim-peekaboo
 
 - repo: christoomey/vim-tmux-navigator
   if: "! (has('win32') || has('win64'))"
@@ -233,6 +234,7 @@
 - { repo: Shougo/vinarise.vim, on_cmd: Vinarise }
 - { repo: guns/xterm-color-table.vim, on_cmd: XtermColorTable }
 - { repo: cocopon/colorswatch.vim, on_cmd: ColorSwatchGenerate }
+- { repo: tpope/vim-speeddating }
 
 - repo: kana/vim-niceblock
   on_map: { x: <Plug> }
@@ -458,9 +460,9 @@
   on_ft: python
   depends: python-language-server
 
+  #rev: 'ec3a954^' # gets locationlist working again
 - repo: neoclide/coc.nvim
   merge: 0
-  rev: 'ec3a954^' # gets locationlist working again
   hook_add: |
     command! -nargs=0 Prettier :CocCommand prettier.formatFile
 

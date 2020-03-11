@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/Users/mwcmitchell/Projects/app-content/default/_root/general/jdx/us/surplusLines/states/ca/pdfDeclaration'
 let g:netrw_dirhist_4='/Applications/appmodechrome.app'
 let g:netrw_dirhist_3='/Applications/appmodechrome.app/Contents/MacOS'
 let g:netrw_dirhist_2='/Applications/appmodechrome.app/Contents'

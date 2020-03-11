@@ -315,8 +315,8 @@ nnoremap <silent> [Window]sg :vsplit<CR>:wincmd p<CR>:e#<CR>
 
 " TODO: make sure this still works
 " Vertical + Horizontal new buffer splits
-nnoremap <silent> [Window]sz  :new<CR>
-nnoremap <silent> [Window]szv :vnew<CR>
+nnoremap <silent> sz  :new<CR>
+nnoremap <silent> szv :vnew<CR>
 
 " Background dark/light toggle and contrasts
 nmap <silent> [Window]h :<C-u>call <SID>toggle_background()<CR>
