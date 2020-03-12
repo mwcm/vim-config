@@ -184,6 +184,7 @@
 - { repo: jstrater/mpvim, on_ft: portfile }
 - { repo: robbles/logstash.vim, on_ft: logstash }
 - { repo: lifepillar/pgsql.vim, on_ft: pgsql }
+- { repo: alcesleo/vim-uppercase-sql }
 - { repo: chr4/nginx.vim, on_ft: nginx }
 - { repo: IN3D/vim-raml, on_ft: raml }
 - { repo: towolf/vim-helm, on_ft: helm }
