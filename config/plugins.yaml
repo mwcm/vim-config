@@ -545,6 +545,8 @@
     let g:ale_sign_error = '✖'
     let g:ale_sign_warning = 'ⁱ'
     let g:ale_maximum_file_size = 500000
+    let g:ale_fixers = ['black']
+    let g:ale_fix_on_save = 1
 
 - repo: mattn/emmet-vim
   on_event: InsertEnter
