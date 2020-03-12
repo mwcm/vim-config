@@ -199,7 +199,7 @@ nnoremap <Leader>cw :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 xnoremap <C-r> :<C-u>call <SID>get_selection('/')<CR>:%s/\V<C-R>=@/<CR>//gc<Left><Left><Left>
 
 " Quick substitute within selected area
-xnoremap sg :s//gc<Left><Left><Left>
+xnoremap s :s//gc<Left><Left><Left>
 
 " Returns visually selected text
 function! s:get_selection(cmdtype) "{{{

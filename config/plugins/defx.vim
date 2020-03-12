@@ -53,6 +53,16 @@ augroup user_plugin_defx
 
 	" Automatically refresh opened Defx windows when changing working-directory
 	" autocmd DirChanged * call <SID>defx_handle_dirchanged(v:event)
+	
+	augroup DefxCursor
+		autocmd!
+		autocmd BufEnter *defx]* setlocal cursorline
+		autocmd BufEnter *defx]* hi CursorLine gui=underline
+		autocmd BufWinEnter *defx]* hi Cursorline gui=underline
+		autocmd BufLeave *defx]* highlight clear CursorLine
+	augroup END
+
+
 
 	" Define defx window mappings
 	autocmd FileType defx call <SID>defx_mappings()
@@ -64,7 +74,7 @@ augroup user_plugin_defx
 	" autocmd WinLeave * if &filetype ==# 'defx'
 	"	\ |   silent! highlight! link CursorLine NONE
 	"	\ | endif
-
+	"
 augroup END
 
 " Internal functions
@@ -130,6 +140,7 @@ endfunction
 function! s:defx_mappings() abort
 	" Defx window keyboard mappings
 	setlocal signcolumn=no expandtab
+	" setlocal cursorline
 
 	nnoremap <silent><buffer><expr> <CR>  <SID>defx_toggle_tree()
 	nnoremap <silent><buffer><expr> e     <SID>defx_toggle_tree()
