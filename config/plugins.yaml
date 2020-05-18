@@ -102,7 +102,6 @@
     let g:gfm_syntax_highlight_emoji = 0
     let g:gfm_syntax_enable_filetypes = ['markdown']
 
-# Javascript related
 - repo: pangloss/vim-javascript
   on_ft: [ javascript, javascriptreact ]
   hook_add: |
@@ -127,9 +126,9 @@
 # pangloss/javascript vs. othree/yajs
 #- { repo: othree/yajs.vim, on_ft: [ javascript, javascriptreact ]}
 #- { repo: gavocanov/vim-js-indent, on_ft: [ javascript, javascriptreact ]}
-#- repo: mxw/vim-jsx
-#  on_ft: [ javascript, javascriptreact ]
-#  hook_add: let g:jsx_ext_required = 0
+- repo: mxw/vim-jsx
+  on_ft: [ javascript, javascriptreact ]
+  hook_add: let g:jsx_ext_required = 0
 
 # Golang related
 - repo: fatih/vim-go
@@ -444,6 +443,9 @@
     let g:lsp_virtual_text_enabled = 0
   hook_source: source $VIM_PATH/config/plugins/lsp-settings.vim
 
+- repo: ryanolsonx/vim-lsp-javascript
+  depends: vim-lsp
+
 - repo: mattn/vim-lsp-settings
   depends: vim-lsp
   merged: 0
@@ -546,8 +548,11 @@
     let g:ale_sign_error = '✖'
     let g:ale_sign_warning = 'ⁱ'
     let g:ale_maximum_file_size = 500000
-    let g:ale_fixers = ['black']
-    let g:ale_fix_on_save = 1
+    let g:ale_fixers = { 'javascript':['prettier', 'eslint'], 'python': ['black']}
+
+- repo: luochen1990/rainbow
+  hook_source: |
+    let g:rainbow_active = 1
 
 - repo: mattn/emmet-vim
   on_event: InsertEnter
