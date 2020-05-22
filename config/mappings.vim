@@ -70,6 +70,11 @@ nnoremap gf :rightbelow wincmd f<CR>
 " Backspace should delete selection and put me in insert mode
 " vnoremap <BS> "_xi
 
+" search ALL the docsets
+nnoremap <silent> <Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
+"Search ALL docsets for your selected text:
+vnoremap <silent> <Leader>k y:<C-U>call Dasht(getreg(0), '!')<Return>
+
 " `<Tab>`/`<S-Tab>` to move between matches without leaving incremental search.
 " Note dependency on `'wildcharm'` being set to `<C-z>` in order for this to
 " work.
@@ -229,12 +234,6 @@ nnoremap <Leader>S ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
 " Yank buffer's relative/absolute path to clipboard
 nnoremap <Leader>y :let @+=expand("%:~:.")<CR>:echo 'Yanked relative path'<CR>
 nnoremap <Leader>Y :let @+=expand("%:p")<CR>:echo 'Yanked absolute path'<CR>
-
-" Drag current line/s vertically and auto-indent
-nnoremap <Leader>k :m-2<CR>
-nnoremap <Leader>j :m+<CR>
-vnoremap <Leader>k :m'<-2<CR>gv=gv
-vnoremap <Leader>j :m'>+<CR>gv=gv
 
 " Context-aware action-menu, neovim only (see plugin/actionmenu.vim)
 if has('nvim')
