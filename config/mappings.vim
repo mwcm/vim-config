@@ -13,12 +13,10 @@ map <Nul> <C-Space>
 map! <Nul> <C-Space>
 
 " Disable arrow movement, resize splits instead.
-if get(g:, 'elite_mode')
-	nnoremap <silent><Up>    :resize +1<CR>
-	nnoremap <silent><Down>  :resize -1<CR>
-	nnoremap <silent><Left>  :vertical resize +1<CR>
-	nnoremap <silent><Right> :vertical resize -1<CR>
-endif
+nnoremap <silent><Up>    :resize +1<CR>
+nnoremap <silent><Down>  :resize -1<CR>
+nnoremap <silent><Left>  :vertical resize +1<CR>
+nnoremap <silent><Right> :vertical resize -1<CR>
 
 " Double leader key for toggling visual-line mode
 nmap <silent> <Leader><Leader> V
