@@ -265,6 +265,8 @@
       autocmd FileType fugitiveblame normal A
     augroup END
 
+- repo: junegunn/vim-easy-align
+
 - repo: junegunn/gv.vim
   depends: vim-fugitive
   on_cmd: GV

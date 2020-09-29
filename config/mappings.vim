@@ -68,6 +68,12 @@ nnoremap gf :rightbelow wincmd f<CR>
 " Backspace should delete selection and put me in insert mode
 " vnoremap <BS> "_xi
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " search ALL the docsets
 nnoremap <silent> <Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
 "Search ALL docsets for your selected text:
