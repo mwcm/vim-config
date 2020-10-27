@@ -1,77 +1,35 @@
 " Plugin Keyboard-Mappings
 " ---
 
-if dein#tap('vim-clap')
-	" nnoremap <silent><LocalLeader>f :<C-u>Clap! files<CR>
-	" nnoremap <silent><LocalLeader>b :<C-u>Clap! buffers<CR>
-	" nnoremap <silent><LocalLeader>g :<C-u>Clap! grep<CR>
-	nnoremap <silent><LocalLeader>j :<C-u>Clap! jumps<CR>
-	nnoremap <silent><LocalLeader>h :<C-u>Clap! help_tags<CR>
-	nnoremap <silent><LocalLeader>t :<C-u>Clap! tags<CR>
-	nnoremap <silent><LocalLeader>l :<C-u>Clap! loclist<CR>
-	nnoremap <silent><LocalLeader>q :<C-u>Clap! quickfix<CR>
-	nnoremap <silent><LocalLeader>m :<C-u>Clap! files ~/docs/books<CR>
-	nnoremap <silent><LocalLeader>y :<C-u>Clap! yanks<CR>
-	nnoremap <silent><LocalLeader>/ :<C-u>Clap! lines<CR>
-	nnoremap <silent><LocalLeader>* :<C-u>Clap! lines ++query=<cword><CR>
-	nnoremap <silent><LocalLeader>; :<C-u>Clap! command_history<CR>
-
-	" nnoremap <silent><Leader>gl :<C-u>Clap! commits<CR>
-	" nnoremap <silent><Leader>gt :<C-u>Clap! tags ++query=<cword><CR>
-	" xnoremap <silent><Leader>gt :<C-u>Clap! tags ++query=@visual<CR><CR>
-	" nnoremap <silent><Leader>gf :<C-u>Clap! files ++query=<cword><CR>
-	" xnoremap <silent><Leader>gf :<C-u>Clap! files ++query=@visual<CR><CR>
-	" nnoremap <silent><Leader>gg :<C-u>Clap! grep ++query=<cword><CR>
-	" xnoremap <silent><Leader>gg :<C-u>Clap! grep ++query=@visual<CR><CR>
-
-	autocmd user_events FileType clap_input call s:clap_mappings()
-
-	function! s:clap_mappings()
-		nnoremap <silent> <buffer> <nowait>' :call clap#handler#tab_action()<CR>
-		inoremap <silent> <buffer> <Tab>   <C-R>=clap#navigation#linewise('down')<CR>
-		inoremap <silent> <buffer> <S-Tab> <C-R>=clap#navigation#linewise('up')<CR>
-		nnoremap <silent> <buffer> <C-f> :<c-u>call clap#navigation#scroll('down')<CR>
-		nnoremap <silent> <buffer> <C-b> :<c-u>call clap#navigation#scroll('up')<CR>
-
-		nnoremap <silent> <buffer> sg  :<c-u>call clap#handler#try_open('ctrl-v')<CR>
-		nnoremap <silent> <buffer> sv  :<c-u>call clap#handler#try_open('ctrl-x')<CR>
-		nnoremap <silent> <buffer> st  :<c-u>call clap#handler#try_open('ctrl-t')<CR>
-
-		nnoremap <silent> <buffer> q     :<c-u>call clap#handler#exit()<CR>
-		nnoremap <silent> <buffer> <Esc> :call clap#handler#exit()<CR>
-		inoremap <silent> <buffer> <Esc> <C-R>=clap#navigation#linewise('down')<CR><C-R>=clap#navigation#linewise('up')<CR><Esc>
-		inoremap <silent> <buffer> jj    <C-R>=clap#navigation#linewise('down')<CR><C-R>=clap#navigation#linewise('up')<CR><Esc>
-	endfunction
-endif
-
 if dein#tap('denite.nvim')
 	nnoremap <silent><LocalLeader>r :<C-u>Denite -resume -refresh -no-start-filter<CR>
 	nnoremap <silent><LocalLeader>f :<C-u>Denite file/rec<CR>
 	nnoremap <silent><LocalLeader>g :<C-u>Denite grep -start-filter<CR>
-	nnoremap <silent><LocalLeader>b :<C-u>Denite buffer file_mru -default-action=switch<CR>
+	nnoremap <silent><LocalLeader>b :<C-u>Denite buffer -default-action=switch<CR>
+	nnoremap <silent><LocalLeader>i :<C-u>Denite file/old file_mru<CR>
 	nnoremap <silent><LocalLeader>d :<C-u>Denite directory_rec directory_mru -default-action=cd<CR>
 	nnoremap <silent><LocalLeader>v :<C-u>Denite neoyank -buffer-name=register<CR>
 	xnoremap <silent><LocalLeader>v :<C-u>Denite neoyank -buffer-name=register -default-action=replace<CR>
-	" nnoremap <silent><LocalLeader>l :<C-u>Denite location_list -buffer-name=list -no-start-filter<CR>
-	" nnoremap <silent><LocalLeader>q :<C-u>Denite quickfix -buffer-name=list -no-start-filter<CR>
+	nnoremap <silent><LocalLeader>l :<C-u>Denite location_list -buffer-name=list -no-start-filter<CR>
+	nnoremap <silent><LocalLeader>q :<C-u>Denite quickfix -buffer-name=list -no-start-filter<CR>
+	nnoremap <silent><LocalLeader>m :<C-u>Denite mark<CR>
 	nnoremap <silent><LocalLeader>n :<C-u>Denite dein<CR>
-	" nnoremap <silent><LocalLeader>j :<C-u>Denite jump change file/point -no-start-filter<CR>
+	nnoremap <silent><LocalLeader>j :<C-u>Denite jump change file/point -no-start-filter<CR>
 	nnoremap <silent><LocalLeader>u :<C-u>Denite junkfile:new junkfile -buffer-name=list<CR>
 	nnoremap <silent><LocalLeader>o :<C-u>Denite outline -no-start-filter<CR>
 	nnoremap <silent><LocalLeader>s :<C-u>Denite session -buffer-name=list<CR>
-	" nnoremap <silent><LocalLeader>t :<C-u>Denite tag<CR>
-	" nnoremap <silent><LocalLeader>p :<C-u>Denite jump<CR>
-	" nnoremap <silent><LocalLeader>h :<C-u>Denite help<CR>
-	" nnoremap <silent><LocalLeader>m :<C-u>Denite file/rec -buffer-name=memo -path=~/docs/books<CR>
+	nnoremap <silent><LocalLeader>t :<C-u>Denite tag<CR>
+	nnoremap <silent><LocalLeader>p :<C-u>Denite jump<CR>
+	nnoremap <silent><LocalLeader>h :<C-u>Denite help<CR>
+	nnoremap <silent><LocalLeader>w :<C-u>Denite file/rec -buffer-name=memo -path=~/docs/blog<CR>
 	nnoremap <silent><LocalLeader>z :<C-u>Denite z -buffer-name=list<CR>
-	" nnoremap <silent><LocalLeader>; :<C-u>Denite command_history command<CR>
-	" nnoremap <silent><LocalLeader>/ :<C-u>Denite line<CR>
-	" nnoremap <silent><LocalLeader>* :<C-u>DeniteCursorWord line -no-start-filter<CR>
-
-	" chemzqm/denite-git
-	nnoremap <silent> <Leader>gl :<C-u>Denite gitlog:all -no-start-filter<CR>
-	nnoremap <silent> <Leader>gs :<C-u>Denite gitstatus -no-start-filter<CR>
-	nnoremap <silent> <Leader>gc :<C-u>Denite gitbranch -no-start-filter<CR>
+	nnoremap <silent><LocalLeader>; :<C-u>Denite command_history command<CR>
+	nnoremap <silent><expr><LocalLeader>/ wordcount().chars > 10000 ?
+		\ ":\<C-u>Denite -search line/external\<CR>"
+		\ : ":\<C-u>Denite -search line\<CR>"
+	nnoremap <silent><expr><LocalLeader>* wordcount().chars > 10000 ?
+		\ ":\<C-u>DeniteCursorWord -no-start-filter -search line/external\<CR>"
+		\ : ":\<C-u>DeniteCursorWord -no-start-filter -search line\<CR>"
 
 	" Open Denite with word under cursor or selection
 	nnoremap <silent> <Leader>gt :DeniteCursorWord tag:include -no-start-filter -immediately<CR>
@@ -89,27 +47,72 @@ if dein#tap('denite.nvim')
 	endfunction
 endif
 
+if dein#tap('vim-clap')
+	" nnoremap <silent><LocalLeader>f :<C-u>Clap! files<CR>
+	" nnoremap <silent><LocalLeader>b :<C-u>Clap! buffers<CR>
+	" nnoremap <silent><LocalLeader>g :<C-u>Clap! grep<CR>
+	" nnoremap <silent><LocalLeader>j :<C-u>Clap! jumps<CR>
+	" nnoremap <silent><LocalLeader>h :<C-u>Clap! help_tags<CR>
+	" nnoremap <silent><LocalLeader>t :<C-u>Clap! tags<CR>
+	" nnoremap <silent><LocalLeader>l :<C-u>Clap! loclist<CR>
+	" nnoremap <silent><LocalLeader>q :<C-u>Clap! quickfix<CR>
+	" nnoremap <silent><LocalLeader>m :<C-u>Clap! files ~/docs/books<CR>
+	" nnoremap <silent><LocalLeader>y :<C-u>Clap! yanks<CR>
+	" nnoremap <silent><LocalLeader>/ :<C-u>Clap! lines<CR>
+	" nnoremap <silent><LocalLeader>* :<C-u>Clap! lines ++query=<cword><CR>
+	" nnoremap <silent><LocalLeader>; :<C-u>Clap! command_history<CR>
+
+	" nnoremap <silent><Leader>gl :<C-u>Clap! commits<CR>
+	" nnoremap <silent><Leader>gt :<C-u>Clap! tags ++query=<cword><CR>
+	" xnoremap <silent><Leader>gt :<C-u>Clap! tags ++query=@visual<CR><CR>
+	" nnoremap <silent><Leader>gf :<C-u>Clap! files ++query=<cword><CR>
+	" xnoremap <silent><Leader>gf :<C-u>Clap! files ++query=@visual<CR><CR>
+	" nnoremap <silent><Leader>gg :<C-u>Clap! grep ++query=<cword><CR>
+	" xnoremap <silent><Leader>gg :<C-u>Clap! grep ++query=@visual<CR><CR>
+
+	autocmd user_events FileType clap_input call s:clap_mappings()
+
+	function! s:clap_mappings()
+		nnoremap <silent> <buffer> <nowait> <Space> :call clap#handler#tab_action()<CR>
+		nnoremap <silent> <buffer> <nowait>' :call clap#handler#tab_action()<CR>
+		inoremap <silent> <buffer> <Tab>   <C-R>=clap#navigation#linewise('down')<CR>
+		inoremap <silent> <buffer> <S-Tab> <C-R>=clap#navigation#linewise('up')<CR>
+		nnoremap <silent> <buffer> <C-j> :<C-u>call clap#navigation#linewise('down')<CR>
+		nnoremap <silent> <buffer> <C-k> :<C-u>call clap#navigation#linewise('up')<CR>
+		nnoremap <silent> <buffer> <C-n> :<C-u>call clap#navigation#linewise('down')<CR>
+		nnoremap <silent> <buffer> <C-p> :<C-u>call clap#navigation#linewise('up')<CR>
+		nnoremap <silent> <buffer> <C-f> :<c-u>call clap#navigation#scroll('down')<CR>
+		nnoremap <silent> <buffer> <C-b> :<c-u>call clap#navigation#scroll('up')<CR>
+
+		nnoremap <silent> <buffer> sg  :<c-u>call clap#handler#try_open('ctrl-v')<CR>
+		nnoremap <silent> <buffer> sv  :<c-u>call clap#handler#try_open('ctrl-x')<CR>
+		nnoremap <silent> <buffer> st  :<c-u>call clap#handler#try_open('ctrl-t')<CR>
+
+		nnoremap <silent> <buffer> q     :<c-u>call clap#handler#exit()<CR>
+		nnoremap <silent> <buffer> <Esc> :call clap#handler#exit()<CR>
+		inoremap <silent> <buffer> <Esc> <C-R>=clap#navigation#linewise('down')<CR><C-R>=clap#navigation#linewise('up')<CR><Esc>
+		inoremap <silent> <buffer> jj    <C-R>=clap#navigation#linewise('down')<CR><C-R>=clap#navigation#linewise('up')<CR><Esc>
+	endfunction
+endif
+
 if dein#tap('vim-lsp')
-	" Close preview window with Escape key
-	autocmd user_events User lsp_float_opened nmap <buffer> <silent> <Esc>
-		\ <Plug>(lsp-preview-close)
-	autocmd user_events User lsp_float_closed nunmap <buffer> <Esc>
+	" Close preview window with Escape
+	autocmd User lsp_float_opened
+		\ nmap <buffer> <silent> <Esc> <Plug>(lsp-preview-close)
+	autocmd User lsp_float_closed silent! nunmap <buffer> <Esc>
+	autocmd user_events FileType markdown.lsp-hover
+		\ nmap <silent><buffer>q :wincmd z<CR>
 endif
 
 if dein#tap('defx.nvim')
 	nnoremap <silent> <LocalLeader>e
-		\ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
+		\ :<C-u>Defx -toggle -buffer-name=explorer`tabpagenr()`<CR>
 	nnoremap <silent> <LocalLeader>a
-		\ :<C-u>Defx -resume -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
+		\ :<C-u>Defx -search=`expand('%:p')` -buffer-name=explorer`tabpagenr()`<CR>
 endif
 
 if dein#tap('delimitMate')
 	imap <buffer><expr> <C-Tab> delimitMate#JumpAny()
-endif
-
-if dein#tap('ale')
-	nmap <silent> [c <Plug>(ale_previous)
-	nmap <silent> ]c <Plug>(ale_next)
 endif
 
 if dein#tap('vista.vim')
@@ -118,7 +121,7 @@ if dein#tap('vista.vim')
 endif
 
 if dein#tap('emmet-vim')
-	autocmd user_events FileType html,css,javascript,javascriptreact
+	autocmd user_events FileType html,css,javascript,javascriptreact,svelte
 		\ EmmetInstall
 		\ | imap <buffer> <C-Return> <Plug>(emmet-expand-abbr)
 endif
@@ -135,20 +138,6 @@ endif
 if dein#tap('context.vim')
 	nmap <silent><Leader>tc :<C-u>ContextEnableWindow<CR>
 	nmap <silent><Leader>tp :<C-u>ContextPeek<CR>
-endif
-
-if dein#tap('vim-go')
-	autocmd user_events FileType go
-		\   nmap <C-]> <Plug>(go-def)
-		\ | nmap <Leader>god  <Plug>(go-describe)
-		\ | nmap <Leader>goc  <Plug>(go-callees)
-		\ | nmap <Leader>goC  <Plug>(go-callers)
-		\ | nmap <Leader>goi  <Plug>(go-info)
-		\ | nmap <Leader>gom  <Plug>(go-implements)
-		\ | nmap <Leader>gos  <Plug>(go-callstack)
-		\ | nmap <Leader>goe  <Plug>(go-referrers)
-		\ | nmap <Leader>gor  <Plug>(go-run)
-		\ | nmap <Leader>gov  <Plug>(go-vet)
 endif
 
 if dein#tap('iron.nvim')
@@ -172,8 +161,8 @@ if dein#tap('vim-sandwich')
 	xmap <silent> sr <Plug>(operator-sandwich-replace)
 	nmap <silent> sdb <Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-auto-a)
 	nmap <silent> srb <Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-auto-a)
-	omap ib <Plug>(textobj-sandwich-auto-i)
-	xmap ib <Plug>(textobj-sandwich-auto-i)
+	omap ir <Plug>(textobj-sandwich-auto-i)
+	xmap ir <Plug>(textobj-sandwich-auto-i)
 	omap ab <Plug>(textobj-sandwich-auto-a)
 	xmap ab <Plug>(textobj-sandwich-auto-a)
 	omap is <Plug>(textobj-sandwich-query-i)
@@ -257,12 +246,14 @@ endif
 if dein#tap('committia.vim')
 	let g:committia_hooks = {}
 	function! g:committia_hooks.edit_open(info)
+		setlocal winminheight=1 winheight=10
+		resize 10
 		imap <buffer><C-d> <Plug>(committia-scroll-diff-down-half)
 		imap <buffer><C-u> <Plug>(committia-scroll-diff-up-half)
-
-		setlocal winminheight=1 winheight=1
-		resize 10
-		startinsert
+		imap <buffer><C-f> <Plug>(committia-scroll-diff-down-page)
+		imap <buffer><C-b> <Plug>(committia-scroll-diff-up-page)
+		imap <buffer><C-j> <Plug>(committia-scroll-diff-down)
+		imap <buffer><C-k> <Plug>(committia-scroll-diff-up)
 	endfunction
 endif
 
@@ -274,6 +265,21 @@ endif
 
 if dein#tap('goyo.vim')
 	nnoremap <Leader>G :Goyo<CR>
+endif
+
+if dein#tap('vim-shot-f')
+	nmap f  <Plug>(shot-f-f)
+	nmap F  <Plug>(shot-f-F)
+	nmap t  <Plug>(shot-f-t)
+	nmap T  <Plug>(shot-f-T)
+	xmap f  <Plug>(shot-f-f)
+	xmap F  <Plug>(shot-f-F)
+	xmap t  <Plug>(shot-f-t)
+	xmap T  <Plug>(shot-f-T)
+	omap f  <Plug>(shot-f-f)
+	omap F  <Plug>(shot-f-F)
+	omap t  <Plug>(shot-f-t)
+	omap T  <Plug>(shot-f-T)
 endif
 
 if dein#tap('vimwiki')
@@ -289,24 +295,36 @@ if dein#tap('vimagit')
 	nnoremap <silent> <Leader>mg :Magit<CR>
 endif
 
-if dein#tap('vim-fugitive')
-	nnoremap <silent> <leader>ga :Git add %:p<CR>
-	nnoremap <silent> <leader>gd :Gdiffsplit<CR>
-	nnoremap <silent> <leader>gc :Git commit<CR>
-	nnoremap <silent> <leader>gb :Git blame<CR>
-	nnoremap <silent> <leader>gF :Gfetch<CR>
-	nnoremap <silent> <leader>gS :Git<CR>
-	nnoremap <silent> <leader>gp :Gpush<CR>
-endif
-
-if dein#tap('gv.vim')
-	nmap <Leader>gv :GV! --all<cr>
-	vmap <Leader>gv :GV! --all<cr>
+if dein#tap('gina.vim')
+	nnoremap <silent> <leader>ga :Gina add %:p<CR>
+	nnoremap <silent> <leader>gd :Gina compare<CR>
+	nnoremap <silent> <leader>gc :Gina commit<CR>
+	nnoremap <silent> <leader>gb :Gina blame --width=40<CR>
+	nnoremap <silent> <leader>gs :Gina status -s<CR>
+	nnoremap <silent> <leader>gl :Gina log --graph --all<CR>
+	nnoremap <silent> <leader>gF :Gina! fetch<CR>
+	nnoremap <silent> <leader>gp :Gina! push<CR>
+	nnoremap <silent> <leader>go :,Gina browse :<CR>
+	vnoremap <silent> <leader>go :Gina browse :<CR>
 endif
 
 if dein#tap('vim-altr')
 	nmap <leader>n  <Plug>(altr-forward)
 	nmap <leader>N  <Plug>(altr-back)
+endif
+
+if dein#tap('any-jump.vim')
+	" Normal mode: Jump to definition under cursor
+	nnoremap <silent> <leader>ii :AnyJump<CR>
+
+	" Visual mode: jump to selected text in visual mode
+	xnoremap <silent> <leader>ii :AnyJumpVisual<CR>
+
+	" Normal mode: open previous opened file (after jump)
+	nnoremap <silent> <leader>ib :AnyJumpBack<CR>
+
+	" Normal mode: open last closed search window again
+	nnoremap <silent> <leader>il :AnyJumpLastResults<CR>
 endif
 
 if dein#tap('undotree')
@@ -390,11 +408,16 @@ if dein#tap('caw.vim')
 	call InitCaw()
 endif
 
-if dein#tap('vim-textobj-multiblock')
-	omap <silent> ab <Plug>(textobj-multiblock-a)
-	omap <silent> ib <Plug>(textobj-multiblock-i)
-	xmap <silent> ab <Plug>(textobj-multiblock-a)
-	xmap <silent> ib <Plug>(textobj-multiblock-i)
+if dein#tap('fin.vim')
+	nnoremap <Leader>f :<C-u>Fin<CR>
+
+	function! InitFin() abort
+		cmap <buffer><nowait> <Tab>   <Plug>(fin-line-next)
+		cmap <buffer><nowait> <S-Tab> <Plug>(fin-line-prev)
+		cmap <buffer><nowait> <C-j>   <Plug>(fin-line-next)
+		cmap <buffer><nowait> <C-k>   <Plug>(fin-line-prev)
+	endfunction
+	autocmd user_events FileType fin call InitFin()
 endif
 
 if dein#tap('vim-textobj-function')

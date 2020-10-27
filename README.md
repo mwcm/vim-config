@@ -2,7 +2,7 @@
 
 Lean mean Neo/vim machine, 30-45ms startup time.
 
-Best with [Neovim] or [Vim8] and `python3` enabled.
+Best with [Neovim] 0.5.x or [Vim] 8.x and `python3` enabled.
 
 > I encourage you to fork this repo and create your own experience.
 > Learn how to tweak and change Neo/vim to the way YOU like it.
@@ -39,20 +39,20 @@ Best with [Neovim] or [Vim8] and `python3` enabled.
     * [Denite](#denite)
     * [Operators & Text Objects](#operators--text-objects)
 * [Custom Key-mappings](#custom-key-mappings)
-  * [General](#general)
+  * [Navigation](#navigation)
   * [File Operations](#file-operations)
+  * [Edit](#edit)
+  * [Search & Replace](#search--replace)
+  * [Clipboard](#clipboard)
+  * [Command & History](#command--history)
   * [Editor UI](#editor-ui)
+  * [Custom Tools & Plugins](#custom-tools--plugins)
   * [Window Management](#window-management)
+  * [Git Version Control](#git-version-control)
   * [Plugin: Denite](#plugin-denite)
   * [Plugin: Defx](#plugin-defx)
   * [Plugin: Asyncomplete and Emmet](#plugin-asyncomplete-and-emmet)
-  * [Plugin: Caw (comments)](#plugin-caw-comments)
-  * [Plugin: Edge Motion](#plugin-edge-motion)
   * [Plugin: Signature](#plugin-signature)
-  * [Plugin: Easygit](#plugin-easygit)
-  * [Plugin: GitGutter](#plugin-gitgutter)
-  * [Plugin: Linediff](#plugin-linediff)
-  * [Misc Plugins](#misc-plugins)
 * [Credits & Contribution](#credits--contribution)
 
 <!-- vim-markdown-toc -->
@@ -120,8 +120,10 @@ Enjoy! :smile:
 ## Language-Server Protocol (LSP)
 
 To leverage LSP auto-completions and other functionalities, once you open a
-file in Neo/vim, run `:LspInstallServer` to use [mattn/vim-lsp-settings]
-installation feature.
+file in Neo/vim, run `:LspInstallServer <name>` to use [mattn/vim-lsp-settings]
+installation feature, use <kbd>Tab</kbd> to list available servers.
+
+For example, open a `.go` file, and run: `:LspInstallServer gopls`
 
 ## Upgrade
 
@@ -202,7 +204,7 @@ collection.
 If you want to disable some of the plugins I use, you can overwrite them, e.g.:
 
 ```yaml
-- { repo: dense-analysis/ale, if: 0 }
+- { repo: prabirshrestha/asyncomplete.vim, if: 0 }
 ```
 
 ## Structure
@@ -253,6 +255,7 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 | [sgur/vim-editorconfig] | EditorConfig plugin written entirely in Vimscript
 | [christoomey/tmux-navigator] | Seamless navigation between tmux panes and vim splits
 | [tpope/vim-sleuth] | Heuristically set buffer indent options
+| [antoinemadec/FixCursorHold.nvim] | Neovim CursorHold workaround
 | [roxma/nvim-yarp] | Vim8 remote plugin framework for Neovim
 | [roxma/vim-hug-neovim-rpc] | Vim8 compatibility layer for neovim rpc client
 
@@ -271,10 +274,10 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 | [digitaltoad/vim-pug] | Pug (formerly Jade) syntax and indentation
 | [othree/html5.vim] | HTML5 omnicomplete and syntax
 | [plasticboy/vim-markdown] | Markdown syntax highlighting
-| [rhysd/vim-gfm-syntax] | GitHub Flavored Markdown syntax highlight extension
 | [pangloss/vim-javascript] | Enhanced Javascript syntax
 | [HerringtonDarkholme/yats.vim] | Advanced TypeScript Syntax Highlighting
 | [MaxMEllon/vim-jsx-pretty] | React JSX syntax pretty highlighting
+| [leafOfTree/vim-svelte-plugin] | Syntax and indent plugin for Svelte
 | [heavenshell/vim-jsdoc] | Generate JSDoc to your JavaScript code
 | [jparise/vim-graphql] | GraphQL file detection, syntax highlighting, and indentation
 | [moll/vim-node] | Superb development with Node.js
@@ -304,8 +307,9 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 | [robbles/logstash.vim] | Highlights logstash configuration files
 | [lifepillar/pgsql.vim] | PostgreSQL syntax and indent
 | [chr4/nginx.vim] | Improved nginx syntax and indent
-| [IN3D/vim-raml] | Syntax and language settings for RAML
 | [towolf/vim-helm] | Syntax for Helm templates (yaml + gotmpl + sprig)
+| [udalov/kotlin-vim] | Kotlin syntax and indent
+| [reasonml-editor/vim-reason-plus] | Reason syntax and indent
 | [pearofducks/ansible-vim] | Improved YAML support for Ansible
 | [hashivim/vim-terraform] | Base Terraform integration
 
@@ -318,10 +322,11 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 | [kristijanhusak/defx-icons] | Filetype icons for Defx
 | [tyru/caw.vim] | Robust comment plugin with operator support
 | [Shougo/context_filetype.vim] | Context filetype detection for nested code
+| [mhinz/vim-grepper] | Helps you win at grep
+| [lambdalisue/fin.vim] | Filter the buffer content in-place
 | [liuchengxu/vim-which-key] | Shows key-bindings in pop-up
 | [mbbill/undotree] | Ultimate undo history visualizer
 | [reedes/vim-wordy] | Uncover usage problems in your writing
-| [brooth/far.vim] | Fast find and replace plugin
 | [jreybert/vimagit] | Ease your git work-flow within Vim
 | [tweekmonster/helpful.vim] | Display vim version numbers in docs
 | [lambdalisue/gina.vim] | Asynchronously control git repositories
@@ -330,13 +335,14 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 | [guns/xterm-color-table.vim] | Display 256 xterm colors with their RGB equivalents
 | [cocopon/colorswatch.vim] | Generate a beautiful color swatch for the current buffer
 | [dstein64/vim-startuptime] | Visually profile Vim's startup time
+| [brooth/far.vim] | Fast find and replace plugin
+| [pechorin/any-jump.vim] | Jump to any definition and references without overhead
 | [jaawerth/nrun.vim] | "which" and "exec" functions targeted at local node project bin
 | [Vigemus/iron.nvim] | Interactive REPL over Neovim
 | [kana/vim-niceblock] | Make blockwise Visual mode more useful
 | [t9md/vim-choosewin] | Choose window to use, like tmux's 'display-pane'
 | [lambdalisue/suda.vim] | An alternative sudo.vim for Vim and Neovim
 | [mzlogin/vim-markdown-toc] | Generate table of contents for Markdown files
-| [chemzqm/vim-easygit] | Git wrapper focus on simplity and usability
 | [liuchengxu/vista.vim] | Viewer & Finder for LSP symbols and tags in Vim
 | [junegunn/fzf] | Powerful command-line fuzzy finder
 | [junegunn/fzf.vim] | Fzf integration
@@ -355,7 +361,6 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 | [machakann/vim-highlightedyank] | Make the yanked region apparent
 | [wellle/context.vim] | Show context of current visible code hierarchy
 | [itchyny/cursorword] | Underlines word under cursor
-| [norcalli/nvim-colorizer.lua] | The fastest Neovim colorizer
 | [airblade/vim-gitgutter] | Show git changes at Vim gutter and un/stages hunks
 | [kshenoy/vim-signature] | Display and toggle marks
 | [nathanaelkane/vim-indent-guides] | Visually display indent levels in code
@@ -363,7 +368,9 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 | [junegunn/goyo] | Distraction-free writing
 | [junegunn/limelight] | Hyperfocus-writing
 | [itchyny/calendar.vim] | Calendar application
+| [deris/vim-shot-f] | Highlight characters to move directly with f/t/F/T
 | [vimwiki/vimwiki] | Personal Wiki for Vim
+| [norcalli/nvim-colorizer.lua] | The fastest Neovim colorizer
 
 #### Completion & Code-Analysis
 
@@ -376,13 +383,13 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 | [mattn/vim-lsp-settings] | Auto LSP configurations for vim-lsp
 | [Shougo/neco-vim] | Completion source for Vimscript
 | [prabirshrestha/asyncomplete-necovim.vim] | Provides syntax autocomplete via neco-vim
+| [prabirshrestha/asyncomplete-buffer.vim] | Provides buffer autocomplete
 | [prabirshrestha/asyncomplete-tags.vim] | Provides tag autocomplete via vim tagfiles
 | [prabirshrestha/asyncomplete-file.vim] | Provides file autocomplete
 | [wellle/tmux-complete.vim] | Completion of words in adjacent tmux panes
 | [prabirshrestha/asyncomplete-ultisnips.vim] | Provides UltiSnips autocomplete
 | [SirVer/ultisnips] | Ultimate snippet solution
 | [honza/vim-snippets] | Community-maintained snippets for programming languages
-| [dense-analysis/ale] | Check syntax asynchronously and fix files with LSP support
 | [mattn/emmet-vim] | Provides support for expanding abbreviations alá emmet
 | [ncm2/float-preview.nvim] | Less annoying completion preview window
 | [ludovicchabant/vim-gutentags] | Manages your tag files
@@ -397,7 +404,6 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 | [Shougo/neoyank.vim] | Denite plugin for yank history
 | [Shougo/junkfile.vim] | Denite plugin for temporary files
 | [chemzqm/unite-location] | Denite location & quickfix lists
-| [chemzqm/denite-git] | gitlog, gitstatus and gitchanged sources
 | [rafi/vim-denite-session] | Browse and open sessions
 | [rafi/vim-denite-z] | Filter and browse Z (jump around) data file
 
@@ -414,7 +420,6 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 | [AndrewRadev/splitjoin.vim] | Transition code between multi-line and single-line
 | [AndrewRadev/linediff.vim] | Perform diffs on blocks of code
 | [AndrewRadev/dsf.vim] | Delete surrounding function call
-| [osyo-manga/vim-textobj-multiblock] | Handle bracket objects
 | [kana/vim-textobj-function] | Text objects for functions
 
 [Shougo/dein.vim]: https://github.com/Shougo/dein.vim
@@ -426,6 +431,7 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 [sgur/vim-editorconfig]: https://github.com/sgur/vim-editorconfig
 [christoomey/tmux-navigator]: https://github.com/christoomey/vim-tmux-navigator
 [tpope/vim-sleuth]: https://github.com/tpope/vim-sleuth
+[antoinemadec/FixCursorHold.nvim]: https://github.com/antoinemadec/FixCursorHold.nvim
 [roxma/nvim-yarp]: https://github.com/roxma/nvim-yarp
 [roxma/vim-hug-neovim-rpc]: https://github.com/roxma/vim-hug-neovim-rpc
 
@@ -438,10 +444,10 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 [digitaltoad/vim-pug]: https://github.com/digitaltoad/vim-pug
 [othree/html5.vim]: https://github.com/othree/html5.vim
 [plasticboy/vim-markdown]: https://github.com/plasticboy/vim-markdown
-[rhysd/vim-gfm-syntax]: https://github.com/rhysd/vim-gfm-syntax
 [pangloss/vim-javascript]: https://github.com/pangloss/vim-javascript
 [HerringtonDarkholme/yats.vim]: https://github.com/HerringtonDarkholme/yats.vim
 [MaxMEllon/vim-jsx-pretty]: https://github.com/MaxMEllon/vim-jsx-pretty
+[leafOfTree/vim-svelte-plugin]: https://github.com/leafOfTree/vim-svelte-plugin
 [heavenshell/vim-jsdoc]: https://github.com/heavenshell/vim-jsdoc
 [jparise/vim-graphql]: https://github.com/jparise/vim-graphql
 [moll/vim-node]: https://github.com/moll/vim-node
@@ -471,8 +477,9 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 [robbles/logstash.vim]: https://github.com/robbles/logstash.vim
 [lifepillar/pgsql.vim]: https://github.com/lifepillar/pgsql.vim
 [chr4/nginx.vim]: https://github.com/chr4/nginx.vim
-[IN3D/vim-raml]: https://github.com/IN3D/vim-raml
 [towolf/vim-helm]: https://github.com/towolf/vim-helm
+[udalov/kotlin-vim]: https://github.com/udalov/kotlin-vim
+[reasonml-editor/vim-reason-plus]: https://github.com/reasonml-editor/vim-reason-plus
 [pearofducks/ansible-vim]: https://github.com/pearofducks/ansible-vim
 [hashivim/vim-terraform]: https://github.com/hashivim/vim-terraform
 
@@ -481,10 +488,11 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 [kristijanhusak/defx-icons]: https://github.com/kristijanhusak/defx-icons
 [tyru/caw.vim]: https://github.com/tyru/caw.vim
 [Shougo/context_filetype.vim]: https://github.com/Shougo/context_filetype.vim
+[mhinz/vim-grepper]: https://github.com/mhinz/vim-grepper
+[lambdalisue/fin.vim]: https://github.com/lambdalisue/fin.vim
 [liuchengxu/vim-which-key]: https://github.com/liuchengxu/vim-which-key
 [mbbill/undotree]: https://github.com/mbbill/undotree
 [reedes/vim-wordy]: https://github.com/reedes/vim-wordy
-[brooth/far.vim]: https://github.com/brooth/far.vim
 [jreybert/vimagit]: https://github.com/jreybert/vimagit
 [tweekmonster/helpful.vim]: https://github.com/tweekmonster/helpful.vim
 [lambdalisue/gina.vim]: https://github.com/lambdalisue/gina.vim
@@ -493,13 +501,14 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 [guns/xterm-color-table.vim]: https://github.com/guns/xterm-color-table.vim
 [cocopon/colorswatch.vim]: https://github.com/cocopon/colorswatch.vim
 [dstein64/vim-startuptime]: https://github.com/dstein64/vim-startuptime
+[brooth/far.vim]: https://github.com/brooth/far.vim
+[pechorin/any-jump.vim]: https://github.com/pechorin/any-jump.vim
 [jaawerth/nrun.vim]: https://github.com/jaawerth/nrun.vim
 [Vigemus/iron.nvim]: https://github.com/Vigemus/iron.nvim
 [kana/vim-niceblock]: https://github.com/kana/vim-niceblock
 [t9md/vim-choosewin]: https://github.com/t9md/vim-choosewin
 [lambdalisue/suda.vim]: https://github.com/lambdalisue/suda.vim
 [mzlogin/vim-markdown-toc]: https://github.com/mzlogin/vim-markdown-toc
-[chemzqm/vim-easygit]: https://github.com/chemzqm/vim-easygit
 [liuchengxu/vista.vim]: https://github.com/liuchengxu/vista.vim
 [junegunn/fzf]: https://github.com/junegunn/fzf
 [junegunn/fzf.vim]: https://github.com/junegunn/fzf.vim
@@ -514,7 +523,6 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 [machakann/vim-highlightedyank]: https://github.com/machakann/vim-highlightedyank
 [wellle/context.vim]: https://github.com/wellle/context.vim
 [itchyny/cursorword]: https://github.com/itchyny/vim-cursorword
-[norcalli/nvim-colorizer.lua]: https://github.com/norcalli/nvim-colorizer.lua
 [airblade/vim-gitgutter]: https://github.com/airblade/vim-gitgutter
 [kshenoy/vim-signature]: https://github.com/kshenoy/vim-signature
 [nathanaelkane/vim-indent-guides]: https://github.com/nathanaelkane/vim-indent-guides
@@ -522,7 +530,9 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 [junegunn/goyo]: https://github.com/junegunn/goyo.vim
 [junegunn/limelight]: https://github.com/junegunn/limelight.vim
 [itchyny/calendar.vim]: https://github.com/itchyny/calendar.vim
+[deris/vim-shot-f]: https://github.com/deris/vim-shot-f
 [vimwiki/vimwiki]: https://github.com/vimwiki/vimwiki
+[norcalli/nvim-colorizer.lua]: https://github.com/norcalli/nvim-colorizer.lua
 
 [prabirshrestha/async.vim]: https://github.com/prabirshrestha/async.vim
 [prabirshrestha/asyncomplete.vim]: https://github.com/prabirshrestha/asyncomplete.vim
@@ -531,13 +541,13 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 [mattn/vim-lsp-settings]: https://github.com/mattn/vim-lsp-settings
 [Shougo/neco-vim]: https://github.com/Shougo/neco-vim
 [prabirshrestha/asyncomplete-necovim.vim]: https://github.com/prabirshrestha/asyncomplete-necovim.vim
+[prabirshrestha/asyncomplete-buffer.vim]: https://github.com/prabirshrestha/asyncomplete-buffer.vim
 [prabirshrestha/asyncomplete-tags.vim]: https://github.com/prabirshrestha/asyncomplete-tags.vim
 [prabirshrestha/asyncomplete-file.vim]: https://github.com/prabirshrestha/asyncomplete-file.vim
 [wellle/tmux-complete.vim]: https://github.com/wellle/tmux-complete.vim
 [prabirshrestha/asyncomplete-ultisnips.vim]: https://github.com/prabirshrestha/asyncomplete-ultisnips.vim
 [SirVer/ultisnips]: https://github.com/SirVer/ultisnips
 [honza/vim-snippets]: https://github.com/honza/vim-snippets
-[dense-analysis/ale]: https://github.com/dense-analysis/ale
 [mattn/emmet-vim]: https://github.com/mattn/emmet-vim
 [ncm2/float-preview.nvim]: https://github.com/ncm2/float-preview.nvim
 [ludovicchabant/vim-gutentags]: https://github.com/ludovicchabant/vim-gutentags
@@ -548,7 +558,6 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 [Shougo/neoyank.vim]: https://github.com/Shougo/neoyank.vim
 [Shougo/junkfile.vim]: https://github.com/Shougo/junkfile.vim
 [chemzqm/unite-location]: https://github.com/chemzqm/unite-location
-[chemzqm/denite-git]: https://github.com/chemzqm/denite-git
 [rafi/vim-denite-session]: https://github.com/rafi/vim-denite-session
 [rafi/vim-denite-z]: https://github.com/rafi/vim-denite-z
 
@@ -561,7 +570,6 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 [AndrewRadev/splitjoin.vim]: https://github.com/AndrewRadev/splitjoin.vim
 [AndrewRadev/linediff.vim]: https://github.com/AndrewRadev/linediff.vim
 [AndrewRadev/dsf.vim]: https://github.com/AndrewRadev/dsf.vim
-[osyo-manga/vim-textobj-multiblock]: https://github.com/osyo-manga/vim-textobj-multiblock
 [kana/vim-textobj-function]: https://github.com/kana/vim-textobj-function
 
 </details>
@@ -570,9 +578,10 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 
 Note that,
 
-* Leader key set as <kbd>Space</kbd>
-* Local-leader set as <kbd>;</kbd> and used for navigation and search
+* **Leader** key set as <kbd>Space</kbd>
+* **Local-Leader** key set as <kbd>;</kbd> and used for navigation and search
   (Denite and Defx)
+* Disable <kbd>←</kbd> <kbd>↑</kbd> <kbd>→</kbd> <kbd>↓</kbd> in normal mode by enabling `g:elite_mode` in `.vault.vim`
 
 <details open>
   <summary>
@@ -580,290 +589,326 @@ Note that,
     <small><i>(🔎 Click to expand/collapse)</i></small>
   </summary>
 
-### General
+<center>Modes: 𝐍=normal 𝐕=visual 𝐒=select 𝐈=insert 𝐂=command</center>
 
-| Key   | Mode | Action
-| ----- |:----:| ------------------
-| <kbd>Space</kbd> | _All_ | **Leader** key
-| <kbd>;</kbd> | _All_ | **Local Leader** key
-| <kbd>←</kbd> <kbd>↑</kbd> <kbd>→</kbd> <kbd>↓</kbd> | Normal | Resize splits (* Enable `g:elite_mode` in `.vault.vim`)
-| <kbd>;</kbd>+<kbd>c</kbd> | Normal | Open context-menu
-| <kbd>Space</kbd>+<kbd>l</kbd> | Normal | Open side-menu helper
-| <kbd>Backspace</kbd> | Normal | Match bracket (`%`)
-| <kbd>gK</kbd> | Normal | Open Zeal or Dash on some file-types
-| <kbd>Y</kbd> | Normal | Yank to the end of line (`y$`)
-| <kbd>Return</kbd> | Normal | Toggle fold (`za`)
-| <kbd>Shift</kbd>+<kbd>Return</kbd> | Normal | Focus the current fold by closing all others (`zMzvzt`)
-| <kbd>Shift</kbd>+<kbd>Return</kbd> | Insert | Start new line from any cursor position (`<C-o>o`)
-| <kbd>j</kbd> / <kbd>k</kbd> | Normal/Visual | Cursor moves through display-lines (`g/jk`)
-| <kbd>Ctrl</kbd>+<kbd>f</kbd> | Normal | Smart page forward (`C-f/C-d`)
-| <kbd>Ctrl</kbd>+<kbd>b</kbd> | Normal | Smart page backwards (`C-b/C-u`)
-| <kbd>Ctrl</kbd>+<kbd>e</kbd> | Normal | Smart scroll down (`3C-e/j`)
-| <kbd>Ctrl</kbd>+<kbd>y</kbd> | Normal | Smart scroll up (`3C-y/k`)
-| <kbd>Ctrl</kbd>+<kbd>q</kbd> | Normal | Remap to <kbd>Ctrl</kbd>+<kbd>w</kbd>
-| <kbd>Ctrl</kbd>+<kbd>x</kbd> | Normal | Rotate window placement
-| <kbd>!</kbd> | Normal | Shortcut for `:!`
-| <kbd><<</kbd> | Visual | Indent to left and re-select
-| <kbd>>></kbd> | Visual | Indent to right and re-select
-| <kbd>Tab</kbd> | Visual | Indent to right and re-select
-| <kbd>Shift</kbd>+<kbd>Tab</kbd> | Visual | Indent to left and re-select
-| <kbd>gh</kbd> | Normal | Show highlight groups for word
-| <kbd>gp</kbd> | Normal | Select last paste
-| <kbd>Q</kbd> | Normal | Start/stop macro recording
-| <kbd>gQ</kbd> | Normal | Play macro 'q'
-| <kbd>Space</kbd>+<kbd>j</kbd> or <kbd>k</kbd> | Normal/Visual | Move lines down/up
-| <kbd>Space</kbd>+<kbd>cp</kbd> | Normal | Duplicate paragraph
-| <kbd>Space</kbd>+<kbd>cn</kbd> / <kbd>cN</kbd> | Normal/Visual | Change current word in a repeatable manner
-| <kbd>s</kbd><kbd>g</kbd> | Visual | Replace within selected area
-| <kbd>Ctrl</kbd>+<kbd>a</kbd> | Command | Navigation in command line
-| <kbd>Ctrl</kbd>+<kbd>b</kbd> | Command | Move cursor backward in command line
-| <kbd>Ctrl</kbd>+<kbd>f</kbd> | Command | Move cursor forward in command line
-| <kbd>Ctrl</kbd>+<kbd>r</kbd> | Visual | Replace selection with step-by-step confirmation
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd> | Normal | Exit Vim, confirm unsaved changes
-| <kbd>Space</kbd>+<kbd>cw</kbd> | Normal | Remove all spaces at EOL
-| <kbd>Space</kbd>+<kbd>Space</kbd> | Normal | Enter visual line-mode
-| <kbd>Space</kbd>+<kbd>sl</kbd> | Normal | Load workspace session
-| <kbd>Space</kbd>+<kbd>se</kbd> | Normal | Save current workspace session
-| <kbd>Space</kbd>+<kbd>d</kbd> | Normal/Visual | Duplicate line or selection
-| <kbd>Space</kbd>+<kbd>S</kbd> | Normal/Visual | Source selection
-| <kbd>Space</kbd>+<kbd>ml</kbd> | Normal | Append modeline
+### Navigation
+
+| Key   | Mode | Action             | Plugin or Mapping
+| ----- |:----:| ------------------ | ------
+| <kbd>j</kbd> / <kbd>k</kbd> | 𝐍 𝐕 | Cursor moves through display-lines | `g` `j/k`
+| <kbd>g</kbd>+<kbd>j</kbd> / <kbd>k</kbd> | 𝐍 𝐕 𝐒 | Jump to edge upward/downward | <small>[haya14busa/vim-edgemotion]</small>
+| <kbd>gh</kbd> / <kbd>gl</kbd> | 𝐍 𝐕 | Easier line-wise movement | `g` `^/$`
+| <kbd>Space</kbd>+<kbd>Space</kbd> | 𝐍 𝐕 | Toggle visual-line mode | `V` / <kbd>Escape</kbd>
+| <kbd>v</kbd> / <kbd>V</kbd> | 𝐕 | Expand/reduce selection | <small>[terryma/vim-expand-region]</small>
+| <kbd>zl</kbd> / <kbd>zh</kbd> | 𝐍 | Scroll horizontally and vertically wider | `z4` `l/h`
+| <kbd>Ctrl</kbd>+<kbd>j</kbd> | 𝐍 | Move to split below | <small>[christoomey/tmux-navigator]</small>
+| <kbd>Ctrl</kbd>+<kbd>k</kbd> | 𝐍 | Move to upper split | <small>[christoomey/tmux-navigator]</small>
+| <kbd>Ctrl</kbd>+<kbd>h</kbd> | 𝐍 | Move to left split | <small>[christoomey/tmux-navigator]</small>
+| <kbd>Ctrl</kbd>+<kbd>l</kbd> | 𝐍 | Move to right split | <small>[christoomey/tmux-navigator]</small>
+| <kbd>Return</kbd> | 𝐍 | Toggle fold | `za`
+| <kbd>Shift</kbd>+<kbd>Return</kbd> | 𝐍 | Focus the current fold by closing all others | `zMzvzt`
+| <kbd>]q</kbd> or <kbd>]q</kbd> | 𝐍 | Next/previous on quickfix list | `:cnext` / `:cprev`
+| <kbd>]l</kbd> or <kbd>]l</kbd> | 𝐍 | Next/previous on location-list | `:lnext` / `:lprev`
+| <kbd>]w</kbd> or <kbd>]w</kbd> | 𝐍 | Next/previous whitespace error | <small>[plugin/whitespace.vim]</small>
+| <kbd>]g</kbd> or <kbd>]g</kbd> | 𝐍 | Next/previous Git hunk | <small>[airblade/vim-gitgutter]</small>
+| <kbd>]d</kbd> or <kbd>]d</kbd> | 𝐍 | Next/previous LSP diagnostic | <small>[mattn/vim-lsp-settings]</small>
+| <kbd>Ctrl</kbd>+<kbd>f</kbd> | 𝐂 | Move cursor forwards in command | <kbd>Right</kbd>
+| <kbd>Ctrl</kbd>+<kbd>b</kbd> | 𝐂 | Move cursor backwards in command | <kbd>Left</kbd>
+| <kbd>Ctrl</kbd>+<kbd>h</kbd> | 𝐂 | Move cursor to the beginning in command | <kbd>Home</kbd>
+| <kbd>Ctrl</kbd>+<kbd>l</kbd> | 𝐂 | Move cursor to the end in command | <kbd>End</kbd>
 
 ### File Operations
 
-| Key   | Mode | Action
-| ----- |:----:| ------------------
-| <kbd>Space</kbd>+<kbd>cd</kbd> | Normal | Switch to the directory of opened buffer (`:lcd %:p:h`)
-| <kbd>Space</kbd>+<kbd>w</kbd> | Normal/Visual | Write (`:w`)
-| <kbd>Space</kbd>+<kbd>y</kbd> | Normal | Copy relative file-path to clipboard
-| <kbd>Space</kbd>+<kbd>Y</kbd> | Normal | Copy absolute file-path to clipboard
-| <kbd>Ctrl</kbd>+<kbd>s</kbd> | _All_ | Write (`:w`)
+| Key   | Mode | Action             | Plugin or Mapping
+| ----- |:----:| ------------------ | ------
+| <kbd>Space</kbd>+<kbd>cd</kbd> | 𝐍 | Switch to the directory of opened buffer | `:lcd %:p:h`
+| <kbd>gf</kbd> | 𝐍 𝐕 | Open file under the cursor in a vsplit | `:rightbelow wincmd f`
+| <kbd>Space</kbd>+<kbd>w</kbd> | 𝐍 𝐕 𝐒 | Write buffer to file | `:write`
+| <kbd>Ctrl</kbd>+<kbd>s</kbd> | 𝐍 𝐕 𝐒 𝐂 | Write buffer to file | `:write`
+
+### Edit
+
+| Key   | Mode | Action             | Plugin or Mapping
+| ----- |:----:| ------------------ | ------
+| <kbd>Ctrl</kbd>+<kbd>Return</kbd> | 𝐈 | Expand emmet abbreviation | <small>[mattn/emmet-vim]</small>
+| <kbd>Q</kbd> | 𝐍 | Start/stop macro recording | `q`
+| <kbd>gQ</kbd> | 𝐍 | Play macro 'q' | `@q`
+| <kbd>Shift</kbd>+<kbd>Return</kbd> | 𝐈 | Start new line from any cursor position | `<C-o>o`
+| <kbd><</kbd> | 𝐕 𝐒 | Indent to left and re-select | `<gv`
+| <kbd>></kbd> | 𝐕 𝐒 | Indent to right and re-select | `>gv|`
+| <kbd>Tab</kbd> | 𝐕 𝐒 | Indent to right and re-select | `>gv|`
+| <kbd>Shift</kbd>+<kbd>Tab</kbd> | 𝐕 𝐒 | Indent to left and re-select | `<gv`
+| <kbd>gc</kbd> | 𝐍 𝐕 𝐒 | Caw (comments plugin) prefix | <small>[tyru/caw.vim]</small>
+| <kbd>gcc</kbd> | 𝐍 𝐕 𝐒 | Toggle comments | <small>[tyru/caw.vim]</small>
+| <kbd>Space</kbd>+<kbd>v</kbd> | 𝐍 𝐕 𝐒 | Toggle single-line comments | <small>[tyru/caw.vim]</small>
+| <kbd>Space</kbd>+<kbd>V</kbd> | 𝐍 𝐕 𝐒 | Toggle comment block | <small>[tyru/caw.vim]</small>
+| <kbd>Space</kbd>+<kbd>j</kbd> or <kbd>k</kbd> | 𝐍 𝐕 | Move lines down/up | `:m` …
+| <kbd>Space</kbd>+<kbd>d</kbd> | 𝐍 𝐕 | Duplicate line or selection |
+| <kbd>Space</kbd>+<kbd>cn</kbd> / <kbd>cN</kbd> | 𝐍 𝐕 | Change current word in a repeatable manner |
+| <kbd>Space</kbd>+<kbd>cp</kbd> | 𝐍 | Duplicate paragraph | `yap<S-}>p`
+| <kbd>Space</kbd>+<kbd>cw</kbd> | 𝐍 | Remove all spaces at EOL | `:%s/\s\+$//e`
+| <kbd>Ctrl</kbd>+<kbd>Tab</kbd> | 𝐈 | Jump outside of pair | <small>[Raimondi/delimitMate]</small>
+| <kbd>sj</kbd> / <kbd>sk</kbd> | 𝐍 | Join/split arguments | <small>[AndrewRadev/splitjoin.vim]</small>
+| <kbd>dsf</kbd> / <kbd>csf</kbd> | 𝐍 | Delete/change surrounding function call | <small>[AndrewRadev/dsf.vim]</small>
+
+### Search & Replace
+
+| Key   | Mode | Action             | Plugin or Mapping
+| ----- |:----:| ------------------ | ------
+| <kbd>Space</kbd>+<kbd>f</kbd> | 𝐍 | Filter lines in-place | <small>[lambdalisue/fin.vim]</small>
+| <kbd>\*</kbd> / <kbd>#</kbd> | 𝐍 𝐕 | Search selection forward/backward | <small>[haya14busa/vim-asterisk]</small>
+| <kbd>g\*</kbd> / <kbd>g#</kbd> | 𝐍 𝐕 | Search whole-word forward/backward | <small>[haya14busa/vim-asterisk]</small>
+| <kbd>Backspace</kbd> | 𝐍 | Match bracket | `%`
+| <kbd>gp</kbd> | 𝐍 | Select last paste |
+| <kbd>sg</kbd> | 𝐕 | Replace within selected area | `:s/⌴/gc`
+| <kbd>Ctrl</kbd>+<kbd>r</kbd> | 𝐕 | Replace selection with step-by-step confirmation | `:%s/\V/⌴/gc`
+
+### Clipboard
+
+| Key   | Mode | Action             | Plugin or Mapping
+| ----- |:----:| ------------------ | ------
+| <kbd>p</kbd> | 𝐕 𝐒 | Paste without yank | <small>[kana/vim-operator-replace]</small>
+| <kbd>Y</kbd> | 𝐍 | Yank to the end of line | `y$`
+| <kbd>Space</kbd>+<kbd>y</kbd> | 𝐍 | Copy relative file-path to clipboard |
+| <kbd>Space</kbd>+<kbd>Y</kbd> | 𝐍 | Copy absolute file-path to clipboard |
+
+### Command & History
+
+| Key   | Mode | Action             | Plugin or Mapping
+| ----- |:----:| ------------------ | ------
+| <kbd>!</kbd> | 𝐍 | Shortcut for shell command | `:!`
+| <kbd>g!</kbd> | 𝐍 | Read vim command into buffer | `:put=execute('⌴')`
+| <kbd>Ctrl</kbd>+<kbd>n</kbd> / <kbd>p</kbd> | 𝐂 | Switch history search pairs | <kbd>↓</kbd> / <kbd>↑</kbd>
+| <kbd>↓</kbd> / <kbd>↑</kbd> | 𝐂 | Switch history search pairs | `Ctrl` `n`/`p`
 
 ### Editor UI
 
-| Key   | Mode | Action
-| ----- |:----:| ------------------
-| <kbd>Space</kbd>+<kbd>ti</kbd> | Normal | Toggle indentation lines
-| <kbd>Space</kbd>+<kbd>ts</kbd> | Normal | Toggle spell-checker (`:setlocal spell!`)
-| <kbd>Space</kbd>+<kbd>tn</kbd> | Normal | Toggle line numbers (`:setlocal nonumber!`)
-| <kbd>Space</kbd>+<kbd>tl</kbd> | Normal | Toggle hidden characters (`:setlocal nolist!`)
-| <kbd>Space</kbd>+<kbd>th</kbd> | Normal | Toggle highlighted search (`:set hlsearch!`)
-| <kbd>Space</kbd>+<kbd>tw</kbd> | Normal | Toggle wrap (`:setlocal wrap! breakindent!`)
-| <kbd>g1</kbd> | Normal | Go to first tab (`:tabfirst`)
-| <kbd>g9</kbd> | Normal | Go to last tab (`:tablast`)
-| <kbd>g5</kbd> | Normal | Go to previous tab (`:tabprevious`)
-| <kbd>Ctrl</kbd>+<kbd>j</kbd> | Normal | Move to split below
-| <kbd>Ctrl</kbd>+<kbd>k</kbd> | Normal | Move to upper split
-| <kbd>Ctrl</kbd>+<kbd>h</kbd> | Normal | Move to left split
-| <kbd>Ctrl</kbd>+<kbd>l</kbd> | Normal | Move to right split
-| <kbd>*</kbd> | Visual | Search selection forwards
-| <kbd>#</kbd> | Visual | Search selection backwards
-| <kbd>]</kbd>+<kbd>c</kbd> or <kbd>q</kbd> | Normal | Next on location/quickfix list
-| <kbd>]</kbd>+<kbd>c</kbd> or <kbd>q</kbd> | Normal | Previous on location/quickfix list
-| <kbd>s</kbd>+<kbd>h</kbd> | Normal | Toggle colorscheme background dark/light
-| <kbd>s</kbd>+<kbd>-</kbd> | Normal | Lower colorscheme contrast (Support solarized8)
-| <kbd>s</kbd>+<kbd>=</kbd> | Normal | Raise colorscheme contrast (Support solarized8)
+| Key   | Mode | Action             | Plugin or Mapping
+| ----- |:----:| ------------------ | ------
+| <kbd>Space</kbd>+<kbd>ts</kbd> | 𝐍 | Toggle spell-checker | <small>`:setlocal spell!`</small>
+| <kbd>Space</kbd>+<kbd>tn</kbd> | 𝐍 | Toggle line numbers | <small>`:setlocal nonumber!`</small>
+| <kbd>Space</kbd>+<kbd>tl</kbd> | 𝐍 | Toggle hidden characters | <small>`:setlocal nolist!`</small>
+| <kbd>Space</kbd>+<kbd>th</kbd> | 𝐍 | Toggle highlighted search | <small>`:set hlsearch!`</small>
+| <kbd>Space</kbd>+<kbd>tw</kbd> | 𝐍 | Toggle wrap | <small>`:setlocal wrap!`</small> …
+| <kbd>Space</kbd>+<kbd>ti</kbd> | 𝐍 | Toggle indentation lines | <small>[nathanaelkane/vim-indent-guides]</small>
+| <kbd>g1</kbd> | 𝐍 | Go to first tab | `:tabfirst`
+| <kbd>g9</kbd> | 𝐍 | Go to last tab | `:tablast`
+| <kbd>g5</kbd> | 𝐍 | Go to previous tab | `:tabprevious`
+| <kbd>Ctrl</kbd>+<kbd>Tab</kbd> | 𝐍 | Go to next tab | `:tabnext`
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd><kbd>Tab</kbd> | 𝐍 | Go to previous tab | `:tabprevious`
+| <kbd>Alt</kbd>+<kbd>j</kbd> | 𝐍 | Go to next tab | `:tabnext`
+| <kbd>Alt</kbd>+<kbd>k</kbd> | 𝐍 | Go to previous tab | `:tabprevious`
+| <kbd>Alt</kbd>+<kbd>{</kbd> | 𝐍 | Move tab backward | `:-tabmove`
+| <kbd>Alt</kbd>+<kbd>}</kbd> | 𝐍 | Move tab forward | `:+tabmove`
+| <kbd>Space</kbd>+<kbd>h</kbd> | 𝐍 | Show highlight groups for word |
+
+### Custom Tools & Plugins
+
+| Key   | Mode | Action             | Plugin or Mapping
+| ----- |:----:| ------------------ | ------
+| <kbd>-</kbd> | 𝐍 | Choose a window to edit | <small>[t9md/vim-choosewin]</small>
+| <kbd>;</kbd>+<kbd>c</kbd> | 𝐍 | Open context-menu | <small>[plugin/actionmenu.vim]</small>
+| <kbd>gK</kbd> | 𝐍 | Open Zeal or Dash on some file-types | <small>[plugin/devhelp.vim]</small>
+| <kbd>g</kbd><kbd>Ctrl</kbd>+<kbd>o</kbd> | 𝐍 | Navigate to previous file on jumplist | <small>[plugin/jumpfile.vim]</small>
+| <kbd>g</kbd><kbd>Ctrl</kbd>+<kbd>i</kbd> | 𝐍 | Navigate to next file on jumplist | <small>[plugin/jumpfile.vim]</small>
+| <kbd>Space</kbd>+<kbd>l</kbd> | 𝐍 | Open side-menu helper | <small>[rafi/vim-sidemenu]</small>
+| <kbd>Space</kbd>+<kbd>b</kbd> | 𝐍 | Open structure window | <small>[liuchengxu/vista.vim]</small>
+| <kbd>Space</kbd>+<kbd>a</kbd> | 𝐍 | Show nearby tag in structure window | <small>[liuchengxu/vista.vim]</small>
+| <kbd>Space</kbd>+<kbd>se</kbd> | 𝐍 | Save current workspace session | <small>[plugin/sessions.vim]</small>
+| <kbd>Space</kbd>+<kbd>sl</kbd> | 𝐍 | Load workspace session | <small>[plugin/sessions.vim]</small>
+| <kbd>Space</kbd>+<kbd>n</kbd>/<kbd>N</kbd> | 𝐍 | Open alternative file | <small>[kana/vim-altr]</small>
+| <kbd>Space</kbd>+<kbd>tc</kbd> | 𝐍 | Enable scroll-context window | <small>[wellle/context.vim]</small>
+| <kbd>Space</kbd>+<kbd>tp</kbd> | 𝐍 | Peek scroll-context window | <small>[wellle/context.vim]</small>
+| <kbd>Space</kbd>+<kbd>S</kbd> | 𝐍 𝐕 | Source selection | `y:execute @@`
+| <kbd>Space</kbd>+<kbd>?</kbd> | 𝐍 | Open the macOS dictionary on current word | `:!open dict://`
+| <kbd>Space</kbd>+<kbd>P</kbd> | 𝐍 | Use Marked 2 for real-time Markdown preview | <small>[Marked 2]</small>
+| <kbd>Space</kbd>+<kbd>ml</kbd> | 𝐍 | Append modeline to end of buffer | <small>[config/mappings.vim]</small>
+| <kbd>Space</kbd>+<kbd>mda</kbd> | 𝐕 | Sequentially mark region for diff | <small>[AndrewRadev/linediff.vim]</small>
+| <kbd>Space</kbd>+<kbd>mdf</kbd> | 𝐕 | Mark region for diff and compare if more than one | <small>[AndrewRadev/linediff.vim]</small>
+| <kbd>Space</kbd>+<kbd>mds</kbd> | 𝐍 | Shows the comparison for all marked regions | <small>[AndrewRadev/linediff.vim]</small>
+| <kbd>Space</kbd>+<kbd>mdr</kbd> | 𝐍 | Removes the signs denoting the diff regions | <small>[AndrewRadev/linediff.vim]</small>
+| <kbd>Space</kbd>+<kbd>mg</kbd> | 𝐍 | Open Magit | <small>[jreybert/vimagit]</small>
+| <kbd>Space</kbd>+<kbd>mt</kbd> | 𝐍 𝐕 | Toggle highlighted word | <small>[t9md/vim-quickhl]</small>
+| <kbd>Space</kbd>+<kbd>-</kbd> | 𝐍 | Switch editing window with selected | <small>[t9md/vim-choosewin]</small>
+| <kbd>Space</kbd>+<kbd>G</kbd> | 𝐍 | Toggle distraction-free writing | <small>[junegunn/goyo]</small>
+| <kbd>Space</kbd>+<kbd>gu</kbd> | 𝐍 | Open undo-tree | <small>[mbbill/undotree]</small>
+| <kbd>Space</kbd>+<kbd>K</kbd> | 𝐍 | Thesaurus | <small>[Ron89/thesaurus_query.vim]</small>
+| <kbd>Space</kbd>+<kbd>W</kbd> | 𝐍 | VimWiki | <small>[vimwiki/vimwiki]</small>
 
 ### Window Management
 
-| Key   | Mode | Action
-| ----- |:----:| ------------------
-| <kbd>q</kbd> | Normal | Quit window (and Vim, if last window)
-| <kbd>Ctrl</kbd>+<kbd>Tab</kbd> | Normal | Next tab
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Tab</kbd> | Normal | Previous tab
-| <kbd>s</kbd>+<kbd>v</kbd> | Normal | Horizontal split (`:split`)
-| <kbd>s</kbd>+<kbd>g</kbd> | Normal | Vertical split (`:vsplit`)
-| <kbd>s</kbd>+<kbd>t</kbd> | Normal | Open new tab (`:tabnew`)
-| <kbd>s</kbd>+<kbd>o</kbd> | Normal | Close other windows (`:only`)
-| <kbd>s</kbd>+<kbd>b</kbd> | Normal | Previous buffer (`:b#`)
-| <kbd>s</kbd>+<kbd>c</kbd> | Normal | Closes current buffer (`:close`)
-| <kbd>s</kbd>+<kbd>x</kbd> | Normal | Remove buffer, leave blank window
-| <kbd>Space</kbd>+<kbd>sv</kbd> | Normal | Split with previous buffer
-| <kbd>Space</kbd>+<kbd>sg</kbd> | Normal | Vertical split with previous buffer
+| Key   | Mode | Action             | Plugin or Mapping
+| ----- |:----:| ------------------ | ------
+| <kbd>q</kbd> | 𝐍 | Quit window (and Vim, if last window) | `:quit`
+| <kbd>Ctrl</kbd>+<kbd>q</kbd> | 𝐍 | Remap to C-w | <kbd>Ctrl</kbd>+<kbd>w</kbd>
+| <kbd>Ctrl</kbd>+<kbd>x</kbd> | 𝐍 | Rotate window placement | `C-w` `x`
+| <kbd>sv</kbd> | 𝐍 | Horizontal split | `:split`
+| <kbd>sg</kbd> | 𝐍 | Vertical split | `:vsplit`
+| <kbd>st</kbd> | 𝐍 | Open new tab | `:tabnew`
+| <kbd>so</kbd> | 𝐍 | Close other windows | `:only`
+| <kbd>sb</kbd> | 𝐍 | Previous buffer | `:b#`
+| <kbd>sc</kbd> | 𝐍 | Close current buffer | `:close`
+| <kbd>sx</kbd> | 𝐍 | Delete buffer, leave blank window | `:enew │ bdelete`
+| <kbd>sz</kbd> | 𝐍 | Toggle window zoom | `:vertical resize │ resize`
+| <kbd>ssv</kbd> | 𝐍 | Split with previous buffer | `:split │ wincmd p │ e#`
+| <kbd>ssg</kbd> | 𝐍 | Vertical split with previous buffer | `:vsplit │ wincmd p │ e#`
+| <kbd>sh</kbd> | 𝐍 | Toggle colorscheme background=dark/light | `:set background` …
+| <kbd>s-</kbd> | 𝐍 | Lower solarized8 colorscheme contrast | `:colorscheme ` …
+| <kbd>s=</kbd> | 𝐍 | Raise solarized8 colorscheme contrast | `:colorscheme ` …
+
+### Git Version Control
+
+| Key   | Mode | Action             | Plugin or Mapping
+| ----- |:----:| ------------------ | ------
+| <kbd>gs</kbd> | 𝐍 | Preview hunk | <small>[airblade/vim-gitgutter]</small>
+| <kbd>gS</kbd> | 𝐍 𝐕 𝐒 | Stage hunk | <small>[airblade/vim-gitgutter]</small>
+| <kbd>Space</kbd>+<kbd>gr</kbd> | 𝐍 | Revert hunk | <small>[airblade/vim-gitgutter]</small>
+| <kbd>Space</kbd>+<kbd>ga</kbd> | 𝐍 | Git add current file | <small>[lambdalisue/gina.vim]</small>
+| <kbd>Space</kbd>+<kbd>gd</kbd> | 𝐍 | Git diff | <small>[lambdalisue/gina.vim]</small>
+| <kbd>Space</kbd>+<kbd>gc</kbd> | 𝐍 | Git branches | <small>[lambdalisue/gina.vim]</small>
+| <kbd>Space</kbd>+<kbd>gc</kbd> | 𝐍 | Git commit | <small>[lambdalisue/gina.vim]</small>
+| <kbd>Space</kbd>+<kbd>gb</kbd> | 𝐍 | Git blame | <small>[lambdalisue/gina.vim]</small>
+| <kbd>Space</kbd>+<kbd>gs</kbd> | 𝐍 | Git status -s | <small>[lambdalisue/gina.vim]</small>
+| <kbd>Space</kbd>+<kbd>gl</kbd> | 𝐍 | Git log --all | <small>[lambdalisue/gina.vim]</small>
+| <kbd>Space</kbd>+<kbd>gF</kbd> | 𝐍 | Git fetch | <small>[lambdalisue/gina.vim]</small>
+| <kbd>Space</kbd>+<kbd>gp</kbd> | 𝐍 | Git push | <small>[lambdalisue/gina.vim]</small>
+| <kbd>Space</kbd>+<kbd>go</kbd> | 𝐍 𝐕 | Open SCM detailed URL in browser | <small>[lambdalisue/gina.vim]</small>
 
 ### Plugin: Denite
 
 | Key   | Mode | Action
 | ----- |:----:| ------------------
-| <kbd>;</kbd>+<kbd>r</kbd> | Normal | Resumes last Denite window
-| <kbd>;</kbd>+<kbd>f</kbd> | Normal | File search
-| <kbd>;</kbd>+<kbd>b</kbd> | Normal | Buffers and MRU
-| <kbd>;</kbd>+<kbd>d</kbd> | Normal | Directories
-| <kbd>;</kbd>+<kbd>v</kbd> | Normal/Visual | Yank history
-| <kbd>;</kbd>+<kbd>l</kbd> | Normal | Location list
-| <kbd>;</kbd>+<kbd>q</kbd> | Normal | Quick fix
-| <kbd>;</kbd>+<kbd>n</kbd> | Normal | Dein plugin list
-| <kbd>;</kbd>+<kbd>g</kbd> | Normal | Grep search
-| <kbd>;</kbd>+<kbd>j</kbd> | Normal | Jump points
-| <kbd>;</kbd>+<kbd>u</kbd> | Normal | Junk files
-| <kbd>;</kbd>+<kbd>o</kbd> | Normal | Outline tags
-| <kbd>;</kbd>+<kbd>s</kbd> | Normal | Sessions
-| <kbd>;</kbd>+<kbd>t</kbd> | Normal | Tag list
-| <kbd>;</kbd>+<kbd>p</kbd> | Normal | Jump to previous position
-| <kbd>;</kbd>+<kbd>h</kbd> | Normal | Help
-| <kbd>;</kbd>+<kbd>m</kbd> | Normal | Memo list
-| <kbd>;</kbd>+<kbd>z</kbd> | Normal | Z (jump around)
-| <kbd>;</kbd>+<kbd>/</kbd> | Normal | Buffer lines
-| <kbd>;</kbd>+<kbd>*</kbd> | Normal | Match word under cursor with lines
-| <kbd>;</kbd>+<kbd>;</kbd> | Normal | Command history
-| <kbd>Space</kbd>+<kbd>gl</kbd> | Normal | Git log (all)
-| <kbd>Space</kbd>+<kbd>gs</kbd> | Normal | Git status
-| <kbd>Space</kbd>+<kbd>gc</kbd> | Normal | Git branches
-| <kbd>Space</kbd>+<kbd>gt</kbd> | Normal | Find tags matching word under cursor
-| <kbd>Space</kbd>+<kbd>gf</kbd> | Normal | Find file matching word under cursor
-| <kbd>Space</kbd>+<kbd>gg</kbd> | Normal/Visual | Grep word under cursor
+| <kbd>;r</kbd> | 𝐍 | Resumes last Denite window
+| <kbd>;f</kbd> | 𝐍 | File search
+| <kbd>;g</kbd> | 𝐍 | Grep search
+| <kbd>;b</kbd> | 𝐍 | Buffers
+| <kbd>;i</kbd> | 𝐍 | Old files and MRU
+| <kbd>;d</kbd> | 𝐍 | Directories and MRU
+| <kbd>;v</kbd> | 𝐍 𝐕 | Yank history
+| <kbd>;l</kbd> | 𝐍 | Location list
+| <kbd>;q</kbd> | 𝐍 | Quick fix
+| <kbd>;m</kbd> | 𝐍 | Marks
+| <kbd>;n</kbd> | 𝐍 | Dein plugin list
+| <kbd>;j</kbd> | 𝐍 | Jump points and change stack
+| <kbd>;u</kbd> | 𝐍 | Junk files
+| <kbd>;o</kbd> | 𝐍 | Outline tags
+| <kbd>;s</kbd> | 𝐍 | Sessions
+| <kbd>;t</kbd> | 𝐍 | Tag list
+| <kbd>;p</kbd> | 𝐍 | Jumps
+| <kbd>;h</kbd> | 𝐍 | Help
+| <kbd>;w</kbd> | 𝐍 | Memo list
+| <kbd>;z</kbd> | 𝐍 | Z (jump around)
+| <kbd>;;</kbd> | 𝐍 | Command history
+| <kbd>;/</kbd> | 𝐍 | Buffer lines
+| <kbd>;\*</kbd> | 𝐍 | Search word under cursor with lines
+| <kbd>Space</kbd>+<kbd>gt</kbd> | 𝐍 | Find tags matching word under cursor
+| <kbd>Space</kbd>+<kbd>gf</kbd> | 𝐍 | Find files matching word under cursor
+| <kbd>Space</kbd>+<kbd>gg</kbd> | 𝐍 𝐕 | Grep word under cursor
 | **Within _Denite_ window** ||
-| <kbd>jj</kbd> or <kbd>kk</kbd> | Insert | Leave Insert mode
-| <kbd>q</kbd> or <kbd>Escape</kbd> | Normal | Exit denite window
-| <kbd>Space</kbd> | Normal | Select entry
-| <kbd>Tab</kbd> | Normal | List and choose action
-| <kbd>i</kbd> | Normal | Open filter input
-| <kbd>dd</kbd> | Normal | Delete entry
-| <kbd>p</kbd> | Normal | Preview entry
-| <kbd>st</kbd> | Normal | Open in a new tab
-| <kbd>sg</kbd> | Normal | Open in a vertical split
-| <kbd>sv</kbd> | Normal | Open in a split
-| <kbd>r</kbd> | Normal | Redraw
-| <kbd>yy</kbd> | Normal | Yank
-| <kbd>'</kbd> | Normal | Quick move
+| <kbd>jj</kbd> or <kbd>Escape</kbd> | 𝐈 | Leave Insert mode
+| <kbd>i</kbd> or <kbd>/</kbd> | 𝐍 | Enter Insert mode (filter input)
+| <kbd>q</kbd> or <kbd>Escape</kbd> | 𝐍 | Exit denite window
+| <kbd>Tab</kbd> or <kbd>Shift</kbd>+<kbd>Tab</kbd> | 𝐈 | Next/previous candidate
+| <kbd>Space</kbd> | 𝐍 | Select candidate entry
+| <kbd>dd</kbd> | 𝐍 | Delete entry
+| <kbd>p</kbd> | 𝐍 | Preview entry
+| <kbd>st</kbd> | 𝐍 | Open in a new tab
+| <kbd>sg</kbd> | 𝐍 | Open in a vertical split
+| <kbd>sv</kbd> | 𝐍 | Open in a split
+| <kbd>'</kbd> | 𝐍 | Quick-move
+| <kbd>r</kbd> | 𝐍 | Redraw
+| <kbd>yy</kbd> | 𝐍 | Yank
+| <kbd>Tab</kbd> | 𝐍 | List and choose action
 
 ### Plugin: Defx
 
 | Key   | Mode | Action
 | ----- |:----:| ------------------
-| <kbd>;</kbd>+<kbd>e</kbd> | Normal | Open file explorer (toggle)
-| <kbd>;</kbd>+<kbd>a</kbd> | Normal | Open file explorer and select current file
+| <kbd>;e</kbd> | 𝐍 | Open file-explorer (toggle)
+| <kbd>;a</kbd> | 𝐍 | Focus current file in file-explorer
 | **Within _Defx_ window** ||
-| <kbd>h</kbd> | Normal | Collapse directory tree
-| <kbd>j</kbd> or <kbd>k</kbd> | Normal | Move up and down the tree
-| <kbd>Return</kbd> or <kbd>l</kbd> | Normal | Toggle collapse/expand directory or open file
-| <kbd>Space</kbd> | Normal | Select current file or directory
-| <kbd>*</kbd> | Normal | Invert selection (select all)
-| <kbd>Backspace</kbd> | Normal | Move into the parent directory
-| <kbd>&</kbd> or <kbd>\</kbd> | Normal | Move to project root
-| <kbd>~</kbd> | Normal | Move to user home directory
-| <kbd>st</kbd> | Normal | Open file in new tab
-| <kbd>sv</kbd> | Normal | Open file in a horizontal split
-| <kbd>sg</kbd> | Normal | Open file in a vertical split
-| <kbd>N</kbd> | Normal | Create new directories and/or files
-| <kbd>K</kbd> | Normal | Create new directory
-| <kbd>c</kbd> / <kbd>m</kbd> / <kbd>p</kbd> | Normal | Copy, move, and paste
-| <kbd>r</kbd> | Normal | Rename file or directory
-| <kbd>dd</kbd> | Normal | Delete selected files and directories
-| <kbd>y</kbd> | Normal | Yank selected item to clipboard
-| <kbd>w</kbd> | Normal | Toggle window size
-| <kbd>]</kbd>+<kbd>g</kbd> | Normal | Next dirty git item
-| <kbd>[</kbd>+<kbd>g</kbd> | Normal | Previous dirty git item
-| <kbd>x</kbd> / <kbd>gx</kbd> | Normal | Execute associated system application
-| <kbd>gd</kbd> | Normal | Open git diff on selected file
-| <kbd>gl</kbd> | Normal | Open terminal file explorer
-| <kbd>gr</kbd> | Normal | Grep in selected directory
-| <kbd>gf</kbd> | Normal | Find files in selected directory
+| <kbd>j</kbd> or <kbd>k</kbd> | 𝐍 | Move up and down the tree
+| <kbd>l</kbd> or <kbd>Return</kbd> | 𝐍 | Toggle collapse/expand directory or open file
+| <kbd>h</kbd> | 𝐍 | Collapse directory tree
+| <kbd>t</kbd> | 𝐍 | Expand directory tree recursively
+| <kbd>.</kbd> | 𝐍 | Toggle hidden files
+| <kbd>Space</kbd> | 𝐍 | Select entry
+| <kbd>\*</kbd> | 𝐍 | Invert selection (select all)
+| <kbd>&</kbd> or <kbd>\</kbd> | 𝐍 | Change into current working directory
+| <kbd>~</kbd> | 𝐍 | Change to user home directory
+| <kbd>u</kbd> or <kbd>Backspace</kbd> | 𝐍 | Change into parent directory
+| <kbd>u</kbd> <kbd>2</kbd>/<kbd>3</kbd>/<kbd>4</kbd> | 𝐍 | Change into parent directory count
+| <kbd>st</kbd> | 𝐍 | Open file in new tab
+| <kbd>sv</kbd> | 𝐍 | Open file in a horizontal split
+| <kbd>sg</kbd> | 𝐍 | Open file in a vertical split
+| <kbd>N</kbd> | 𝐍 | Create new directories and/or files
+| <kbd>K</kbd> | 𝐍 | Create new directory
+| <kbd>c</kbd> / <kbd>m</kbd> / <kbd>p</kbd> | 𝐍 | Copy, move, and paste
+| <kbd>r</kbd> | 𝐍 | Rename file or directory
+| <kbd>dd</kbd> | 𝐍 | Trash selected files and directories
+| <kbd>y</kbd> | 𝐍 | Yank path to clipboard
+| <kbd>w</kbd> | 𝐍 | Toggle window size
+| <kbd>]g</kbd> | 𝐍 | Next dirty git item
+| <kbd>[g</kbd> | 𝐍 | Previous dirty git item
+| <kbd>x</kbd> or <kbd>gx</kbd> | 𝐍 | Execute associated system application
+| <kbd>gd</kbd> | 𝐍 | Open git diff on selected file
+| <kbd>gl</kbd> | 𝐍 | Open terminal file explorer with tmux
+| <kbd>gr</kbd> | 𝐍 | Grep in current position
+| <kbd>gf</kbd> | 𝐍 | Find files in current position
 
 ### Plugin: Asyncomplete and Emmet
 
 | Key   | Mode | Action
 | ----- |:----:| ------------------
-| <kbd>Tab</kbd> / <kbd>Shift-Tab</kbd> | Insert | Navigate completion-menu
-| <kbd>Enter</kbd> | Insert | Select completion or expand snippet
-| <kbd>Ctrl</kbd>+<kbd>j</kbd> <kbd>k</kbd> <kbd>d</kbd> <kbd>u</kbd> | Insert | Movement in completion pop-up
-| <kbd>Ctrl</kbd>+<kbd>Return</kbd> | Insert | Expand Emmet sequence
-| <kbd>Ctrl</kbd>+<kbd>Space</kbd> | Insert | Refresh and show candidates
-| <kbd>Ctrl</kbd>+<kbd>y</kbd> | Insert | Close pop-up
-| <kbd>Ctrl</kbd>+<kbd>e</kbd> | Insert | Cancel selection and close pop-up
-| <kbd>Ctrl</kbd>+<kbd>l</kbd> | Insert | Expand snippet at cursor
-| <kbd>Ctrl</kbd>+<kbd>f</kbd> | Insert/select | Jump to next snippet placeholder
-| <kbd>Ctrl</kbd>+<kbd>b</kbd> | Insert/select | Jump to previous snippet placeholder
+| <kbd>Tab</kbd> / <kbd>Shift-Tab</kbd> | 𝐈 | Navigate completion-menu
+| <kbd>Enter</kbd> | 𝐈 | Select completion or expand snippet
+| <kbd>Ctrl</kbd>+<kbd>j</kbd>/<kbd>k</kbd>/<kbd>d</kbd>/<kbd>u</kbd> | 𝐈 | Movement in completion pop-up
+| <kbd>Ctrl</kbd>+<kbd>Return</kbd> | 𝐈 | Expand Emmet sequence
+| <kbd>Ctrl</kbd>+<kbd>Space</kbd> | 𝐈 | Refresh and show candidates
+| <kbd>Ctrl</kbd>+<kbd>y</kbd> | 𝐈 | Close pop-up
+| <kbd>Ctrl</kbd>+<kbd>e</kbd> | 𝐈 | Cancel selection and close pop-up
+| <kbd>Ctrl</kbd>+<kbd>l</kbd> | 𝐈 | Expand snippet at cursor
+| <kbd>Tab</kbd> / <kbd>Shift-Tab</kbd> | 𝐈 𝐒 | Navigate snippet placeholders
 
-### Plugin: Caw (comments)
-
-| Key   | Mode | Action
-| ----- |:----:| ------------------
-| <kbd>gc</kbd> | Normal/visual | Prefix
-| <kbd>gcc</kbd> | Normal/visual | Toggle comments
-| <kbd>Space</kbd>+<kbd>v</kbd> | Normal/visual | Toggle single-line comments
-| <kbd>Space</kbd>+<kbd>V</kbd> | Normal/visual | Toggle comment block
-
-### Plugin: Edge Motion
+### Plugin: Any-Jump
 
 | Key   | Mode | Action
 | ----- |:----:| ------------------
-| <kbd>g</kbd>+<kbd>j</kbd> | Normal/Visual | Jump to edge downwards
-| <kbd>g</kbd>+<kbd>k</kbd> | Normal/Visual | Jump to edge upwards
+| <kbd>Space</kbd>+<kbd>ii</kbd> | 𝐍 | Jump to definition under cursor
+| <kbd>Space</kbd>+<kbd>ii</kbd> | 𝐕 | Jump to selected text in visual mode
+| <kbd>Space</kbd>+<kbd>ib</kbd> | 𝐍 | Open previous opened file (after jump)
+| <kbd>Space</kbd>+<kbd>il</kbd> | 𝐍 | Open last closed search window again
 
 ### Plugin: Signature
 
 | Key   | Mode | Action
 | ----- |:----:| ------------------
-| <kbd>m</kbd> + <kbd>/</kbd> or <kbd>?</kbd> | Normal | Show list of buffer marks/markers
-| <kbd>m</kbd> + <kbd>m</kbd> | Normal | Toggle mark on current line
-| <kbd>m</kbd> + <kbd>,</kbd> | Normal | Place next mark
-| <kbd>m</kbd> + <kbd>a-z</kbd> | Normal | Place specific mark (Won't work for: <kbd>m</kbd>, <kbd>n</kbd>, <kbd>p</kbd>)
-| <kbd>d</kbd> + <kbd>m</kbd> + <kbd>a-z</kbd> | Normal | Remove specific mark (Won't work for: <kbd>m</kbd>, <kbd>n</kbd>, <kbd>p</kbd>)
-| <kbd>m</kbd> + <kbd>n</kbd> | Normal | Jump to next mark
-| <kbd>m</kbd> + <kbd>p</kbd> | Normal | Jump to previous mark
-| <kbd>]</kbd> + <kbd>=</kbd> | Normal | Jump to next marker
-| <kbd>[</kbd> + <kbd>=</kbd> | Normal | Jump to previous marker
-| <kbd>m</kbd> + <kbd>-</kbd> | Normal | Purge all on current line
-| <kbd>m</kbd> + <kbd>Space</kbd> | Normal | Purge marks
-| <kbd>m</kbd> + <kbd>Backspace</kbd> | Normal | Purge markers
-
-### Plugin: Easygit
-
-| Key   | Mode | Action
-| ----- |:----:| ------------------
-| <kbd>Space</kbd>+<kbd>ga</kbd> | Normal | Git add current file
-| <kbd>Space</kbd>+<kbd>gS</kbd> | Normal | Git status
-| <kbd>Space</kbd>+<kbd>gd</kbd> | Normal | Git diff
-| <kbd>Space</kbd>+<kbd>gD</kbd> | Normal | Close diff
-| <kbd>Space</kbd>+<kbd>gc</kbd> | Normal | Git commit
-| <kbd>Space</kbd>+<kbd>gb</kbd> | Normal | Git blame
-| <kbd>Space</kbd>+<kbd>gB</kbd> | Normal | Open in browser
-| <kbd>Space</kbd>+<kbd>gp</kbd> | Normal | Git push
-
-### Plugin: GitGutter
-
-| Key   | Mode | Action
-| ----- |:----:| ------------------
-| <kbd>[</kbd>+<kbd>g</kbd> | Normal | Jump to next hunk
-| <kbd>]</kbd>+<kbd>g</kbd> | Normal | Jump to previous hunk
-| <kbd>g</kbd>+<kbd>S</kbd> | Normal | Stage hunk
-| <kbd>Space</kbd>+<kbd>gr</kbd> | Normal | Revert hunk
-| <kbd>g</kbd>+<kbd>s</kbd> | Normal | Preview hunk
-
-### Plugin: Linediff
-
-| Key   | Mode | Action
-| ----- |:----:| ------------------
-| <kbd>Space</kbd>+<kbd>mda</kbd> | Visual | Sequentially mark region for diff
-| <kbd>Space</kbd>+<kbd>mdf</kbd> | Visual | Mark region for diff and compare if more than one
-| <kbd>Space</kbd>+<kbd>mds</kbd> | Normal | Shows the comparison for all marked regions
-| <kbd>Space</kbd>+<kbd>mdr</kbd> | Normal | Removes the signs denoting the diff regions
-
-### Misc Plugins
-
-| Key   | Mode | Action
-| ----- |:----:| ------------------
-| <kbd>v</kbd> / <kbd>V</kbd> | Visual/select | Expand/reduce selection (expand-region)
-| <kbd>-</kbd> | Normal | Choose a window to edit (choosewin)
-| <kbd>Space</kbd>+<kbd>mg</kbd> | Normal | Open Magit
-| <kbd>Space</kbd>+<kbd>mt</kbd> | Normal/Visual | Toggle highlighted word (quickhl)
-| <kbd>Space</kbd>+<kbd>-</kbd> | Normal | Switch editing window with selected (choosewin)
-| <kbd>Space</kbd>+<kbd>o</kbd> | Normal/Visual | Open SCM detailed URL in browser (`:OpenSCM`)
-| <kbd>Space</kbd>+<kbd>t</kbd> | Normal | Open structure window (`:Vista`)
-| <kbd>Space</kbd>+<kbd>a</kbd> | Normal | Show nearby tag in structure window (`:Vista show`)
-| <kbd>Space</kbd>+<kbd>G</kbd> | Normal | Toggle distraction-free writing (goyo)
-| <kbd>Space</kbd>+<kbd>gu</kbd> | Normal | Open undo-tree
-| <kbd>Space</kbd>+<kbd>W</kbd> | Normal | VimWiki
-| <kbd>Space</kbd>+<kbd>K</kbd> | Normal | Thesaurus
+| <kbd>m/</kbd> or <kbd>m?</kbd> | 𝐍 | Show list of buffer marks/markers
+| <kbd>mm</kbd> | 𝐍 | Toggle mark on current line
+| <kbd>m,</kbd> | 𝐍 | Place next mark
+| <kbd>m</kbd> <kbd>a-z</kbd> | 𝐍 | Place specific mark (Won't work for: <kbd>mm</kbd>, <kbd>mn</kbd>, <kbd>mp</kbd>)
+| <kbd>dm</kbd> <kbd>a-z</kbd> | 𝐍 | Remove specific mark (Won't work for: <kbd>mm</kbd>, <kbd>mn</kbd>, <kbd>mp</kbd>)
+| <kbd>mn</kbd> | 𝐍 | Jump to next mark
+| <kbd>mp</kbd> | 𝐍 | Jump to previous mark
+| <kbd>]=</kbd> | 𝐍 | Jump to next marker
+| <kbd>[=</kbd> | 𝐍 | Jump to previous marker
+| <kbd>m-</kbd> | 𝐍 | Purge all on current line
+| <kbd>m</kbd> <kbd>Space</kbd> | 𝐍 | Purge marks
+| <kbd>m</kbd> <kbd>Backspace</kbd> | 𝐍 | Purge markers
 
 </details>
 
 ## Credits & Contribution
 
-Big thanks to the dark knight [Shougo].
+Big thanks to the dark knight [Shougo](https://github.com/Shougo).
 
+[config/mappings.vim]: ./config/mappings.vim
+[plugin/whitespace.vim]: ./plugin/whitespace.vim
+[plugin/sessions.vim]: ./plugin/sessions.vim
+[plugin/devhelp.vim]: ./plugin/devhelp.vim
+[plugin/jumpfile.vim]: ./plugin/jumpfile.vim
+[plugin/actionmenu.vim]: ./plugin/actionmenu.vim
+[Marked 2]: https://marked2app.com
 [Neovim]: https://github.com/neovim/neovim
-[Vim8]: https://github.com/vim/vim
-[Shougo]: https://github.com/Shougo
+[Vim]: https://github.com/vim/vim
 [lazy-loaded]: ./config/plugins.yaml#L47
-[yaml2json]: https://github.com/bronze1man/yaml2json
