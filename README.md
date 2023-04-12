@@ -160,7 +160,7 @@ brew cask install font-fira-code
 * macOS with Homebrew:
 
 ```sh
-brew install shellcheck jsonlint yamllint tflint ansible-lint
+brew install shellcheck jsonlint yamllint
 brew install tidy-html5 proselint write-good
 ```
 
