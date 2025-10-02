@@ -22,8 +22,16 @@ return {
 	dependencies = { 'MunifTanjim/nui.nvim' },
 	-- stylua: ignore
 	keys = {
-		{ '<localleader>e', '<leader>fe', desc = 'Explorer Tree (Root Dir)', remap = true },
-		{ '<localleader>E', '<leader>fE', desc = 'Explorer Tree (cwd)', remap = true },
+		{ '<localleader>e',
+			function()
+				require('neo-tree.command').execute({ reveal = true, dir = LazyVim.root() })
+			end,
+		desc = 'Explorer Tree (Root Dir)', remap = true },
+		{ '<localleader>E',
+			function()
+				require('neo-tree.command').execute({ reveal = true, dir = vim.uv.cwd() })
+			end,
+			desc = 'Explorer Tree (cwd)', remap = true },
 		{
 			'<localleader>a',
 			function()
