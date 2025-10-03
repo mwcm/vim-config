@@ -1,7 +1,7 @@
 return {
 
 	{ 'nvimdev/dashboard-nvim', optional = true, enabled = false },
-	{ 'echasnovski/mini.starter', optional = true, enabled = false },
+	{ 'nvim-mini/mini.starter', optional = true, enabled = false },
 	{
 		'folke/persistence.nvim',
 		opts = { autoload = false },

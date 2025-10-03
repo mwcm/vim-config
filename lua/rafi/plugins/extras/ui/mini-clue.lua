@@ -4,7 +4,7 @@ return {
 
 	-- Show next key clues
 	{
-		'echasnovski/mini.clue',
+		'nvim-mini/mini.clue',
 		version = false,
 		event = 'VeryLazy',
 		opts = function(_, opts)
