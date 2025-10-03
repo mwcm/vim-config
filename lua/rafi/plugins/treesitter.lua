@@ -59,8 +59,8 @@ return {
 			end
 			if not has_git then
 				require('nvim-treesitter.install').ensure_installed = function() end
-				require('nvim-treesitter.configs').setup(opts)
 			end
+			require('nvim-treesitter.configs').setup(opts)
 		end,
 		---@type TSConfig
 		---@diagnostic disable: missing-fields
@@ -68,14 +68,6 @@ return {
 			sync_install = has_git,
 			highlight = {
 				enable = true,
-				disable = function(_, buf)
-					local max_filesize = 1024 * 1024 -- 1MB
-					local ok, stats =
-						pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
-					if ok and stats and stats.size > max_filesize then
-						return true
-					end
-				end,
 			},
 			indent = { enable = true },
 			refactor = {
@@ -158,6 +150,8 @@ return {
 				'gitignore',
 				'graphql',
 				'http',
+				'html',
+				'javascript',
 				'json5',
 				'just',
 				'make',
@@ -166,6 +160,7 @@ return {
 				'sql',
 				'ssh_config',
 				'svelte',
+				'typescript',
 				'vhs',
 				'zig',
 			},
