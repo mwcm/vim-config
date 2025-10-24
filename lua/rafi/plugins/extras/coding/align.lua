@@ -5,13 +5,13 @@ return {
 		'nvim-mini/mini.align',
 		opts = {
 			mappings = {
-				start = 'gb',
-				start_with_preview = 'gB',
+				start = 'ga',
+				start_with_preview = 'gA',
 			},
 		},
 		keys = {
-			{ 'gb', mode = { 'n', 'x' } },
-			{ 'gB', mode = { 'n', 'x' } },
+			{ 'ga', mode = { 'n', 'x' } },
+			{ 'gA', mode = { 'n', 'x' } },
 		},
 	},
 }

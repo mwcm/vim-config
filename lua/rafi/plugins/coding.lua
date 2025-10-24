@@ -114,15 +114,4 @@ return {
 	},
 
 	-----------------------------------------------------------------------------
-	-- Perform diffs on blocks of code
-	{
-		'AndrewRadev/linediff.vim',
-		cmd = { 'Linediff', 'LinediffAdd' },
-		keys = {
-			{ '<leader>mdf', ':Linediff<CR>', mode = 'x', desc = 'Line diff' },
-			{ '<leader>mda', ':LinediffAdd<CR>', mode = 'x', desc = 'Line diff add' },
-			{ '<leader>mds', '<cmd>LinediffShow<CR>', desc = 'Line diff show' },
-			{ '<leader>mdr', '<cmd>LinediffReset<CR>', desc = 'Line diff reset' },
-		},
-	},
 }

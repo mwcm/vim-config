@@ -348,7 +348,7 @@ end
 -- Windows and buffers {{{
 
 -- When enabled, 'q' closes any window.
-if vim.F.if_nil(vim.g.window_q_mapping, false) then
+if vim.F.if_nil(vim.g.window_q_mapping, true) then
 	map('n', 'q', function()
 		local plugins = {
 			'blame',
