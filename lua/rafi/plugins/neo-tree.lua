@@ -116,6 +116,13 @@ return {
 				['?'] = 'noop',
 				['g?'] = 'show_help',
 				['<leader>'] = 'noop',
+				['oc'] = "noop";
+				['od'] = 'noop';
+				['og'] = 'noop';
+				['om'] = 'noop';
+				['on'] = 'noop';
+				['os'] = 'noop';
+				['ot'] = 'noop';
 
 				-- Clear filter, preview and highlight search.
 				['<Esc>'] = function(state)
