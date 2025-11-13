@@ -4,7 +4,8 @@
     "lazyvim.plugins.extras.lang.svelte",
     "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.util.mini-hipatterns",
-    "rafi.plugins.extras.coding.align"
+    "rafi.plugins.extras.coding.align",
+    "rafi.plugins.extras.ui.mini-map"
   ],
   "install_version": 8,
   "news": [
