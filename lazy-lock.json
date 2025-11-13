@@ -65,6 +65,6 @@
   "vim-quickhl": { "branch": "master", "commit": "be1f44169c3fdee3beab629e83380515da03835e" },
   "vim-reason-plus": { "branch": "master", "commit": "c11a2940f8f3e3915e472c366fe460b0fe008bac" },
   "vim-stylus": { "branch": "master", "commit": "0e457b09db55d3518703bb22e1555872c5c44b7a" },
-  "vim-tidal": { "branch": "master", "commit": "be08cf5b574f19b14689b8fa1e9a1bb0a1647f98" },
+  "vim-tidal": { "branch": "master", "commit": "21426bae80441203545f1aae27ce5cd35b67ae5b" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" }
 }
