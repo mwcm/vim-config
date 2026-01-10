@@ -1,6 +1,6 @@
 -- TidalCycles integration
 return {
-  "thgrund/tidal.nvim",
+  "mwcm/tidal.nvim",
 	enabled = true,
 	lazy = false,
   opts = {
@@ -36,8 +36,8 @@ return {
             global = {
               baseName = "CodeHighlight",
               style = {
-                bg = "#ff8800",
-                foreground = "#000000"
+                bg = "#5F7592",
+                foreground = "#ffffff"
               }
             },
           },
@@ -50,14 +50,14 @@ return {
           fps = 30,
         },
       },
-      sclang = {
-        --- Command to launch SuperCollider
-        cmd = "sclang",
-        args = {},
-        --- SuperCollider boot file
-        file = os.getenv("HOME") .. "/.config/tidal/BootSuperDirt.scd",
-        enabled = true,
-      },
+      -- sclang = {
+      --   --- Command to launch SuperCollider
+      --   cmd = "sclang",
+      --   args = {},
+      --   --- SuperCollider boot file
+      --   file = os.getenv("HOME") .. "/.config/SuperCollider/startup.scd",
+      --   enabled = true,
+      -- },
       split = "v",
     },
     --- Default keymaps
